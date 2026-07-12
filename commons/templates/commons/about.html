@@ -1,0 +1,357 @@
+{% extends "main_layout.html" %}
+
+{% block content %}
+
+  <!-- Banner halaman -->
+  <section class="relative min-h-[62vh] flex items-end overflow-hidden bg-abyss">
+    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop"
+         alt="Pegunungan Cycloop yang berkabut di atas pesisir"
+         onerror="this.onerror=null;this.src='https://picsum.photos/seed/tentang-banner/1600/900'"
+         class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/55 to-abyss/20"></div>
+    <div class="absolute inset-0 bg-linear-to-r from-abyss/70 via-transparent to-transparent"></div>
+
+    <div class="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-16 pt-32">
+      <nav class="font-mono text-[11px] tracking-eyebrow uppercase text-kabut/60 mb-5" aria-label="Breadcrumb">
+        <a href="{% url 'commons:index' %}" class="hover:text-emas transition">Beranda</a>
+        <span class="mx-2 text-emas">/</span>
+        <span class="text-kabut/90">Tentang</span>
+      </nav>
+      <p class="font-mono text-xs tracking-eyebrow uppercase text-emasS mb-4">Profil Kampung</p>
+      <h1 class="font-display font-extrabold text-kabut leading-[0.98] text-4xl sm:text-6xl max-w-3xl">
+        Tentang Kampung Yongsu Desoyo
+      </h1>
+      <p class="mt-5 text-kabut/80 text-lg max-w-2xl leading-relaxed">
+        Mengenal lebih dekat sebuah kampung masyarakat adat Tepra — tempat Pegunungan Cycloop
+        bertemu Samudra Pasifik di pesisir utara Tanah Papua.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pengantar -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-14 items-start">
+
+      <div class="reveal lg:col-span-7">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Sekilas Kampung</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Kampung yang tumbuh dari pertemuan gunung dan laut
+        </h2>
+        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
+          <p>
+            Kampung Yongsu Desoyo terletak di Distrik Raveni Rara, Kabupaten Jayapura, Provinsi Papua. Kampung ini
+            dihuni oleh masyarakat adat <strong class="text-ink">Suku Tepra</strong>, yang telah menetap dan menjaga
+            wilayah ini secara turun-temurun.
+          </p>
+          <p>
+            Letaknya istimewa: punggung kampung bersandar pada rimbun <strong class="text-ink">Pegunungan Cycloop</strong>,
+            sementara wajahnya menatap langsung <strong class="text-ink">Samudra Pasifik</strong>. Sebagian besar warga
+            bermata pencaharian sebagai nelayan dan petani, memadukan hasil laut dengan hasil kebun sebagai sumber kehidupan.
+          </p>
+          <p>
+            Di tengah arus perubahan zaman, Yongsu Desoyo memilih jalan yang tidak menukar jati diri: melestarikan adat
+            dan hutan warisan leluhur, sekaligus mengembangkan potensi ekonomi lokal melalui ekowisata, produk lokal,
+            dan penguatan tata kelola kampung menuju status <strong class="text-ink">kampung adat</strong>.
+          </p>
+        </div>
+      </div>
+
+      <aside class="reveal lg:col-span-5">
+        <div class="rounded-md bg-abyss text-kabut p-8 shadow-xl">
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-6">Fakta Ringkas</p>
+          <dl class="divide-y divide-white/10">
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Provinsi</dt><dd class="font-medium text-right">Papua</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Kabupaten</dt><dd class="font-medium text-right">Jayapura</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Distrik</dt><dd class="font-medium text-right">Raveni Rara</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Masyarakat Adat</dt><dd class="font-medium text-right">Suku Tepra</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Bentang Alam</dt><dd class="font-medium text-right">Pesisir &amp; Pegunungan</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Status Wisata</dt><dd class="font-medium text-right">Desa Wisata Rintisan</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="text-kabut/60">Mata Pencaharian</dt><dd class="font-medium text-right">Nelayan &amp; Petani</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Geografi & letak -->
+  <section class="bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute -top-8 left-0 w-full opacity-6" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 80c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 120c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center relative">
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Geografi &amp; Letak</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
+          Di kaki Cycloop, di tepi Pasifik
+        </h2>
+        <div class="mt-6 space-y-4 text-kabut/80 leading-relaxed">
+          <p>
+            Kampung ini berada di lereng utara Cagar Alam Pegunungan Cycloop yang langsung berbatasan dengan laut.
+            Perpaduan ini menghadirkan kekayaan hayati yang jarang ditemui: hutan tropis dataran rendah, sungai dan
+            air terjun, garis pantai, hingga ekosistem bawah laut.
+          </p>
+          <p>
+            Akses menuju kampung dapat ditempuh melalui jalur darat maupun laut dari Kota Jayapura. Peningkatan
+            konektivitas jalan antarkampung pesisir terus berlangsung untuk memudahkan warga dan kunjungan wisata.
+          </p>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-4">
+          <div class="rounded-md border border-white/10 p-4">
+            <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/70">Batas Utara</p>
+            <p class="font-medium mt-1">Samudra Pasifik</p>
+          </div>
+          <div class="rounded-md border border-white/10 p-4">
+            <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/70">Batas Selatan</p>
+            <p class="font-medium mt-1">Pegunungan Cycloop</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="rounded-md overflow-hidden ring-1 ring-white/10 shadow-2xl bg-laut">
+          <iframe
+            title="Peta Kampung Yongsu Desoyo"
+            src="https://www.google.com/maps?q=Kampung%20Yongsu%20Desoyo%20Ravenirara%20Jayapura%20Papua&output=embed"
+            class="w-full h-[380px] sm:h-[440px] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/Kampung+Yongsu+Desoyo+Ravenirara+Jayapura"
+           target="_blank" rel="noopener"
+           class="mt-3 inline-flex items-center gap-1.5 font-mono text-xs text-aqua hover:text-emas transition">
+          Buka di Google Maps
+          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sejarah singkat -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Sejarah Singkat</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Jejak Orang Tepra yang dijaga turun-temurun
+        </h2>
+        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
+          <p>
+            Sejak lama, Orang Tepra menata ruang hidup mereka berdasarkan kearifan lokal — dari zonasi kebun,
+            tempat melaut, hingga ruang-ruang adat. Tata ruang tradisional ini bukan sekadar pola permukiman,
+            melainkan cerminan hubungan erat antara manusia, alam, dan leluhur.
+          </p>
+          <p>
+            Kepemimpinan adat dipegang melalui sistem <strong class="text-ink">Ondoafi</strong>, yang menjadi
+            penjaga tatanan sosial dan wilayah adat. Nilai-nilai inilah yang terus dirawat warga sembari kampung
+            melangkah menuju pengakuan sebagai kampung adat.
+          </p>
+        </div>
+        <blockquote class="mt-8 border-l-2 border-emas pl-5 text-ink/80 italic">
+          "Menjaga adat dan hutan adalah cara kami menjaga diri sendiri."
+        </blockquote>
+      </div>
+
+      <div class="reveal order-1 lg:order-2 relative">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop"
+             alt="Hutan tropis di kaki Pegunungan Cycloop"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/sejarah/1000/1100'"
+             class="w-full h-[420px] sm:h-[520px] object-cover rounded-sm shadow-xl" />
+        <div class="absolute -bottom-5 -left-3 sm:-left-5 bg-abyss text-kabut px-5 py-3 rounded-sm shadow-lg">
+          <p class="font-mono text-[10px] tracking-eyebrow text-aqua/80 uppercase">Kearifan Lokal</p>
+          <p class="font-display font-bold leading-tight">Tata Ruang Tradisional Tepra</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Masyarakat & budaya adat Tepra -->
+  <section class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Masyarakat &amp; Budaya</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Adat yang masih hidup di keseharian
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Kepemimpinan Ondoafi</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Sistem kepemimpinan adat yang menjaga tatanan sosial dan wilayah adat kampung.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Noken</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Tas tradisional dari serat alami dengan motif khas, warisan budaya yang masih ditenun warga.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Bahasa Daerah</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Bahasa ibu yang terus dijaga; dapat ditelusuri melalui Kamus Bahasa Raveni Rara.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Upacara Adat</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Ritual dan kesenian yang menandai peristiwa penting dalam kehidupan masyarakat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visi & misi -->
+  <section class="bg-reef text-abyss py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute inset-0 w-full h-full opacity-12" viewBox="0 0 1440 500" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M0 360c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
+      <path d="M0 320c220-60 360 40 620 30s420-90 820-70" stroke="#052420" stroke-width="1.5" opacity="0.4"/>
+    </svg>
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 relative">
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-4">Visi</p>
+        <p class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-snug">
+          Mewujudkan Yongsu Desoyo sebagai kampung adat yang mandiri, lestari, dan sejahtera —
+          tempat kekayaan alam dan budaya menjadi sumber kehidupan yang berkelanjutan bagi seluruh warga.
+        </p>
+      </div>
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-5">Misi</p>
+        <ul class="space-y-4">
+          <li class="flex gap-4">
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">01</span>
+            <p class="text-abyss/90 leading-relaxed">Menjaga hutan, laut, dan wilayah adat sebagai warisan bersama.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">02</span>
+            <p class="text-abyss/90 leading-relaxed">Mengembangkan ekowisata dan ekonomi warga yang berkeadilan.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">03</span>
+            <p class="text-abyss/90 leading-relaxed">Melestarikan budaya, bahasa, dan pengetahuan tradisional Tepra.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">04</span>
+            <p class="text-abyss/90 leading-relaxed">Memperkuat pemerintahan kampung yang transparan dan partisipatif.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">05</span>
+            <p class="text-abyss/90 leading-relaxed">Meningkatkan layanan dasar: pendidikan, kesehatan, dan infrastruktur.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pemerintahan kampung & lembaga adat -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Pemerintahan &amp; Kelembagaan</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Struktur yang menopang kampung
+        </h2>
+        <p class="mt-5 text-ink/70 leading-relaxed">
+          Pemerintahan kampung berjalan beriringan dengan lembaga adat. Keduanya bahu-membahu mengatur kehidupan
+          warga, dari pelayanan sehari-hari hingga penjagaan wilayah adat.
+        </p>
+      </div>
+
+      <!-- Ganti "—" dengan nama pejabat yang menjabat -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
+          <h3 class="font-display font-bold text-lg text-ink">Kepala Kampung</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
+          <h3 class="font-display font-bold text-lg text-ink">Sekretaris Kampung</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
+          <h3 class="font-display font-bold text-lg text-ink">Bendahara Kampung</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
+          <h3 class="font-display font-bold text-lg text-ink">Kaur Pemerintahan</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
+          <h3 class="font-display font-bold text-lg text-ink">Kaur Pembangunan</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
+          <h3 class="font-display font-bold text-lg text-ink">Kaur Umum &amp; Kesra</h3>
+          <p class="mt-1 text-sm text-ink/50">—</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <div class="reveal rounded-md bg-abyss text-kabut p-8">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80 mb-3">Lembaga Adat</p>
+          <h3 class="font-display font-bold text-2xl">Ondoafi Besar</h3>
+          <p class="mt-2 text-kabut/70 leading-relaxed text-sm">
+            Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.
+          </p>
+        </div>
+        <div class="reveal rounded-md bg-abyss text-kabut p-8">
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80 mb-3">Lembaga Adat</p>
+          <h3 class="font-display font-bold text-2xl">Dewan Adat Yewena Yosu</h3>
+          <p class="mt-2 text-kabut/70 leading-relaxed text-sm">
+            Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-abyss text-kabut relative overflow-hidden">
+    <svg class="absolute inset-0 w-full h-full opacity-8" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M0 300c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
+      <path d="M0 260c220-60 360 40 620 30s420-90 820-70" stroke="#5BC2AC" stroke-width="1.5"/>
+    </svg>
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-24 relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="reveal max-w-2xl">
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
+          Ingin mengenal Yongsu Desoyo lebih jauh?
+        </h2>
+        <p class="mt-4 text-kabut/75 text-lg">Jelajahi potensi wisata, produk lokal, dan program pembangunan kampung kami.</p>
+      </div>
+      <div class="reveal flex flex-col sm:flex-row gap-4 shrink-0">
+        <a href="{% url 'tourism:list' %}" class="inline-flex items-center justify-center rounded-full bg-emas px-7 py-4 font-semibold text-abyss hover:bg-emasS transition">Jelajahi Potensi</a>
+        <a href="{% url 'commons:contact' %}" class="inline-flex items-center justify-center rounded-full border-2 border-white/25 px-7 py-4 font-semibold text-kabut hover:bg-white/10 transition">Hubungi Kami</a>
+      </div>
+    </div>
+  </section>
+
+
+  {% endblock %}

@@ -1,0 +1,549 @@
+{% extends "main_layout.html" %}
+
+{% block content %}
+
+  <!-- Hero slider -->
+  <section
+    id="beranda"
+    x-data="heroSlider()"
+    x-init="start()"
+    @mouseenter="pause()" @mouseleave="resume()"
+    class="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-abyss">
+
+    <template x-for="(s, i) in slides" :key="i">
+      <div class="absolute inset-0 transition-opacity duration-1200 ease-out"
+           :class="active === i ? 'opacity-100' : 'opacity-0'">
+        <img :src="s.img" :alt="s.caption"
+             class="h-full w-full object-cover"
+             :class="active === i ? 'kenburns' : ''"
+             @error="$el.onerror = null; $el.src = s.fb" />
+        <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/45 to-abyss/10"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-abyss/75 via-abyss/10 to-transparent"></div>
+      </div>
+    </template>
+
+    <div class="absolute top-24 right-6 sm:right-10 z-10 hidden sm:block text-right">
+      <p class="font-mono text-[11px] tracking-eyebrow text-aqua/80">2°30′ LS · 140°26′ BT</p>
+      <p class="font-mono text-[11px] tracking-eyebrow text-kabut/50 mt-1">GUNUNG CYCLOOP × LAUT PASIFIK</p>
+    </div>
+
+    <div class="relative z-10 h-full mx-auto max-w-7xl px-5 sm:px-8 flex flex-col justify-end pb-24 sm:pb-28">
+      <p class="font-mono text-xs sm:text-sm tracking-eyebrow uppercase text-emasS mb-5">
+        Distrik Ravenirara · Kabupaten Jayapura · Papua
+      </p>
+
+      <template x-for="(s, i) in slides" :key="'txt'+i">
+        <div x-show="active === i"
+             x-transition:enter="transition ease-out duration-700 delay-150"
+             x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+             class="max-w-3xl">
+          <h1 class="font-display font-extrabold text-kabut leading-[0.98] text-4xl sm:text-6xl lg:text-7xl"
+              x-text="s.title"></h1>
+          <p class="mt-5 text-kabut/85 text-base sm:text-lg max-w-xl leading-relaxed" x-text="s.sub"></p>
+        </div>
+      </template>
+
+      <div class="mt-9 flex items-center gap-6">
+        <div class="flex gap-2">
+          <template x-for="(s, i) in slides" :key="'dot'+i">
+            <button @click="go(i)" :aria-label="'Ke slide '+(i+1)"
+                    class="h-1.5 rounded-full transition-all duration-300"
+                    :class="active === i ? 'w-9 bg-emas' : 'w-4 bg-kabut/30 hover:bg-kabut/60'"></button>
+          </template>
+        </div>
+        <span class="font-mono text-xs text-kabut/60">
+          <span x-text="String(active+1).padStart(2,'0')"></span> / <span x-text="String(slides.length).padStart(2,'0')"></span>
+        </span>
+        <span class="ml-auto hidden sm:inline font-mono text-[11px] tracking-widest text-kabut/50 uppercase" x-text="slides[active].caption"></span>
+      </div>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-kabut/60">
+      <span class="font-mono text-[10px] tracking-eyebrow uppercase">Gulir</span>
+      <svg class="h-4 w-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 5v14m0 0l6-6m-6 6l-6-6"/></svg>
+    </div>
+  </section>
+
+  <!-- Tentang kampung -->
+  <section id="tentang" class="scroll-mt-24 bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <div class="reveal relative">
+        <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1200&auto=format&fit=crop"
+             alt="Pesisir dan perbukitan hijau khas pantai utara Papua"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/tentang1/1000/1200'"
+             class="w-full h-[420px] sm:h-[520px] object-cover rounded-sm shadow-xl" />
+        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=800&auto=format&fit=crop"
+             alt="Cahaya menembus rimbun hutan Cycloop"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/tentang2/600/600'"
+             class="hidden sm:block absolute -bottom-10 -right-6 w-48 h-56 object-cover rounded-sm shadow-2xl ring-8 ring-pasir" />
+        <div class="absolute -top-5 -left-3 sm:-left-5 bg-abyss text-kabut px-5 py-3 rounded-sm shadow-lg">
+          <p class="font-mono text-[10px] tracking-eyebrow text-aqua/80 uppercase">Terletak di</p>
+          <p class="font-display font-bold leading-tight">Kaki Cycloop · Tepi Pasifik</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Sekilas Kampung</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Sebuah kampung di antara gunung dan samudra
+        </h2>
+        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
+          <p>
+            Yongsu Desoyo adalah kampung masyarakat adat <strong class="text-ink">Suku Tepra</strong> di pesisir utara Tanah Papua.
+            Punggung kampung bersandar pada rimbun <strong class="text-ink">Pegunungan Cycloop</strong>, sementara wajahnya menatap langsung
+            hamparan <strong class="text-ink">Samudra Pasifik</strong>. Pertemuan gunung dan laut inilah yang membentuk denyut kehidupan warganya.
+          </p>
+          <p>
+            Secara administratif, kampung ini berada di Distrik Ravenirara, Kabupaten Jayapura, Provinsi Papua. Tata ruang tradisionalnya
+            ditata berdasarkan kearifan lokal yang diwariskan turun-temurun — dari zonasi kebun, tempat melaut, hingga ruang-ruang adat
+            yang masih dijaga hingga kini.
+          </p>
+          <p>
+            Di sini, hutan bukan sekadar latar belakang. Ia sumber pangan, obat, cerita, dan tempat Cenderawasih masih menari bebas.
+            Warga menjaganya bukan karena aturan, melainkan karena hutan adalah bagian dari diri mereka.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="rounded-full border border-ink/15 bg-white/60 px-4 py-1.5 text-sm text-ink/80">Suku Tepra</span>
+          <span class="rounded-full border border-ink/15 bg-white/60 px-4 py-1.5 text-sm text-ink/80">Distrik Ravenirara</span>
+          <span class="rounded-full border border-ink/15 bg-white/60 px-4 py-1.5 text-sm text-ink/80">Kabupaten Jayapura</span>
+          <span class="rounded-full border border-ink/15 bg-white/60 px-4 py-1.5 text-sm text-ink/80">Desa Wisata Rintisan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sambutan kepala kampung -->
+  <section id="sambutan" class="scroll-mt-24 bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute -bottom-10 left-0 w-full opacity-7" viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120c180-40 320 30 520 20s360-70 560-60 300 60 360 50v120H0z" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 150c200-30 300 20 520 15s380-50 560-45 320 40 360 35" stroke="#E7A324" stroke-width="1.5"/>
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-5 gap-12 lg:gap-16 items-center relative">
+
+      <div class="reveal lg:col-span-2">
+        <div class="relative">
+          <div class="aspect-4/5 rounded-sm overflow-hidden ring-1 ring-white/10 bg-laut relative">
+            <!-- Placeholder — ganti dengan <img> foto resmi Kepala Kampung -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <svg class="h-16 w-16 text-emas/70 mb-4" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+              <p class="font-mono text-[11px] tracking-eyebrow uppercase text-kabut/50">Foto Kepala Kampung</p>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-emas text-abyss px-5 py-3 rounded-sm shadow-lg">
+            <p class="font-mono text-[10px] tracking-eyebrow uppercase">Pemerintah Kampung</p>
+            <p class="font-display font-bold leading-tight">Yongsu Desoyo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal lg:col-span-3">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-5">Sambutan</p>
+        <svg class="h-10 w-10 text-emas mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h5v5H9c0 2 1 3 3 3v2c-3 0-5-2-5-5V7zm7 0h5v5h-3c0 2 1 3 3 3v2c-3 0-5-2-5-5V7z"/></svg>
+        <div class="space-y-4 text-kabut/85 leading-relaxed text-lg">
+          <p>
+            Salam hangat dari Yongsu Desoyo. Atas nama Pemerintah dan seluruh masyarakat adat kampung, saya menyambut Anda
+            dengan tulus di beranda kampung kami.
+          </p>
+          <p>
+            Kami percaya bahwa kemajuan tidak harus menukar jati diri. Karena itu, kami membangun kampung ini di atas dua pijakan:
+            menjaga adat dan hutan warisan leluhur, sekaligus membuka pintu bagi kunjungan, kerja sama, dan ekonomi yang berpihak
+            pada warga — melalui ekowisata, homestay, dan hasil kebun serta laut kami.
+          </p>
+          <p class="text-kabut/70 text-base">
+            Datanglah, jadilah bagian dari cerita kami. Kampung ini terbuka bagi siapa saja yang ingin belajar, singgah, dan tumbuh bersama.
+          </p>
+        </div>
+
+        <!-- Ganti nama sesuai kepala kampung yang menjabat -->
+        <div class="mt-8 pt-6 border-t border-white/10">
+          <p class="font-display font-bold text-xl text-kabut">Kepala Kampung Yongsu Desoyo</p>
+          <p class="font-mono text-xs tracking-wide text-aqua/70 mt-1">Distrik Ravenirara · Kabupaten Jayapura</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Potensi kampung -->
+  <section id="potensi" class="scroll-mt-24 bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Potensi Kampung</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Kekayaan yang tumbuh dari gunung, laut, dan adat
+        </h2>
+        <p class="mt-5 text-ink/70 leading-relaxed">
+          Sebagai desa wisata rintisan, Yongsu Desoyo menawarkan pengalaman yang jarang bisa dinikmati di satu tempat:
+          air terjun, pantai, dunia bawah laut, satwa endemik, hingga tradisi yang masih hidup.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1000&auto=format&fit=crop"
+               alt="Air Terjun Nantuke" onerror="this.onerror=null;this.src='https://picsum.photos/seed/nantuke/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Wisata Alam</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Air Terjun Nantuke</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Air jernih yang turun dari hutan Cycloop, hanya beberapa langkah dari pemukiman warga.</p>
+          </div>
+        </article>
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop"
+               alt="Pantai Sapari" onerror="this.onerror=null;this.src='https://picsum.photos/seed/sapari/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Bahari</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Pantai Sapari</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Pantai berpasir di lereng Cycloop, tempat gunung benar-benar bertemu Samudra Pasifik.</p>
+          </div>
+        </article>
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+               alt="Snorkeling dan diving" onerror="this.onerror=null;this.src='https://picsum.photos/seed/diving/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Bawah Laut</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Snorkeling &amp; Diving</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Terumbu karang yang masih sehat, dapat dijelajahi bersama pemandu selam setempat.</p>
+          </div>
+        </article>
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1000&auto=format&fit=crop"
+               alt="Habitat burung Cenderawasih" onerror="this.onerror=null;this.src='https://picsum.photos/seed/burung/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Ekowisata</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Birdwatching Cenderawasih</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Mengamati Cenderawasih dan aneka burung endemik di hutan adat yang masih perawan.</p>
+          </div>
+        </article>
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=1000&auto=format&fit=crop"
+               alt="Upacara dan budaya adat Tepra"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/adat/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Budaya</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Adat &amp; Tradisi Tepra</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Upacara adat, tarian, noken, dan kepemimpinan Ondoafi yang masih dijaga masyarakat.</p>
+          </div>
+        </article>
+
+        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1591207099859-cc47f28e1b3d?q=80&w=1000&auto=format&fit=crop"
+               alt="Agrowisata dan kuliner kampung"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/agro/800/1000'"
+               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
+          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Agrowisata</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">Kebun &amp; Kuliner</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Mangga, durian, dan rambutan dari kebun warga, disajikan bersama hasil laut segar.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buletin kampung -->
+  <section id="buletin" class="scroll-mt-24 bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+      <div class="reveal flex flex-wrap items-end justify-between gap-4 mb-12">
+        <div>
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Buletin Kampung</p>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">Kabar dari Yongsu Desoyo</h2>
+        </div>
+        <a href="#" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-reef hover:text-emas transition link-underline">
+          Semua buletin
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+
+        <article class="reveal group cursor-pointer">
+          <div class="overflow-hidden rounded-sm mb-5">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop"
+                 alt="Jalan penghubung antar kampung" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jalan/1200/700'"
+                 class="w-full h-72 sm:h-96 object-cover transition duration-700 group-hover:scale-105" />
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="rounded-full bg-reef/10 text-reef px-3 py-1 text-xs font-semibold">Pembangunan</span>
+            <span class="font-mono text-xs text-ink/50">12 Juni 2026</span>
+          </div>
+          <h3 class="font-display font-bold text-2xl sm:text-3xl leading-tight text-ink group-hover:text-reef transition">
+            Ruas Jalan Yongsu Sapari–Yongsu Desoyo Perkuat Konektivitas Pesisir
+          </h3>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Pembangunan ruas jalan penghubung antarkampung meningkatkan akses transportasi warga sekaligus membuka jalur baru
+            bagi kunjungan wisata ke Yongsu Desoyo.
+          </p>
+        </article>
+
+        <div class="flex flex-col gap-8">
+          <article class="reveal group cursor-pointer flex gap-5">
+            <div class="overflow-hidden rounded-sm shrink-0 w-32 sm:w-44">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop"
+                   alt="Honai ekowisata" onerror="this.onerror=null;this.src='https://picsum.photos/seed/honai/500/500'"
+                   class="w-full h-full object-cover aspect-square transition duration-700 group-hover:scale-105" />
+            </div>
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Ekowisata</span>
+                <span class="font-mono text-xs text-ink/50">7 Jan 2026</span>
+              </div>
+              <h3 class="font-display font-bold text-lg sm:text-xl leading-snug text-ink group-hover:text-reef transition">
+                Honai Homestay Dibangun untuk Dorong Ekonomi Berbasis Hutan
+              </h3>
+              <p class="mt-2 text-sm text-ink/70 leading-relaxed hidden sm:block">
+                Pemanfaatan hasil hutan bukan kayu dan ekowisata menjadi pilihan warga untuk hidup sejahtera tanpa merusak hutan.
+              </p>
+            </div>
+          </article>
+
+          <article class="reveal group cursor-pointer flex gap-5">
+            <div class="overflow-hidden rounded-sm shrink-0 w-32 sm:w-44">
+              <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+                   alt="Kesiapsiagaan bencana" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tangguh/500/500'"
+                   class="w-full h-full object-cover aspect-square transition duration-700 group-hover:scale-105" />
+            </div>
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="rounded-full bg-aqua/20 text-reef px-3 py-1 text-xs font-semibold">Kesiapsiagaan</span>
+                <span class="font-mono text-xs text-ink/50">2025</span>
+              </div>
+              <h3 class="font-display font-bold text-lg sm:text-xl leading-snug text-ink group-hover:text-reef transition">
+                Menuju Kampung Tangguh Bencana yang Siap Hadapi Cuaca Ekstrem
+              </h3>
+              <p class="mt-2 text-sm text-ink/70 leading-relaxed hidden sm:block">
+                Warga bersama pemerintah memperkuat kesiapsiagaan menghadapi banjir dan perubahan iklim di wilayah pesisir.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistik kampung -->
+  <section id="statistik" class="scroll-mt-24 bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute top-0 left-0 w-full opacity-6" viewBox="0 0 1440 240" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 100c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
+      <path d="M0 140c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Kampung dalam Angka</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
+          Denyut Yongsu Desoyo hari ini
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8" x-data="counters()" x-init="observe($el)">
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[0])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Jiwa Penduduk</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[1])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Kepala Keluarga</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[2])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Hektar Wilayah Adat</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[3])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Destinasi Wisata</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[4])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Homestay Warga</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[5])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Keret / Marga Adat</p>
+        </div>
+      </div>
+      <p class="mt-12 font-mono text-[11px] text-kabut/40">*Data bersifat indikatif dan diperbarui berkala oleh Pemerintah Kampung.</p>
+    </div>
+  </section>
+
+  <!-- Event mendatang -->
+  <section id="event" class="scroll-mt-24 bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Event Mendatang</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Agenda kampung yang menanti Anda
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <a href="#" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">17</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Agu 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Budaya</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink group-hover:text-reef transition">Festival Budaya Tepra</h3>
+            <p class="text-ink/65 text-sm mt-1">Tarian, upacara adat, dan pameran noken di halaman kampung.</p>
+          </div>
+          <svg class="hidden sm:block h-5 w-5 text-ink/30 group-hover:text-emas group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+
+        <a href="#" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">14</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Sep 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Bahari</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink group-hover:text-reef transition">Lomba Perahu &amp; Bersih Pantai Sapari</h3>
+            <p class="text-ink/65 text-sm mt-1">Adu dayung warga sekaligus aksi bersama menjaga pesisir tetap lestari.</p>
+          </div>
+          <svg class="hidden sm:block h-5 w-5 text-ink/30 group-hover:text-emas group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+
+        <a href="#" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">05</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Okt 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Pelatihan</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink group-hover:text-reef transition">Pelatihan Pemandu Ekowisata &amp; Homestay</h3>
+            <p class="text-ink/65 text-sm mt-1">Membekali warga menyambut tamu dengan layanan ramah dan profesional.</p>
+          </div>
+          <svg class="hidden sm:block h-5 w-5 text-ink/30 group-hover:text-emas group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + kontak -->
+  <section id="kontak" class="scroll-mt-24 bg-reef text-kabut relative overflow-hidden">
+    <svg class="absolute inset-0 w-full h-full opacity-12" viewBox="0 0 1440 500" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M0 380c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
+      <path d="M0 420c220-60 360 40 620 30s420-90 820-70" stroke="#052420" stroke-width="1.5" opacity="0.4"/>
+      <path d="M0 340c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5" opacity="0.6"/>
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-24 sm:py-32 relative">
+      <div class="reveal max-w-3xl">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-5">Rencanakan Kunjungan</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.02] text-abyss">
+          Datang, singgah, dan tumbuh bersama kami di Yongsu Desoyo
+        </h2>
+        <p class="mt-6 text-abyss/80 text-lg leading-relaxed max-w-2xl">
+          Baik untuk berwisata, meneliti, maupun menjalin kerja sama pemberdayaan — kami menyambut Anda dengan tangan terbuka.
+          Hubungi kami untuk mengatur kunjungan, homestay, dan paket ekowisata.
+        </p>
+
+        <div class="mt-9 flex flex-col sm:flex-row gap-4">
+          <a href="mailto:kampungyongsudesoyo@gmail.com"
+             class="inline-flex items-center justify-center gap-2 rounded-full bg-abyss px-7 py-4 font-semibold text-kabut hover:bg-laut transition">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16v14H4z"/></svg>
+            kampungyongsudesoyo@gmail.com
+          </a>
+          <a href="tel:+6285824466260"
+             class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-abyss/40 px-7 py-4 font-semibold text-abyss hover:bg-abyss hover:text-kabut transition">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5c0 9 7 16 16 16l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5z"/></svg>
+            0858-2446-6260
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    function heroSlider() {
+      return {
+        active: 0,
+        timer: null,
+        slides: [
+          {
+            img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop',
+            fb: 'https://picsum.photos/seed/yongsu-laut/1600/1000',
+            title: 'Di kaki Cycloop, di tepi Pasifik.',
+            sub: 'Kampung Yongsu Desoyo — rumah masyarakat adat Tepra di pesisir utara Tanah Papua.',
+            caption: 'Panorama Laut Pasifik'
+          },
+          {
+            img: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1600&auto=format&fit=crop',
+            fb: 'https://picsum.photos/seed/yongsu-nantuke/1600/1000',
+            title: 'Air yang turun dari hutan Cycloop.',
+            sub: 'Air Terjun Nantuke mengalir jernih, hanya beberapa langkah dari pemukiman warga.',
+            caption: 'Air Terjun Nantuke'
+          },
+          {
+            img: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop',
+            fb: 'https://picsum.photos/seed/yongsu-hutan/1600/1000',
+            title: 'Tempat Cenderawasih masih menari.',
+            sub: 'Hutan adat yang dijaga turun-temurun, tempat satwa endemik Papua hidup bebas.',
+            caption: 'Hutan Adat Cycloop'
+          }
+        ],
+        start() { this.timer = setInterval(() => this.next(), 6000); },
+        next() { this.active = (this.active + 1) % this.slides.length; },
+        go(i) { this.active = i; this.resume(); },
+        pause() { clearInterval(this.timer); },
+        resume() { this.pause(); this.start(); },
+      };
+    }
+
+    function counters() {
+      const targets = [680, 152, 23208, 6, 8, 5]; // sesuaikan dengan data resmi
+      return {
+        v: [0, 0, 0, 0, 0, 0],
+        done: false,
+        fmt(n) { return Math.round(n).toLocaleString('id-ID'); },
+        observe(el) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting && !this.done) { this.done = true; this.run(targets); }
+            });
+          }, { threshold: 0.3 });
+          io.observe(el);
+        },
+        run(targets) {
+          const dur = 1600, t0 = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - t0) / dur, 1);
+            const ease = 1 - Math.pow(1 - p, 3); // easing out-cubic
+            this.v = targets.map((t) => t * ease);
+            if (p < 1) requestAnimationFrame(tick);
+            else this.v = targets;
+          };
+          requestAnimationFrame(tick);
+        }
+      };
+    }
+  </script>
+{% endblock %}

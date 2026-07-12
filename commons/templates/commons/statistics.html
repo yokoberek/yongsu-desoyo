@@ -1,0 +1,135 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Statistik — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Data dan statistik Kampung Yongsu Desoyo: jumlah penduduk, kepala keluarga, luas wilayah adat, destinasi wisata, dan potensi kampung.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Statistik Kampung" crumb="Statistik" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" subjudul="Denyut Yongsu Desoyo dalam angka — gambaran ringkas kependudukan dan potensi kampung." %}
+
+  <!-- Angka kunci -->
+  <section class="bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute top-0 left-0 w-full opacity-6" viewBox="0 0 1440 240" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 100c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
+      <path d="M0 140c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8" x-data="counters()" x-init="observe($el)">
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[0])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Jiwa Penduduk</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[1])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Kepala Keluarga</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[2])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Hektar Wilayah Adat</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[3])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Destinasi Wisata</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[4])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Homestay Warga</p>
+        </div>
+        <div class="reveal border-l border-white/15 pl-5">
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[5])">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Keret / Marga Adat</p>
+        </div>
+      </div>
+      <p class="mt-12 font-mono text-[11px] text-kabut/40">*Data bersifat indikatif dan diperbarui berkala oleh Pemerintah Kampung.</p>
+    </div>
+  </section>
+
+  <!-- Rincian demografi -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Komposisi Penduduk</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-[1.05] text-ink mb-8">
+          Berdasarkan jenis kelamin
+        </h2>
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between mb-2 text-sm">
+              <span class="font-medium text-ink">Laki-laki</span>
+              <span class="font-mono text-ink/60">± 352 jiwa</span>
+            </div>
+            <div class="h-2.5 rounded-full bg-ink/10 overflow-hidden">
+              <div class="h-full rounded-full bg-reef" style="width: 52%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm">
+              <span class="font-medium text-ink">Perempuan</span>
+              <span class="font-mono text-ink/60">± 328 jiwa</span>
+            </div>
+            <div class="h-2.5 rounded-full bg-ink/10 overflow-hidden">
+              <div class="h-full rounded-full bg-emas" style="width: 48%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Mata Pencaharian</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-[1.05] text-ink mb-8">
+          Sumber kehidupan warga
+        </h2>
+        <dl class="divide-y divide-ink/10">
+          <div class="flex justify-between py-3">
+            <dt class="text-ink/70">Nelayan</dt><dd class="font-mono font-semibold text-ink">± 40%</dd>
+          </div>
+          <div class="flex justify-between py-3">
+            <dt class="text-ink/70">Petani / Pekebun</dt><dd class="font-mono font-semibold text-ink">± 35%</dd>
+          </div>
+          <div class="flex justify-between py-3">
+            <dt class="text-ink/70">Wirausaha &amp; Jasa Wisata</dt><dd class="font-mono font-semibold text-ink">± 15%</dd>
+          </div>
+          <div class="flex justify-between py-3">
+            <dt class="text-ink/70">Lainnya</dt><dd class="font-mono font-semibold text-ink">± 10%</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    // Penghitung statistik (menghitung dari 0 saat masuk layar)
+    function counters() {
+      const targets = [680, 152, 23208, 6, 8, 5]; // sesuaikan dengan data resmi
+      return {
+        v: [0, 0, 0, 0, 0, 0],
+        done: false,
+        fmt(n) { return Math.round(n).toLocaleString('id-ID'); },
+        observe(el) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting && !this.done) { this.done = true; this.run(targets); }
+            });
+          }, { threshold: 0.3 });
+          io.observe(el);
+        },
+        run(targets) {
+          const dur = 1600, t0 = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - t0) / dur, 1);
+            const ease = 1 - Math.pow(1 - p, 3); // easing out-cubic
+            this.v = targets.map((t) => t * ease);
+            if (p < 1) requestAnimationFrame(tick);
+            else this.v = targets;
+          };
+          requestAnimationFrame(tick);
+        }
+      };
+    }
+  </script>
+{% endblock %}
