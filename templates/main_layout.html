@@ -1,0 +1,50 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<!-- Layout dasar; palet & CSS kustom di theme/static_src/src/styles.css -->
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Kampung Yongsu Desoyo — Di Kaki Cycloop, Di Tepi Pasifik{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Situs resmi Kampung Yongsu Desoyo, Distrik Ravenirara, Kabupaten Jayapura, Papua. Rumah masyarakat adat Tepra di kaki Gunung Cycloop dan tepi Samudra Pasifik — desa wisata dengan Air Terjun Nantuke, Pantai Sapari, dan hutan adat Cenderawasih.{% endblock %}" />
+  <meta property="og:title" content="{% block og_title %}Kampung Yongsu Desoyo{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}Di kaki Cycloop, di tepi Pasifik. Rumah masyarakat adat Tepra, Distrik Ravenirara, Kabupaten Jayapura, Papua.{% endblock %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yongsu-dosoyo.id" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  {% tailwind_css %}
+
+  <!-- Plugin collapse harus dimuat sebelum Alpine core agar accordion menu mobile berfungsi -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-pasir text-ink antialiased selection:bg-emas/30">
+
+  {% include "partials/navbar.html" %}
+
+  {% block content %}{% endblock %}
+
+  {% include "partials/footer.html" %}
+
+  <!-- Efek reveal saat elemen masuk viewport, dipakai di seluruh situs -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    });
+  </script>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

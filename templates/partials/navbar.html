@@ -1,0 +1,143 @@
+<!-- Transparan di atas hero, jadi solid saat di-scroll -->
+<header
+  x-data="{ scrolled: false, open: false }"
+  @scroll.window="scrolled = (window.pageYOffset > 40)"
+  :class="scrolled ? 'bg-abyss/95 backdrop-blur border-b border-white/10 py-3' : 'bg-transparent py-5'"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between">
+
+    <a href="{% url 'commons:index' %}#beranda" class="flex items-center gap-3 group">
+      <svg class="h-9 w-9 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" stroke="#E7A324" stroke-width="1.5"/>
+        <path d="M4 26c5-1 7-9 11-9s5 6 9 6 5-8 12-9" stroke="#5BC2AC" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M6 31c5-1 6-6 10-6s6 5 10 5 6-6 9-6" stroke="#E7A324" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="leading-tight">
+        <span class="block font-display font-extrabold tracking-tight text-kabut text-lg">Yongsu Desoyo</span>
+        <span class="block font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80">Distrik Ravenirara · Papua</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1 text-sm font-medium text-kabut/90">
+      <a href="{% url 'commons:index' %}" class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">Beranda</a>
+      <a href="{% url 'commons:about' %}" class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">Tentang</a>
+
+      <div x-data="{ o:false }" @mouseenter="o=true" @mouseleave="o=false" class="relative">
+        <button class="flex items-center gap-1 px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">
+          Potensi
+          <svg class="h-3.5 w-3.5 transition-transform" :class="o && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div x-cloak x-show="o" x-transition.opacity.duration.200ms
+             class="absolute left-0 top-full pt-2 w-60">
+          <div class="rounded-md bg-abyss/95 backdrop-blur border border-white/10 shadow-2xl p-2">
+            <a href="{% url 'tourism:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Objek Wisata</a>
+            <a href="{% url 'products:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Produk Lokal</a>
+            <a href="{% url 'culture:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Budaya &amp; Tradisi</a>
+          </div>
+        </div>
+      </div>
+
+      <div x-data="{ o:false }" @mouseenter="o=true" @mouseleave="o=false" class="relative">
+        <button class="flex items-center gap-1 px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">
+          Informasi
+          <svg class="h-3.5 w-3.5 transition-transform" :class="o && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div x-cloak x-show="o" x-transition.opacity.duration.200ms
+             class="absolute left-0 top-full pt-2 w-64">
+          <div class="rounded-md bg-abyss/95 backdrop-blur border border-white/10 shadow-2xl p-2">
+            <a href="{% url 'news:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Berita &amp; Pengumuman</a>
+            <a href="{% url 'gallery:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Galeri Foto</a>
+            <a href="{% url 'commons:statistics' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Statistik</a>
+            <a href="{% url 'events:list' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Acara &amp; Kegiatan</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="{% url 'development:list' %}" class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">Pembangunan</a>
+
+      <div x-data="{ o:false }" @mouseenter="o=true" @mouseleave="o=false" class="relative">
+        <button class="flex items-center gap-1 px-3 py-2 rounded hover:text-white hover:bg-white/5 transition">
+          PPID
+          <svg class="h-3.5 w-3.5 transition-transform" :class="o && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div x-cloak x-show="o" x-transition.opacity.duration.200ms
+             class="absolute left-0 top-full pt-2 w-60">
+          <div class="rounded-md bg-abyss/95 backdrop-blur border border-white/10 shadow-2xl p-2">
+            <a href="{% url 'ppid:index' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Beranda PPID</a>
+            <a href="{% url 'ppid:profile' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Profil PPID</a>
+            <a href="{% url 'ppid:information' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Informasi Publik</a>
+            <a href="{% url 'ppid:request' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">Permohonan Informasi</a>
+            <a href="{% url 'ppid:faq' %}" class="block rounded px-3 py-2.5 text-kabut/85 hover:bg-white/5 hover:text-white transition">FAQ</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="{% url 'commons:contact' %}" class="ml-2 rounded-full bg-emas px-5 py-2 font-semibold text-abyss hover:bg-emasS transition">Kontak</a>
+    </nav>
+
+    <button @click="open = true" class="lg:hidden text-kabut p-2 -mr-2" aria-label="Buka menu">
+      <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+
+  <div x-cloak x-show="open" class="lg:hidden fixed inset-0 z-60" x-transition.opacity>
+    <div class="absolute inset-0 bg-abyss/70" @click="open = false"></div>
+    <div class="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-abyss border-l border-white/10 flex flex-col overflow-y-auto"
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0">
+      <div class="flex items-center justify-between p-6 border-b border-white/10">
+        <span class="font-display font-bold text-kabut text-lg">Yongsu Desoyo</span>
+        <button @click="open = false" class="text-kabut p-2 -mr-2" aria-label="Tutup menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col p-4 text-kabut">
+        <a href="{% url 'commons:index' %}" class="py-3 px-2 font-medium border-b border-white/5">Beranda</a>
+        <a href="{% url 'commons:about' %}" class="py-3 px-2 font-medium border-b border-white/5">Tentang</a>
+
+        <div x-data="{ e:false }" class="border-b border-white/5">
+          <button @click="e=!e" class="w-full flex items-center justify-between py-3 px-2 font-medium">
+            Potensi
+            <svg class="h-4 w-4 transition-transform" :class="e && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div x-show="e" x-collapse class="pl-4 pb-2 flex flex-col text-kabut/75 text-[15px]">
+            <a href="{% url 'tourism:list' %}" class="py-2 px-2">Objek Wisata</a>
+            <a href="{% url 'products:list' %}" class="py-2 px-2">Produk Lokal</a>
+            <a href="{% url 'culture:list' %}" class="py-2 px-2">Budaya &amp; Tradisi</a>
+          </div>
+        </div>
+
+        <div x-data="{ e:false }" class="border-b border-white/5">
+          <button @click="e=!e" class="w-full flex items-center justify-between py-3 px-2 font-medium">
+            Informasi
+            <svg class="h-4 w-4 transition-transform" :class="e && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div x-show="e" x-collapse class="pl-4 pb-2 flex flex-col text-kabut/75 text-[15px]">
+            <a href="{% url 'news:list' %}" class="py-2 px-2">Berita &amp; Pengumuman</a>
+            <a href="{% url 'gallery:list' %}" class="py-2 px-2">Galeri Foto</a>
+            <a href="{% url 'commons:statistics' %}" class="py-2 px-2">Statistik</a>
+            <a href="{% url 'events:list' %}" class="py-2 px-2">Acara &amp; Kegiatan</a>
+          </div>
+        </div>
+
+        <a href="{% url 'development:list' %}" class="py-3 px-2 font-medium border-b border-white/5">Pembangunan</a>
+
+        <div x-data="{ e:false }" class="border-b border-white/5">
+          <button @click="e=!e" class="w-full flex items-center justify-between py-3 px-2 font-medium">
+            PPID
+            <svg class="h-4 w-4 transition-transform" :class="e && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div x-show="e" x-collapse class="pl-4 pb-2 flex flex-col text-kabut/75 text-[15px]">
+            <a href="{% url 'ppid:index' %}" class="py-2 px-2">Beranda PPID</a>
+            <a href="{% url 'ppid:profile' %}" class="py-2 px-2">Profil PPID</a>
+            <a href="{% url 'ppid:information' %}" class="py-2 px-2">Informasi Publik</a>
+            <a href="{% url 'ppid:request' %}" class="py-2 px-2">Permohonan Informasi</a>
+            <a href="{% url 'ppid:faq' %}" class="py-2 px-2">FAQ</a>
+          </div>
+        </div>
+      </nav>
+
+      <a href="{% url 'commons:contact' %}" class="m-4 mt-auto rounded-full bg-emas px-5 py-3 text-center font-semibold text-abyss">Kontak</a>
+    </div>
+  </div>
+</header>
