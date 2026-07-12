@@ -1,0 +1,317 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Pembangunan — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Program dan proyek pembangunan Kampung Yongsu Desoyo: infrastruktur pesisir, ekonomi & ekowisata, layanan dasar, kesiapsiagaan bencana, dan digitalisasi kampung.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Membangun tanpa menukar jati diri" crumb="Pembangunan" eyebrow="Program Kampung" tinggi="min-h-[56vh]" gambar="https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=1600&auto=format&fit=crop" subjudul="Arah pembangunan Yongsu Desoyo: memperkuat infrastruktur, ekonomi, dan layanan dasar, sambil menjaga hutan dan adat sebagai warisan bersama." %}
+
+  <!-- Arah pembangunan -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-start">
+      <div class="reveal lg:col-span-7">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Arah Pembangunan</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Pembangunan yang berpihak pada warga dan alam
+        </h2>
+        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
+          <p>
+            Sebagai kampung pesisir di kaki Pegunungan Cycloop, Yongsu Desoyo menghadapi tantangan sekaligus peluang
+            yang khas. Keterbatasan akses jalan, jembatan, listrik, air bersih, serta jaringan telekomunikasi menjadi
+            pekerjaan rumah yang terus dibenahi bersama pemerintah daerah dan mitra pembangunan.
+          </p>
+          <p>
+            Namun kemajuan tidak diukur dari beton semata. Pembangunan di sini diarahkan agar warga dapat hidup
+            sejahtera tanpa merusak hutan — melalui ekowisata, pemanfaatan hasil hutan bukan kayu, dan penguatan
+            ekonomi lokal yang berkelanjutan.
+          </p>
+        </div>
+      </div>
+
+      <aside class="reveal lg:col-span-5">
+        <div class="rounded-md bg-abyss text-kabut p-8 shadow-xl">
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-6">Prinsip Pembangunan</p>
+          <ul class="space-y-4 text-sm">
+            <li class="flex gap-3"><span class="text-emas mt-0.5">◆</span> Partisipatif — direncanakan bersama warga melalui musyawarah kampung.</li>
+            <li class="flex gap-3"><span class="text-emas mt-0.5">◆</span> Berkelanjutan — menjaga keseimbangan alam, laut, dan hutan adat.</li>
+            <li class="flex gap-3"><span class="text-emas mt-0.5">◆</span> Transparan — terbuka untuk diakses dan diawasi publik.</li>
+            <li class="flex gap-3"><span class="text-emas mt-0.5">◆</span> Berkeadilan — manfaatnya dirasakan seluruh lapisan masyarakat.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Bidang prioritas -->
+  <section class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Bidang Prioritas</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Lima fokus yang saling menopang
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-5h6v5"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Infrastruktur &amp; Konektivitas</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Jalan, jembatan, dan dermaga rakyat untuk menghubungkan kampung dengan wilayah sekitar.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M21 7v5h-5"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Ekonomi &amp; Ekowisata</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Homestay, produk lokal, dan hasil hutan bukan kayu sebagai sumber pendapatan warga.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3s6 4 6 9a6 6 0 11-12 0c0-5 6-9 6-9z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Lingkungan &amp; Hutan Adat</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Menjaga kawasan Cycloop dan wilayah adat melalui pengelolaan hutan berbasis masyarakat.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0v7m-5-9v4c0 1 2 2 5 2s5-1 5-2v-4"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Layanan Dasar</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Pendidikan, kesehatan, listrik, dan air bersih untuk meningkatkan kualitas hidup.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Kesiapsiagaan Bencana</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Membangun kampung tangguh yang siap menghadapi banjir dan cuaca ekstrem.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v3m-4 0h8M4 5h16v10H4z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Digitalisasi Kampung</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Jaringan internet dan layanan digital agar warga dan siswa lebih mudah terhubung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program & proyek -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal flex flex-wrap items-end justify-between gap-4 mb-12">
+        <div class="max-w-2xl">
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Program &amp; Proyek</p>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">Yang sedang kami kerjakan</h2>
+        </div>
+        <div class="flex flex-wrap gap-4 font-mono text-[11px] uppercase tracking-wide">
+          <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-reef"></span>Selesai</span>
+          <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-emas"></span>Berjalan</span>
+          <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-aqua"></span>Direncanakan</span>
+        </div>
+      </div>
+
+      <div class="space-y-5">
+        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Ruas Jalan Yongsu Sapari – Yongsu Desoyo</h3>
+            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
+          </div>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.</p>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="75"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">75%</span>
+          </div>
+        </article>
+
+        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Honai &amp; Homestay Ekowisata</h3>
+            <span class="rounded-full bg-reef/15 text-reef px-3 py-1 text-xs font-semibold">Tahap I Selesai</span>
+          </div>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.</p>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-reef w-0 transition-[width] duration-1000 ease-out" data-w="100"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">100%</span>
+          </div>
+        </article>
+
+        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Kampung Tangguh Bencana</h3>
+            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
+          </div>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.</p>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="60"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">60%</span>
+          </div>
+        </article>
+
+        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Jaringan Internet &amp; Telekomunikasi</h3>
+            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
+          </div>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.</p>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="45"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">45%</span>
+          </div>
+        </article>
+
+        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Dermaga / Pelabuhan Rakyat</h3>
+            <span class="rounded-full bg-aqua/25 text-reef px-3 py-1 text-xs font-semibold">Direncanakan</span>
+          </div>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.</p>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-aqua w-0 transition-[width] duration-1000 ease-out" data-w="20"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">20%</span>
+          </div>
+        </article>
+      </div>
+      <p class="mt-8 font-mono text-[11px] text-ink/40">*Status dan persentase bersifat indikatif dan diperbarui berkala oleh Pemerintah Kampung.</p>
+    </div>
+  </section>
+
+  <!-- Peta jalan -->
+  <section class="bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute -top-8 left-0 w-full opacity-6" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 80c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 120c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
+    </svg>
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Peta Jalan</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">Tahapan menuju kampung mandiri</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="reveal relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-3 w-3 rounded-full bg-emas"></span>
+            <div class="hidden md:block flex-1 h-px bg-white/15"></div>
+          </div>
+          <p class="font-display font-extrabold text-3xl text-emasS">2024</p>
+          <p class="mt-2 text-sm text-kabut/75 leading-relaxed">Penataan homestay dan rintisan desa wisata.</p>
+        </div>
+        <div class="reveal relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-3 w-3 rounded-full bg-emas"></span>
+            <div class="hidden md:block flex-1 h-px bg-white/15"></div>
+          </div>
+          <p class="font-display font-extrabold text-3xl text-emasS">2025</p>
+          <p class="mt-2 text-sm text-kabut/75 leading-relaxed">Penguatan konektivitas jalan dan kesiapsiagaan bencana.</p>
+        </div>
+        <div class="reveal relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-3 w-3 rounded-full bg-emas"></span>
+            <div class="hidden md:block flex-1 h-px bg-white/15"></div>
+          </div>
+          <p class="font-display font-extrabold text-3xl text-emasS">2026</p>
+          <p class="mt-2 text-sm text-kabut/75 leading-relaxed">Digitalisasi layanan dan perluasan jaringan internet.</p>
+        </div>
+        <div class="reveal relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-3 w-3 rounded-full bg-aqua"></span>
+          </div>
+          <p class="font-display font-extrabold text-3xl text-emasS">2027</p>
+          <p class="mt-2 text-sm text-kabut/75 leading-relaxed">Kemandirian ekonomi dan pengakuan kampung adat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alokasi prioritas -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-start">
+      <div class="reveal lg:col-span-5">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Alokasi Prioritas</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Ke mana fokus pembangunan diarahkan
+        </h2>
+        <p class="mt-5 text-ink/70 leading-relaxed">
+          Gambaran proporsi prioritas pembangunan kampung. Angka bersifat ilustratif; rincian resmi mengacu pada
+          dokumen APB Kampung yang dapat diakses melalui PPID.
+        </p>
+        <a href="{% url 'ppid:information' %}" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-reef hover:text-emas transition">
+          Lihat dokumen resmi di PPID
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="reveal lg:col-span-7 space-y-6">
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="font-medium text-ink">Infrastruktur &amp; Konektivitas</span><span class="font-mono text-ink/60">30%</span></div>
+          <div class="h-3 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-reef w-0 transition-[width] duration-1000 ease-out" data-w="30"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="font-medium text-ink">Ekonomi &amp; Ekowisata</span><span class="font-mono text-ink/60">25%</span></div>
+          <div class="h-3 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="25"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="font-medium text-ink">Layanan Dasar</span><span class="font-mono text-ink/60">20%</span></div>
+          <div class="h-3 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-aqua w-0 transition-[width] duration-1000 ease-out" data-w="20"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="font-medium text-ink">Lingkungan &amp; Hutan Adat</span><span class="font-mono text-ink/60">15%</span></div>
+          <div class="h-3 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-reef w-0 transition-[width] duration-1000 ease-out" data-w="15"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="font-medium text-ink">Kelembagaan &amp; Adat</span><span class="font-mono text-ink/60">10%</span></div>
+          <div class="h-3 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="10"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transparansi -->
+  <section class="bg-reef text-abyss relative overflow-hidden">
+    <svg class="absolute inset-0 w-full h-full opacity-12" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M0 300c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
+      <path d="M0 260c220-60 360 40 620 30s420-90 820-70" stroke="#052420" stroke-width="1.5" opacity="0.4"/>
+    </svg>
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-24 relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="reveal max-w-2xl">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-3">Transparansi</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
+          Pembangunan yang terbuka untuk diawasi
+        </h2>
+        <p class="mt-4 text-abyss/80 text-lg">Akses informasi publik, dokumen, dan ajukan permohonan informasi melalui PPID Kampung.</p>
+      </div>
+      <div class="reveal flex flex-col sm:flex-row gap-4 shrink-0">
+        <a href="{% url 'ppid:information' %}" class="inline-flex items-center justify-center rounded-full bg-abyss px-7 py-4 font-semibold text-kabut hover:bg-laut transition">Informasi Publik</a>
+        <a href="{% url 'ppid:request' %}" class="inline-flex items-center justify-center rounded-full border-2 border-abyss/40 px-7 py-4 font-semibold text-abyss hover:bg-abyss hover:text-kabut transition">Permohonan Informasi</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    // Isi bilah progres ke lebar data-w saat elemen masuk viewport
+    document.addEventListener('DOMContentLoaded', () => {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.width = e.target.dataset.w + '%';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.progress-fill').forEach((el) => io.observe(el));
+    });
+  </script>
+{% endblock %}
