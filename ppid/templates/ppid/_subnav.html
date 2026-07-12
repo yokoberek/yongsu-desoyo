@@ -1,0 +1,10 @@
+{% comment %} Sub-navigasi PPID. Param aktif: index|profile|information|request|faq {% endcomment %}
+<div class="bg-white border-b border-ink/10">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8 flex gap-1 overflow-x-auto text-sm font-medium">
+    <a href="{% url 'ppid:index' %}" class="px-4 py-4 whitespace-nowrap border-b-2 transition {% if aktif == 'index' %}border-emas text-reef{% else %}border-transparent text-ink/60 hover:text-ink{% endif %}">Beranda PPID</a>
+    <a href="{% url 'ppid:profile' %}" class="px-4 py-4 whitespace-nowrap border-b-2 transition {% if aktif == 'profile' %}border-emas text-reef{% else %}border-transparent text-ink/60 hover:text-ink{% endif %}">Profil</a>
+    <a href="{% url 'ppid:information' %}" class="px-4 py-4 whitespace-nowrap border-b-2 transition {% if aktif == 'information' %}border-emas text-reef{% else %}border-transparent text-ink/60 hover:text-ink{% endif %}">Informasi Publik</a>
+    <a href="{% url 'ppid:request' %}" class="px-4 py-4 whitespace-nowrap border-b-2 transition {% if aktif == 'request' %}border-emas text-reef{% else %}border-transparent text-ink/60 hover:text-ink{% endif %}">Permohonan</a>
+    <a href="{% url 'ppid:faq' %}" class="px-4 py-4 whitespace-nowrap border-b-2 transition {% if aktif == 'faq' %}border-emas text-reef{% else %}border-transparent text-ink/60 hover:text-ink{% endif %}">FAQ</a>
+  </nav>
+</div>

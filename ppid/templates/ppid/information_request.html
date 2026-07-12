@@ -1,0 +1,71 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Permohonan Informasi — PPID Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Prosedur dan alur permohonan informasi publik di Kampung Yongsu Desoyo — cara mengajukan, syarat, dan jangka waktu pelayanan.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Permohonan Informasi" crumb="Permohonan Informasi" eyebrow="Keterbukaan Informasi Publik" gambar="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600&auto=format&fit=crop" subjudul="Setiap warga berhak mengajukan permohonan informasi publik. Berikut alur dan ketentuannya." %}
+
+  {% include "ppid/_subnav.html" with aktif="request" %}
+
+  <!-- Alur permohonan -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Alur Permohonan</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-[1.05] text-ink">Empat langkah mudah</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <span class="font-display font-extrabold text-4xl text-emas/40">01</span>
+          <h3 class="font-display font-bold text-lg text-ink mt-3">Ajukan Permohonan</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Isi formulir permohonan dengan identitas dan rincian informasi yang diminta.</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <span class="font-display font-extrabold text-4xl text-emas/40">02</span>
+          <h3 class="font-display font-bold text-lg text-ink mt-3">Registrasi</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Petugas PPID mencatat dan memberikan tanda bukti permohonan Anda.</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <span class="font-display font-extrabold text-4xl text-emas/40">03</span>
+          <h3 class="font-display font-bold text-lg text-ink mt-3">Proses</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">PPID memeriksa dan menyiapkan informasi paling lambat 10 hari kerja (dapat diperpanjang 7 hari).</p>
+        </div>
+        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
+          <span class="font-display font-extrabold text-4xl text-emas/40">04</span>
+          <h3 class="font-display font-bold text-lg text-ink mt-3">Pemberitahuan</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Informasi diberikan, atau pemohon menerima penjelasan bila permohonan ditolak.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Syarat + kontak -->
+  <section class="bg-abyss text-kabut py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Syarat Permohonan</p>
+        <ul class="space-y-3 text-kabut/85">
+          <li class="flex gap-3"><span class="text-emas">•</span> Fotokopi identitas diri (KTP) pemohon</li>
+          <li class="flex gap-3"><span class="text-emas">•</span> Rincian informasi yang dimohon sejelas mungkin</li>
+          <li class="flex gap-3"><span class="text-emas">•</span> Alasan/tujuan penggunaan informasi</li>
+          <li class="flex gap-3"><span class="text-emas">•</span> Untuk badan hukum: melampirkan akta dan surat kuasa</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="rounded-md bg-laut p-8 ring-1 ring-white/10">
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Ajukan Melalui</p>
+          <p class="text-kabut/85 leading-relaxed mb-6">
+            Permohonan dapat diajukan langsung ke Kantor Kampung pada jam pelayanan, atau melalui kontak resmi berikut.
+          </p>
+          <a href="{% url 'commons:contact' %}" class="inline-flex items-center justify-center gap-2 rounded-full bg-emas px-7 py-3.5 font-semibold text-abyss hover:bg-emasS transition">
+            Hubungi PPID
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Informasi Publik — PPID Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Daftar Informasi Publik Kampung Yongsu Desoyo: informasi berkala, serta-merta, tersedia setiap saat, dan informasi yang dikecualikan.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Informasi Publik" crumb="Informasi Publik" eyebrow="Keterbukaan Informasi Publik" gambar="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" subjudul="Klasifikasi informasi publik yang tersedia di Kampung Yongsu Desoyo sesuai ketentuan yang berlaku." %}
+
+  {% include "ppid/_subnav.html" with aktif="information" %}
+
+  <!-- Klasifikasi informasi -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 space-y-6">
+
+      <div class="reveal rounded-md bg-white border border-ink/10 p-8">
+        <div class="flex items-start gap-4">
+          <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef font-display font-bold">B</span>
+          <div>
+            <h2 class="font-display font-bold text-2xl text-ink">Informasi Berkala</h2>
+            <p class="mt-2 text-ink/70 leading-relaxed">Informasi yang wajib diumumkan secara rutin.</p>
+            <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-ink/80">
+              <li class="flex gap-2"><span class="text-emas">•</span> Profil dan struktur pemerintahan kampung</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Rencana Pembangunan (RPJM &amp; RKP) Kampung</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Anggaran Pendapatan dan Belanja Kampung (APBKam)</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Laporan realisasi pelaksanaan kegiatan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rounded-md bg-white border border-ink/10 p-8">
+        <div class="flex items-start gap-4">
+          <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-emas/15 text-emas font-display font-bold">S</span>
+          <div>
+            <h2 class="font-display font-bold text-2xl text-ink">Informasi Serta-Merta</h2>
+            <p class="mt-2 text-ink/70 leading-relaxed">Informasi yang wajib diumumkan tanpa penundaan karena menyangkut hajat hidup orang banyak.</p>
+            <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-ink/80">
+              <li class="flex gap-2"><span class="text-emas">•</span> Peringatan dini bencana (banjir, cuaca ekstrem)</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Informasi kesehatan dan wabah</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Gangguan layanan dasar kampung</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rounded-md bg-white border border-ink/10 p-8">
+        <div class="flex items-start gap-4">
+          <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-aqua/20 text-reef font-display font-bold">T</span>
+          <div>
+            <h2 class="font-display font-bold text-2xl text-ink">Tersedia Setiap Saat</h2>
+            <p class="mt-2 text-ink/70 leading-relaxed">Informasi yang wajib disediakan dan dapat diakses melalui permohonan.</p>
+            <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-ink/80">
+              <li class="flex gap-2"><span class="text-emas">•</span> Peraturan dan keputusan kampung</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Data kependudukan dan wilayah</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Dokumen perencanaan dan hasil musyawarah</li>
+              <li class="flex gap-2"><span class="text-emas">•</span> Data aset dan inventaris kampung</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rounded-md bg-abyss text-kabut p-8">
+        <div class="flex items-start gap-4">
+          <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-white/10 text-kabut font-display font-bold">D</span>
+          <div>
+            <h2 class="font-display font-bold text-2xl">Informasi Dikecualikan</h2>
+            <p class="mt-2 text-kabut/70 leading-relaxed">
+              Informasi tertentu dikecualikan dari akses publik sesuai peraturan, misalnya data pribadi warga
+              dan informasi yang dapat mengganggu kepentingan yang dilindungi undang-undang.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
