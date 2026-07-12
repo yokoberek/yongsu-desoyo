@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/**
+  * A catch-all path to Django template files, JavaScript, and Python files
+  * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
+  *
+  * If your final CSS file is not being updated after code changes, you may want to broaden or narrow
+  * the scope of this path.
+  */
+@source "../../../**/*.{html,py,js}";
+
+@theme {
+  --color-abyss: #052420;  /* background gelap utama */
+  --color-laut: #0A403A;   /* kartu & seksi gelap */
+  --color-reef: #1E7A6B;   /* aksen sekunder */
+  --color-aqua: #5BC2AC;   /* highlight */
+  --color-emas: #E7A324;   /* aksen utama */
+  --color-emasS: #F0C766;  /* emas terang */
+  --color-pasir: #F5EEE0;  /* background terang */
+  --color-pasirD: #EAE0CC; /* pasir lebih tua */
+  --color-kabut: #E9F1EE;  /* teks/putih di latar gelap */
+  --color-ink: #0E211D;    /* teks di latar terang */
+
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --tracking-eyebrow: 0.22em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Sembunyikan elemen Alpine sebelum library siap agar tidak berkedip */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Garis kontur topografi — motif identitas (gunung turun ke laut).
+   Dipakai sebagai tekstur latar tipis pada beberapa seksi. */
+.kontur-bg {
+  background-image:
+    radial-gradient(120% 90% at 20% -10%, rgba(91, 194, 172, 0.10), transparent 60%),
+    radial-gradient(100% 80% at 90% 0%, rgba(231, 163, 36, 0.08), transparent 55%);
+}
+
+/* Efek Ken Burns halus untuk gambar slider yang aktif */
+@keyframes kenburns {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.14); }
+}
+.kenburns {
+  animation: kenburns 8s ease-out forwards;
+}
+
+/* Reveal saat masuk viewport (di-trigger oleh IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Garis bawah emas animatif untuk tautan/judul kartu */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background: #E7A324;
+  transition: width .35s ease;
+}
+.group:hover .link-underline::after,
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Hormati preferensi gerak minimal pengguna */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .kenburns, .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
