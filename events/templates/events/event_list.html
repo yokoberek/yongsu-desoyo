@@ -1,0 +1,80 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Acara &amp; Kegiatan — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Agenda acara dan kegiatan Kampung Yongsu Desoyo: festival budaya, kegiatan bahari, pelatihan warga, dan musyawarah kampung.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Acara &amp; Kegiatan" crumb="Acara & Kegiatan" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600&auto=format&fit=crop" subjudul="Agenda kampung sepanjang tahun — dari festival budaya hingga kegiatan menjaga pesisir." %}
+
+  <!-- Agenda -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Agenda Mendatang</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Kegiatan yang menanti Anda
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">17</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Agu 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Budaya</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink">Festival Budaya Tepra</h3>
+            <p class="text-ink/65 text-sm mt-1">Tarian, upacara adat, dan pameran noken di halaman kampung.</p>
+          </div>
+        </div>
+
+        <div class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">14</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Sep 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Bahari</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink">Lomba Perahu &amp; Bersih Pantai Sapari</h3>
+            <p class="text-ink/65 text-sm mt-1">Adu dayung warga sekaligus aksi bersama menjaga pesisir tetap lestari.</p>
+          </div>
+        </div>
+
+        <div class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">05</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Okt 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Pelatihan</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink">Pelatihan Pemandu Ekowisata &amp; Homestay</h3>
+            <p class="text-ink/65 text-sm mt-1">Membekali warga menyambut tamu dengan layanan ramah dan profesional.</p>
+          </div>
+        </div>
+
+        <div class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm border border-ink/5">
+          <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
+            <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">09</span>
+            <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">Nov 2026</span>
+          </div>
+          <div class="hidden sm:block h-14 w-px bg-ink/10"></div>
+          <div class="flex-1">
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Pemerintahan</span>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink">Musyawarah Kampung Perencanaan 2027</h3>
+            <p class="text-ink/65 text-sm mt-1">Warga dan pemerintah kampung menyusun rencana pembangunan bersama.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="reveal mt-10 font-mono text-[11px] text-ink/50">
+        *Jadwal dapat berubah. Konfirmasi tanggal pasti melalui kontak resmi kampung.
+      </p>
+    </div>
+  </section>
+
+{% endblock %}

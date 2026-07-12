@@ -1,0 +1,57 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Galeri Foto — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Galeri foto Kampung Yongsu Desoyo: panorama pesisir, hutan Cycloop, kegiatan warga, dan momen budaya masyarakat adat Tepra.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Galeri Foto" crumb="Galeri Foto" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" subjudul="Rekaman visual keindahan alam, keseharian warga, dan momen budaya Yongsu Desoyo." %}
+
+  <!-- Galeri -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Bingkai Kampung</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Cerita yang tak selalu bisa dituliskan
+        </h2>
+      </div>
+
+      <!-- Grid masonry -->
+      <div class="columns-2 md:columns-3 gap-4 [&>*]:mb-4">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop"
+             alt="Panorama Samudra Pasifik" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g1/700/900'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=800&auto=format&fit=crop"
+             alt="Air terjun Nantuke" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g2/700/500'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop"
+             alt="Hutan Cycloop berkabut" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g3/700/800'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=800&auto=format&fit=crop"
+             alt="Cahaya menembus hutan" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g4/700/500'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=800&auto=format&fit=crop"
+             alt="Budaya adat Tepra" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g5/700/900'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop"
+             alt="Bawah laut" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g6/700/500'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop"
+             alt="Kegiatan warga di hutan" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g7/700/800'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=800&auto=format&fit=crop"
+             alt="Perbukitan pesisir" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g8/700/500'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <img src="https://images.unsplash.com/photo-1591207099859-cc47f28e1b3d?q=80&w=800&auto=format&fit=crop"
+             alt="Hasil kebun warga" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g9/700/700'"
+             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+      </div>
+
+      <p class="reveal mt-10 font-mono text-[11px] text-ink/50">
+        *Sebagian foto masih berupa contoh dan akan diganti dengan dokumentasi resmi kampung.
+      </p>
+    </div>
+  </section>
+
+{% endblock %}

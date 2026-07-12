@@ -1,0 +1,105 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Berita &amp; Pengumuman — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Berita, kabar, dan pengumuman resmi dari Pemerintah Kampung Yongsu Desoyo, Distrik Ravenirara, Kabupaten Jayapura, Papua.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Berita &amp; Pengumuman" crumb="Berita & Pengumuman" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop" subjudul="Kabar terbaru, pengumuman resmi, dan cerita dari denyut kehidupan Kampung Yongsu Desoyo." %}
+
+  <!-- Daftar berita -->
+  <section class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+      <!-- Berita utama -->
+      <article class="reveal group cursor-pointer grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
+        <div class="overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop"
+               alt="Ruas jalan penghubung antar kampung" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jalan/1200/800'"
+               class="w-full h-72 sm:h-96 object-cover transition duration-700 group-hover:scale-105" />
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="rounded-full bg-reef/10 text-reef px-3 py-1 text-xs font-semibold">Pembangunan</span>
+            <span class="font-mono text-xs text-ink/50">12 Juni 2026</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight text-ink group-hover:text-reef transition">
+            Ruas Jalan Yongsu Sapari–Yongsu Desoyo Perkuat Konektivitas Pesisir
+          </h2>
+          <p class="mt-4 text-ink/70 leading-relaxed">
+            Pembangunan ruas jalan penghubung antarkampung meningkatkan akses transportasi warga sekaligus membuka
+            jalur baru bagi kunjungan wisata ke Yongsu Desoyo.
+          </p>
+        </div>
+      </article>
+
+      <!-- Grid berita lain -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="reveal group cursor-pointer">
+          <div class="overflow-hidden rounded-sm mb-4">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop"
+                 alt="Honai homestay" onerror="this.onerror=null;this.src='https://picsum.photos/seed/honai/700/500'"
+                 class="w-full h-52 object-cover transition duration-700 group-hover:scale-105" />
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Ekowisata</span>
+            <span class="font-mono text-xs text-ink/50">7 Jan 2026</span>
+          </div>
+          <h3 class="font-display font-bold text-lg leading-snug text-ink group-hover:text-reef transition">
+            Honai Homestay Dorong Ekonomi Berbasis Hutan
+          </h3>
+        </article>
+
+        <article class="reveal group cursor-pointer">
+          <div class="overflow-hidden rounded-sm mb-4">
+            <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop"
+                 alt="Kesiapsiagaan bencana" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tangguh/700/500'"
+                 class="w-full h-52 object-cover transition duration-700 group-hover:scale-105" />
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="rounded-full bg-aqua/20 text-reef px-3 py-1 text-xs font-semibold">Kesiapsiagaan</span>
+            <span class="font-mono text-xs text-ink/50">2025</span>
+          </div>
+          <h3 class="font-display font-bold text-lg leading-snug text-ink group-hover:text-reef transition">
+            Menuju Kampung Tangguh Bencana Hadapi Cuaca Ekstrem
+          </h3>
+        </article>
+
+        <article class="reveal group cursor-pointer">
+          <div class="overflow-hidden rounded-sm mb-4">
+            <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=800&auto=format&fit=crop"
+                 alt="Festival budaya" onerror="this.onerror=null;this.src='https://picsum.photos/seed/festival/700/500'"
+                 class="w-full h-52 object-cover transition duration-700 group-hover:scale-105" />
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Budaya</span>
+            <span class="font-mono text-xs text-ink/50">2025</span>
+          </div>
+          <h3 class="font-display font-bold text-lg leading-snug text-ink group-hover:text-reef transition">
+            Persiapan Festival Budaya Tepra Libatkan Seluruh Warga
+          </h3>
+        </article>
+      </div>
+
+      <!-- Pengumuman -->
+      <div class="reveal mt-16 rounded-md bg-pasir border border-ink/10 p-8 sm:p-10">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-5">Pengumuman Resmi</p>
+        <ul class="divide-y divide-ink/10">
+          <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 py-4">
+            <span class="font-mono text-xs text-ink/50 sm:w-32 shrink-0">01 Jul 2026</span>
+            <span class="text-ink font-medium">Jadwal Musyawarah Kampung (Muskam) Perencanaan 2027</span>
+          </li>
+          <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 py-4">
+            <span class="font-mono text-xs text-ink/50 sm:w-32 shrink-0">20 Jun 2026</span>
+            <span class="text-ink font-medium">Pendaftaran Pelatihan Pemandu Ekowisata &amp; Homestay</span>
+          </li>
+          <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 py-4">
+            <span class="font-mono text-xs text-ink/50 sm:w-32 shrink-0">05 Jun 2026</span>
+            <span class="text-ink font-medium">Kerja Bakti Bersih Pantai Sapari Setiap Akhir Pekan</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
