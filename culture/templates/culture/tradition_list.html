@@ -1,0 +1,86 @@
+{% extends "main_layout.html" %}
+
+{% block title %}Budaya &amp; Tradisi — Kampung Yongsu Desoyo{% endblock %}
+{% block meta_description %}Budaya dan tradisi masyarakat adat Tepra di Kampung Yongsu Desoyo: kepemimpinan Ondoafi, noken, bahasa daerah, tarian, dan upacara adat.{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul="Budaya &amp; Tradisi" crumb="Budaya & Tradisi" eyebrow="Potensi Kampung" gambar="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=1600&auto=format&fit=crop" subjudul="Adat yang hidup dalam keseharian — warisan Orang Tepra yang dijaga turun-temurun di kaki Cycloop." %}
+
+  <!-- Pengantar -->
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Warisan yang Hidup</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
+          Adat bukan masa lalu, tapi cara hidup hari ini
+        </h2>
+        <p class="mt-5 text-ink/70 leading-relaxed">
+          Bagi masyarakat Tepra, budaya bukan sekadar tontonan. Ia mengatur hubungan dengan sesama, dengan hutan,
+          dan dengan leluhur — dari kepemimpinan adat hingga cara menjaga tanah dan laut.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Kepemimpinan Ondoafi</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Sistem kepemimpinan adat yang menjaga tatanan sosial dan wilayah adat kampung.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Noken</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Tas serat alami bermotif khas, warisan budaya yang masih ditenun warga.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Bahasa Daerah</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Bahasa ibu yang terus dijaga, dapat ditelusuri melalui Kamus Bahasa Raveni Rara.</p>
+        </div>
+
+        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
+          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-ink">Upacara &amp; Tarian</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Ritual dan kesenian yang menandai peristiwa penting dalam kehidupan warga.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narasi + kutipan -->
+  <section class="bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
+    <svg class="absolute -bottom-10 left-0 w-full opacity-7" viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120c180-40 320 30 520 20s360-70 560-60 300 60 360 50v120H0z" stroke="#5BC2AC" stroke-width="1.5"/>
+      <path d="M0 150c200-30 300 20 520 15s380-50 560-45 320 40 360 35" stroke="#E7A324" stroke-width="1.5"/>
+    </svg>
+    <div class="mx-auto max-w-3xl px-5 sm:px-8 relative text-center">
+      <svg class="h-10 w-10 text-emas mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h5v5H9c0 2 1 3 3 3v2c-3 0-5-2-5-5V7zm7 0h5v5h-3c0 2 1 3 3 3v2c-3 0-5-2-5-5V7z"/></svg>
+      <blockquote class="reveal font-display font-bold text-2xl sm:text-3xl leading-snug">
+        "Menjaga adat dan hutan adalah cara kami menjaga diri sendiri."
+      </blockquote>
+      <p class="reveal mt-6 font-mono text-xs tracking-eyebrow uppercase text-aqua/70">Kearifan Orang Tepra</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-pasir py-20 sm:py-24">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="reveal max-w-2xl">
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-[1.05] text-ink">Ingin menyaksikan budaya Tepra langsung?</h2>
+        <p class="mt-4 text-ink/70 text-lg">Ikuti agenda festival dan kegiatan adat kampung sepanjang tahun.</p>
+      </div>
+      <a href="{% url 'events:list' %}" class="reveal shrink-0 inline-flex items-center justify-center rounded-full bg-emas px-7 py-4 font-semibold text-abyss hover:bg-emasS transition">Lihat Agenda</a>
+    </div>
+  </section>
+
+{% endblock %}
