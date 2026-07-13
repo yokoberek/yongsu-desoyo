@@ -10,6 +10,7 @@ dependencies = [
     "django-debug-toolbar>=7.0.0",
     "django-tailwind[cookiecutter,honcho,reload]>=4.5.0",
     "django-unfold>=0.100.0",
+    "gunicorn>=26.0.0",
     "python-decouple>=3.8",
     "whitenoise>=6.12.0",
 ]
