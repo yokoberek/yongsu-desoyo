@@ -167,13 +167,14 @@ UNFOLD = {
     # ── Site identity ────────────────────────────────────────────────────────
     "SITE_TITLE": "Site Administration - Kampung Yongsu Desoyo",
     "SITE_HEADER": "Yongsu Desoyo",
+    "SITE_SUBHEADER": "Distrik Ravenirara, Kab. Jayapura",
     "SITE_URL": "/",
     "SITE_FAVICONS": [
         {
             "rel": "icon",
             "sizes": "32x32",
             "type": "image/svg+xml",
-            "href": lambda _request: static("favicon/favicon.svg"),
+            "href": lambda _request: static("favicon/favicon.ico"),
         },
     ],
     # ── Appearance ───────────────────────────────────────────────────────────
@@ -208,159 +209,118 @@ UNFOLD = {
             "950": "10, 10, 10",
         },
     },
-    # # ── Sidebar navigation ───────────────────────────────────────────────────
-    # "SIDEBAR": {
-    #     "navigation": [
-    #         # ── Aktivitas ─────────────────────────────────────────────────────
-    #         {
-    #             "title": "Aktivitas",
-    #             "separator": False,
-    #             "collapsible": False,
-    #             "items": [
-    #                 {
-    #                     "title": "Sub-Aktivitas",
-    #                     "icon": "task_alt",
-    #                     "link": reverse_lazy("admin:activities_subactivity_changelist"),
-    #                     "badge": _pending_subactivity_badge,
-    #                 },
-    #                 {
-    #                     "title": "Bukti Aktivitas",
-    #                     "icon": "fact_check",
-    #                     "link": reverse_lazy(
-    #                         "admin:activities_subactivityevidence_changelist"
-    #                     ),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Kerangka Aktivitas ─────────────────────────────────────────────
-    #         {
-    #             "title": "Kerangka Aktivitas",
-    #             "separator": True,
-    #             "collapsible": False,
-    #             "items": [
-    #                 {
-    #                     "title": "Aktivitas",
-    #                     "icon": "account_tree",
-    #                     "link": reverse_lazy("admin:activities_activity_changelist"),
-    #                 },
-    #                 {
-    #                     "title": "Jenis Aktivitas",
-    #                     "icon": "category",
-    #                     "link": reverse_lazy(
-    #                         "admin:activities_activitytype_changelist"
-    #                     ),
-    #                 },
-    #                 {
-    #                     "title": "Jenis Bukti",
-    #                     "icon": "description",
-    #                     "link": reverse_lazy(
-    #                         "admin:activities_evidencetype_changelist"
-    #                     ),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Hierarki ToC ──────────────────────────────────────────────────
-    #         {
-    #             "title": "Hierarki ToC",
-    #             "separator": True,
-    #             "collapsible": False,
-    #             "items": [
-    #                 {
-    #                     "title": "Objective",
-    #                     "icon": "target",
-    #                     "link": reverse_lazy("admin:program_objective_changelist"),
-    #                 },
-    #                 {
-    #                     "title": "Indikator",
-    #                     "icon": "data_check",
-    #                     "link": reverse_lazy("admin:program_indicator_changelist"),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Donor & Pendanaan ─────────────────────────────────────────────
-    #         {
-    #             "title": "Donor & Pendanaan",
-    #             "separator": True,
-    #             "collapsible": False,
-    #             "items": [
-    #                 {
-    #                     "title": "Donor",
-    #                     "icon": "corporate_fare",
-    #                     "link": reverse_lazy("admin:program_donor_changelist"),
-    #                 },
-    #                 {
-    #                     "title": "Komitmen Donor",
-    #                     "icon": "payments",
-    #                     "link": reverse_lazy(
-    #                         "admin:program_donorcommitment_changelist"
-    #                     ),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Hierarki Program JERAT ────────────────────────────────────────
-    #         {
-    #             "title": "Hierarki Program JERAT",
-    #             "separator": True,
-    #             "items": [
-    #                 {
-    #                     "title": "Capaian Akhir Program",
-    #                     "icon": "flag",
-    #                     "link": reverse_lazy(
-    #                         "admin:program_capaianakhirprogram_changelist"
-    #                     ),
-    #                 },
-    #                 {
-    #                     "title": "Capaian Program Antara",
-    #                     "icon": "alt_route",
-    #                     "link": reverse_lazy(
-    #                         "admin:program_capaianprogramantara_changelist"
-    #                     ),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Struktur Organisasi ───────────────────────────────────────────
-    #         {
-    #             "title": "Struktur Organisasi",
-    #             "separator": True,
-    #             "items": [
-    #                 {
-    #                     "title": "Departemen",
-    #                     "icon": "domain",
-    #                     "link": reverse_lazy("admin:program_department_changelist"),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Manajemen Pengguna ────────────────────────────────────────────
-    #         {
-    #             "title": "Manajemen Pengguna",
-    #             "separator": True,
-    #             "collapsible": True,
-    #             "items": [
-    #                 {
-    #                     "title": "Pengguna",
-    #                     "icon": "manage_accounts",
-    #                     "link": reverse_lazy("admin:accounts_user_changelist"),
-    #                 },
-    #                 {
-    #                     "title": "Grup & Hak Akses",
-    #                     "icon": "shield_person",
-    #                     "link": reverse_lazy("admin:auth_group_changelist"),
-    #                 },
-    #             ],
-    #         },
-    #         # ── Sistem ────────────────────────────────────────────────────────
-    #         {
-    #             "title": "Sistem",
-    #             "separator": True,
-    #             "collapsible": True,
-    #             "items": [
-    #                 {
-    #                     "title": "Pengaturan Situs",
-    #                     "icon": "language",
-    #                     "link": reverse_lazy("admin:sites_site_changelist"),
-    #                 },
-    #             ],
-    #         },
-    #     ],
-    # },
+    # ── Sidebar navigation ───────────────────────────────────────────────────
+    "SIDEBAR": {
+        "navigation": [
+            {
+                "title": "Beranda & Profil",
+                "separator": False,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "Hero Slide",
+                        "icon": "view_carousel",
+                        "link": reverse_lazy("admin:commons_heroslide_changelist"),
+                    },
+                    {
+                        "title": "Struktur Pemerintahan",
+                        "icon": "account_balance",
+                        "link": reverse_lazy(
+                            "admin:commons_officialposition_changelist"
+                        ),
+                    },
+                    {
+                        "title": "Statistik",
+                        "icon": "monitoring",
+                        "link": reverse_lazy("admin:commons_statistic_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Konten Kampung",
+                "separator": True,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "Objek Wisata",
+                        "icon": "landscape",
+                        "link": reverse_lazy("admin:tourism_destination_changelist"),
+                    },
+                    {
+                        "title": "Produk Lokal",
+                        "icon": "storefront",
+                        "link": reverse_lazy("admin:products_product_changelist"),
+                    },
+                    {
+                        "title": "Budaya & Tradisi",
+                        "icon": "diversity_3",
+                        "link": reverse_lazy("admin:culture_tradition_changelist"),
+                    },
+                    {
+                        "title": "Galeri Foto",
+                        "icon": "photo_library",
+                        "link": reverse_lazy("admin:gallery_photo_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Informasi & Kegiatan",
+                "separator": True,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "Berita & Pengumuman",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:news_post_changelist"),
+                    },
+                    {
+                        "title": "Acara & Kegiatan",
+                        "icon": "event",
+                        "link": reverse_lazy("admin:events_event_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Pembangunan",
+                "separator": True,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "Program & Proyek",
+                        "icon": "construction",
+                        "link": reverse_lazy("admin:development_project_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Manajemen Pengguna",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Pengguna",
+                        "icon": "manage_accounts",
+                        "link": reverse_lazy("admin:auth_user_changelist"),
+                    },
+                    {
+                        "title": "Grup & Hak Akses",
+                        "icon": "shield_person",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Sistem",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Pengaturan Situs",
+                        "icon": "language",
+                        "link": reverse_lazy("admin:sites_site_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
 }

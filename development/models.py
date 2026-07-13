@@ -1,3 +1,31 @@
 from django.db import models
+from django.urls import reverse
 
-# Create your models here.
+
+class Project(models.Model):
+    class Status(models.TextChoices):
+        PLANNED = "direncanakan", "Direncanakan"
+        ONGOING = "berjalan", "Sedang Berjalan"
+        DONE = "selesai", "Selesai"
+
+    title = models.CharField("Judul", max_length=200)
+    slug = models.SlugField(unique=True)
+    summary = models.CharField("Ringkasan", max_length=300)
+    description = models.TextField("Deskripsi", blank=True)
+    image_url = models.URLField("URL Gambar", blank=True)
+    status = models.CharField("Status", max_length=20, choices=Status.choices, default=Status.ONGOING)
+    progress = models.PositiveSmallIntegerField("Progres (%)", default=0)
+    year = models.PositiveSmallIntegerField("Tahun", null=True, blank=True)
+    is_published = models.BooleanField("Ditampilkan", default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Proyek Pembangunan"
+        verbose_name_plural = "Program & Proyek"
+        ordering = ["-year", "title"]
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("development:detail", args=[self.slug])
