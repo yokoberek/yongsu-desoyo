@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from commons.models import HeroSlide, OfficialPosition, Statistic
 from culture.models import Tradition
 from development.models import Project
-from events.models import Event
+from events.models import Event, EventActivity
 from gallery.models import Photo
 from news.models import Post
 from products.models import Product
@@ -86,11 +86,46 @@ POSTS = [
     ("Persiapan Festival Budaya Tepra Libatkan Seluruh Warga", "budaya", datetime.date(2025, 12, 20), "photo-1519659528534-7fd733a832a0", "Warga bergotong royong menyiapkan tarian, upacara adat, dan pameran noken untuk festival tahunan kampung.", "Festival Budaya Tepra menjadi ajang merawat warisan leluhur. Warga dari berbagai keret bergotong royong menyiapkan tarian, upacara, dan pameran kerajinan.\n\nFestival ini juga menjadi daya tarik wisata budaya bagi pengunjung dari luar kampung."),
 ]
 
+# title, category, date, location, summary, description, schedule (opsional, "" = belum tersedia), photo
+# title, category, date, location, summary, description, activities (list of str, [] = belum tersedia), photo
 EVENTS = [
-    ("Festival Budaya Tepra", "budaya", datetime.date(2026, 8, 17), "Halaman Kampung", "Tarian, upacara adat, dan pameran noken di halaman kampung."),
-    ("Lomba Perahu & Bersih Pantai Sapari", "bahari", datetime.date(2026, 9, 14), "Pantai Sapari", "Adu dayung warga sekaligus aksi bersama menjaga pesisir tetap lestari."),
-    ("Pelatihan Pemandu Ekowisata & Homestay", "pelatihan", datetime.date(2026, 10, 5), "Balai Kampung", "Membekali warga menyambut tamu dengan layanan ramah dan profesional."),
-    ("Musyawarah Kampung Perencanaan 2027", "pemerintahan", datetime.date(2026, 11, 9), "Balai Kampung", "Warga dan pemerintah kampung menyusun rencana pembangunan bersama."),
+    (
+        "Festival Budaya Tepra", "budaya", datetime.date(2026, 8, 17), "Halaman Kampung",
+        "Tarian, upacara adat, dan pameran noken di halaman kampung.",
+        "Festival Budaya Tepra adalah perayaan tahunan yang menghadirkan tarian adat, upacara, dan pameran kerajinan noken karya warga.\n\nSeluruh keret (marga adat) turut ambil bagian, menjadikan festival ini ajang merawat identitas budaya sekaligus menyambut wisatawan yang ingin mengenal masyarakat adat Tepra lebih dekat.",
+        [
+            "Menyaksikan pawai dan pameran noken karya warga",
+            "Menikmati pertunjukan tari adat Tepra",
+            "Berbincang langsung dengan tetua adat dari berbagai keret",
+            "Mencicipi kuliner khas yang disajikan warga",
+        ],
+        "photo-1519659528534-7fd733a832a0",
+    ),
+    (
+        "Lomba Perahu & Bersih Pantai Sapari", "bahari", datetime.date(2026, 9, 14), "Pantai Sapari",
+        "Adu dayung warga sekaligus aksi bersama menjaga pesisir tetap lestari.",
+        "Kegiatan ini memadukan olahraga tradisional dan kepedulian lingkungan. Warga berlomba mendayung perahu sekaligus bergotong royong membersihkan sampah di sepanjang Pantai Sapari.\n\nAcara ini juga menjadi ajang mempererat kebersamaan antarwarga sambil menjaga kelestarian laut yang menjadi sumber kehidupan kampung.",
+        [
+            "Ikut kerja bakti membersihkan Pantai Sapari",
+            "Menyaksikan atau mengikuti lomba dayung perahu tradisional",
+            "Menikmati suasana pantai bersama warga",
+        ],
+        "photo-1507525428034-b723cf961d3e",
+    ),
+    (
+        "Pelatihan Pemandu Ekowisata & Homestay", "pelatihan", datetime.date(2026, 10, 5), "Balai Kampung",
+        "Membekali warga menyambut tamu dengan layanan ramah dan profesional.",
+        "Pelatihan ini membekali warga yang mengelola homestay dan menjadi pemandu wisata dengan keterampilan pelayanan, keselamatan, serta pengetahuan tentang potensi alam dan budaya kampung.\n\nDiharapkan pelatihan ini meningkatkan kualitas layanan ekowisata Yongsu Desoyo secara berkelanjutan.",
+        [],
+        "photo-1441974231531-c6227db76b6e",
+    ),
+    (
+        "Musyawarah Kampung Perencanaan 2027", "pemerintahan", datetime.date(2026, 11, 9), "Balai Kampung",
+        "Warga dan pemerintah kampung menyusun rencana pembangunan bersama.",
+        "Musyawarah Kampung (Muskam) adalah forum resmi warga bersama Pemerintah Kampung untuk membahas dan menyepakati rencana pembangunan tahun berikutnya.\n\nSetiap warga berhak menyampaikan usulan sesuai kebutuhan wilayah masing-masing sebagai bagian dari prinsip pemerintahan yang partisipatif.",
+        [],
+        "photo-1470071459604-3b5ec3a7fe05",
+    ),
 ]
 
 PHOTOS = [
@@ -105,13 +140,43 @@ PHOTOS = [
     ("Hasil kebun warga", "photo-1591207099859-cc47f28e1b3d"),
 ]
 
-# title, status, progress, year, summary, description
+# title, status, progress, year, summary, description, location, funding_source, implementer, photo
 PROJECTS = [
-    ("Ruas Jalan Yongsu Sapari – Yongsu Desoyo", "berjalan", 75, 2026, "Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.", "Proyek jalan penghubung ini mempermudah mobilitas warga dan distribusi hasil kampung, sekaligus membuka jalur kunjungan wisata.", "photo-1470071459604-3b5ec3a7fe05"),
-    ("Honai & Homestay Ekowisata", "selesai", 100, 2026, "Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.", "Pembangunan honai homestay tahap pertama telah rampung dan mulai menerima tamu, menjadi sumber ekonomi baru bagi warga.", "photo-1441974231531-c6227db76b6e"),
-    ("Kampung Tangguh Bencana", "berjalan", 60, 2026, "Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.", "Program mencakup pelatihan, penyusunan jalur evakuasi, dan penguatan kelembagaan siaga bencana di tingkat kampung.", "photo-1502082553048-f009c37129b9"),
-    ("Jaringan Internet & Telekomunikasi", "berjalan", 45, 2026, "Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.", "Perluasan jaringan bertujuan menghubungkan warga dan siswa dengan layanan digital serta informasi.", "photo-1507525428034-b723cf961d3e"),
-    ("Dermaga / Pelabuhan Rakyat", "direncanakan", 20, 2027, "Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.", "Dermaga rakyat direncanakan untuk memperlancar transportasi laut, kegiatan nelayan, dan kunjungan wisata melalui jalur laut.", "photo-1544551763-46a013bb70d5"),
+    (
+        "Ruas Jalan Yongsu Sapari – Yongsu Desoyo", "berjalan", 75, 2026,
+        "Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.",
+        "Proyek jalan penghubung ini mempermudah mobilitas warga dan distribusi hasil kampung, sekaligus membuka jalur kunjungan wisata.",
+        "Ruas Yongsu Sapari – Yongsu Desoyo", "APBD Kabupaten Jayapura 2026", "Dinas Pekerjaan Umum dan Penataan Ruang Kabupaten Jayapura",
+        "photo-1470071459604-3b5ec3a7fe05",
+    ),
+    (
+        "Honai & Homestay Ekowisata", "selesai", 100, 2026,
+        "Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.",
+        "Pembangunan honai homestay tahap pertama telah rampung dan mulai menerima tamu, menjadi sumber ekonomi baru bagi warga.",
+        "Kampung Yongsu Desoyo", "Dana Desa 2026", "Swakelola Pemerintah Kampung",
+        "photo-1441974231531-c6227db76b6e",
+    ),
+    (
+        "Kampung Tangguh Bencana", "berjalan", 60, 2026,
+        "Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.",
+        "Program mencakup pelatihan, penyusunan jalur evakuasi, dan penguatan kelembagaan siaga bencana di tingkat kampung.",
+        "Kampung Yongsu Desoyo", "Dana Desa 2026", "Badan Penanggulangan Bencana Daerah Kabupaten Jayapura",
+        "photo-1502082553048-f009c37129b9",
+    ),
+    (
+        "Jaringan Internet & Telekomunikasi", "berjalan", 45, 2026,
+        "Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.",
+        "Perluasan jaringan bertujuan menghubungkan warga dan siswa dengan layanan digital serta informasi.",
+        "Kampung Yongsu Desoyo", "APBN — Kementerian Komunikasi dan Digital", "Dinas Komunikasi dan Informatika Kabupaten Jayapura",
+        "photo-1507525428034-b723cf961d3e",
+    ),
+    (
+        "Dermaga / Pelabuhan Rakyat", "direncanakan", 20, 2027,
+        "Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.",
+        "Dermaga rakyat direncanakan untuk memperlancar transportasi laut, kegiatan nelayan, dan kunjungan wisata melalui jalur laut.",
+        "Pesisir Yongsu Desoyo", "APBD Provinsi Papua 2027", "Dinas Perhubungan Provinsi Papua",
+        "photo-1544551763-46a013bb70d5",
+    ),
 ]
 
 
@@ -157,21 +222,32 @@ class Command(BaseCommand):
                 defaults={"title": title, "category": category, "published_at": date, "image_url": img(photo), "summary": summary, "body": to_html(body)},
             )
 
-        for title, category, date, location, summary in EVENTS:
-            Event.objects.update_or_create(
+        for title, category, date, location, summary, description, activities, photo in EVENTS:
+            event, _ = Event.objects.update_or_create(
                 slug=slugify(title),
-                defaults={"title": title, "category": category, "start_date": date, "location": location, "summary": summary},
+                defaults={
+                    "title": title, "category": category, "start_date": date, "location": location,
+                    "summary": summary, "description": to_html(description), "image_url": img(photo),
+                },
             )
+            for order, activity_title in enumerate(activities):
+                EventActivity.objects.update_or_create(
+                    event=event, order=order, defaults={"title": activity_title},
+                )
 
         for order, (title, photo) in enumerate(PHOTOS):
             Photo.objects.update_or_create(
                 title=title, defaults={"image_url": img(photo), "order": order}
             )
 
-        for title, status, progress, year, summary, description, photo in PROJECTS:
+        for title, status, progress, year, summary, description, location, funding_source, implementer, photo in PROJECTS:
             Project.objects.update_or_create(
                 slug=slugify(title),
-                defaults={"title": title, "status": status, "progress": progress, "year": year, "summary": summary, "description": to_html(description), "image_url": img(photo)},
+                defaults={
+                    "title": title, "status": status, "progress": progress, "year": year, "summary": summary,
+                    "description": to_html(description), "location": location, "funding_source": funding_source,
+                    "implementer": implementer, "image_url": img(photo),
+                },
             )
 
         self.stdout.write(self.style.SUCCESS("Seed selesai."))

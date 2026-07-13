@@ -308,7 +308,7 @@
 
       <div class="space-y-4">
         {% for event in events %}
-        <a href="{% url 'events:list' %}" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
+        <a href="{{ event.get_absolute_url }}" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
           <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
             <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">{{ event.start_date|date:"d" }}</span>
             <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">{{ event.start_date|date:"M Y" }}</span>

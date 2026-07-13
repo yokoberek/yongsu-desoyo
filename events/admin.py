@@ -1,7 +1,16 @@
 from django.contrib import admin
-from unfold.admin import ModelAdmin
+from django.db import models
+from unfold.admin import ModelAdmin, TabularInline
+from unfold.contrib.forms.widgets import WysiwygWidget
 
-from .models import Event
+from .models import Event, EventActivity
+
+
+class EventActivityInline(TabularInline):
+    model = EventActivity
+    extra = 1
+    fields = ("title", "order")
+    ordering = ("order", "id")
 
 
 @admin.register(Event)
@@ -11,3 +20,5 @@ class EventAdmin(ModelAdmin):
     search_fields = ("title", "summary", "location")
     date_hierarchy = "start_date"
     prepopulated_fields = {"slug": ("title",)}
+    formfield_overrides = {models.TextField: {"widget": WysiwygWidget}}
+    inlines = [EventActivityInline]

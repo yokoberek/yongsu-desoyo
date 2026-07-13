@@ -1,0 +1,119 @@
+{% extends "main_layout.html" %}
+
+{% block title %}{{ event.title }} — Acara Yongsu Desoyo{% endblock %}
+{% block meta_description %}{{ event.summary|default:event.title }}{% endblock %}
+{% block og_image %}{% if event.image_url %}{{ event.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image_alt %}{{ event.title }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{{ event.title|escapejs }}",
+  "description": "{{ event.summary|default:event.title|escapejs }}",
+  "startDate": "{{ event.start_date|date:'Y-m-d' }}",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "{{ event.location|default:"Kampung Yongsu Desoyo"|escapejs }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Yongsu Desoyo",
+      "addressRegion": "Papua",
+      "addressCountry": "ID"
+    }
+  },
+  "organizer": {
+    "@type": "GovernmentOrganization",
+    "name": "Pemerintah Kampung Yongsu Desoyo"
+  },
+  "image": "{{ seo_image }}",
+  "url": "{{ seo_url }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  {% include "partials/page_banner.html" with judul=event.title crumb=event.title eyebrow=event.get_category_display gambar=event.image_url tinggi="min-h-[52vh]" subjudul=event.summary %}
+
+  <section class="bg-pasir py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <a href="{% url 'events:list' %}" class="reveal inline-flex items-center gap-2 font-mono text-xs tracking-eyebrow uppercase text-reef hover:text-emas transition mb-10">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 12H5m0 0l6 6m-6-6l6-6"/></svg>
+        Semua Acara
+      </a>
+
+      <div class="grid lg:grid-cols-3 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-2 space-y-10">
+          <div class="reveal">
+            <span class="inline-block rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold mb-5">{{ event.get_category_display }}</span>
+            <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-strong:text-ink prose-a:text-reef text-ink/75">
+              {% if event.description %}{{ event.description|safe }}{% else %}<p>{{ event.summary|default:"Detail lengkap acara ini akan segera dilengkapi oleh Pemerintah Kampung." }}</p>{% endif %}
+            </div>
+          </div>
+
+          {% with activities=event.activities.all %}
+          {% if activities %}
+          <div class="reveal">
+            <h2 class="font-display font-bold text-2xl text-ink mb-6">Yang Bisa Anda Lakukan</h2>
+            <ul class="space-y-4">
+              {% for item in activities %}
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 h-6 w-6 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef">
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <p class="text-ink/80 leading-relaxed pt-0.5">{{ item.title }}</p>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          {% endwith %}
+        </div>
+
+        <aside class="lg:col-span-1">
+          <div class="reveal rounded-md bg-abyss text-kabut p-8 lg:sticky lg:top-28 shadow-xl">
+            <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-5">Informasi Acara</p>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-4 border-b border-white/10 pb-3">
+                <dt class="text-kabut/60">Tanggal</dt><dd class="font-medium text-right">{{ event.start_date|date:"j F Y" }}</dd>
+              </div>
+              <div class="flex justify-between gap-4 {% if event.location %}border-b border-white/10 pb-3{% endif %}">
+                <dt class="text-kabut/60">Kategori</dt><dd class="font-medium text-right">{{ event.get_category_display }}</dd>
+              </div>
+              {% if event.location %}
+              <div class="flex justify-between gap-4">
+                <dt class="text-kabut/60">Lokasi</dt><dd class="font-medium text-right">{{ event.location }}</dd>
+              </div>
+              {% endif %}
+            </dl>
+            <a href="{% url 'commons:contact' %}" class="mt-7 w-full inline-flex items-center justify-center gap-2 rounded-full bg-emas px-6 py-3.5 font-semibold text-abyss hover:bg-emasS transition">
+              Tanya Info Acara
+            </a>
+          </div>
+
+          {% if other_events %}
+          <div class="reveal mt-8">
+            <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Acara Lainnya</p>
+            <div class="space-y-4">
+              {% for e in other_events %}
+              <a href="{{ e.get_absolute_url }}" class="group flex gap-3 items-start">
+                <div class="shrink-0 w-12 text-center">
+                  <p class="font-display font-bold text-xl text-reef leading-none">{{ e.start_date|date:"d" }}</p>
+                  <p class="font-mono text-[9px] tracking-eyebrow uppercase text-ink/50 mt-1">{{ e.start_date|date:"M" }}</p>
+                </div>
+                <p class="text-sm font-medium text-ink group-hover:text-reef transition leading-snug pt-0.5">{{ e.title }}</p>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

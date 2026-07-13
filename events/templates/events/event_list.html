@@ -19,7 +19,7 @@
 
       <div class="space-y-4">
         {% for event in events %}
-        <div class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm border border-ink/5">
+        <a href="{{ event.get_absolute_url }}" class="reveal group flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 bg-white rounded-sm p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition border border-ink/5">
           <div class="flex sm:flex-col items-baseline sm:items-center sm:justify-center shrink-0 sm:w-24 gap-2 sm:gap-0">
             <span class="font-display font-extrabold text-4xl sm:text-5xl text-reef leading-none">{{ event.start_date|date:"d" }}</span>
             <span class="font-mono text-xs tracking-eyebrow uppercase text-ink/60 sm:mt-1">{{ event.start_date|date:"M Y" }}</span>
@@ -31,16 +31,17 @@
                 #{{ event.get_category_display }}
               </span>
             </div>
-            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink">{{ event.title }}</h3>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-ink group-hover:text-reef transition">{{ event.title }}</h3>
             <p class="text-ink/65 text-sm mt-1">{{ event.summary }}</p>
-            {% if event.location %} 
+            {% if event.location %}
             <div class="flex items-center gap-1 mt-3 text-sm text-ink/60">
               <svg class="h-3 w-3 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               <span class="text-xs">{{ event.location }}</span>
             </div>
             {% endif %}
           </div>
-        </div>
+          <svg class="hidden sm:block h-5 w-5 text-ink/30 group-hover:text-emas group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
         {% empty %}
         <p class="text-ink/60">Belum ada agenda yang dijadwalkan.</p>
         {% endfor %}
