@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",  # 3rd-party app
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "django.contrib.sitemaps",
     # 3rd-party apps
     "tailwind",
     "theme",

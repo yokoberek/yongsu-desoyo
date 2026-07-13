@@ -1,11 +1,17 @@
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from .sitemaps import sitemaps
+from .views import robots_txt
+
 urlpatterns = [
     path("site-manager/", admin.site.urls),
-    # URL publik flat & bersih; tiap app punya path Indonesia sendiri.
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    path("robots.txt", robots_txt, name="robots_txt"),
+    # URL publik flat & bersih; tiap app punya path sendiri.
     path("", include("commons.urls")),
     path("", include("tourism.urls")),
     path("", include("products.urls")),
