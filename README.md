@@ -39,4 +39,4 @@ Setup, stack, structure, and conventions are documented in [DEVELOPMENT.md](DEVE
 ## Contact
 
 Pemerintah Kampung Yongsu Desoyo — Distrik Ravenirara, Kabupaten Jayapura, Provinsi Papua.
-Email: kampungyongsudesoyo@gmail.com
+Email: info@yongsu-desoyo.id
