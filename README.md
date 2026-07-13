@@ -5,7 +5,7 @@ Ravenirara, Kabupaten Jayapura, Papua. The village sits at the foot of the Cyclo
 Mountains (Pegunungan Cycloop) on the northern coast, facing the Pacific Ocean, and is
 being developed as a community-based ecotourism destination.
 
-Domain: yongsu-dosoyo.id
+Domain: [yongsu-dosoyo.id](https://yongsu-desoyo.id)
 
 ## About the site
 
