@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
-
+    "@tailwindcss/typography": "^0.5.20",
     "cross-env": "^10.1.0",
     "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1",
