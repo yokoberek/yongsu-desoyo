@@ -8,8 +8,8 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectAdmin(ModelAdmin):
-    list_display = ("title", "status", "progress", "year", "is_published")
+    list_display = ("title", "status", "progress", "year", "location", "is_published")
     list_filter = ("status", "is_published")
-    search_fields = ("title", "summary", "description")
+    search_fields = ("title", "summary", "description", "location", "implementer")
     prepopulated_fields = {"slug": ("title",)}
     formfield_overrides = {models.TextField: {"widget": WysiwygWidget}}

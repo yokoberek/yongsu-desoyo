@@ -16,6 +16,9 @@ class Project(models.Model):
     status = models.CharField("Status", max_length=20, choices=Status.choices, default=Status.ONGOING)
     progress = models.PositiveSmallIntegerField("Progres (%)", default=0)
     year = models.PositiveSmallIntegerField("Tahun", null=True, blank=True)
+    location = models.CharField("Lokasi", max_length=150, blank=True)
+    funding_source = models.CharField("Sumber Dana", max_length=150, blank=True)
+    implementer = models.CharField("Pelaksana", max_length=150, blank=True)
     is_published = models.BooleanField("Ditampilkan", default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

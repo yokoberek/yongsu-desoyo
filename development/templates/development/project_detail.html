@@ -7,33 +7,85 @@
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=project.title crumb=project.title eyebrow=project.get_status_display gambar=project.image_url tinggi="min-h-[56vh]" subjudul=project.summary %}
+  {% include "partials/page_banner.html" with judul=project.title crumb=project.title eyebrow=project.get_status_display gambar=project.image_url tinggi="min-h-[52vh]" subjudul=project.summary %}
 
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
-      <a href="{% url 'development:list' %}" class="reveal inline-flex items-center gap-2 font-mono text-xs tracking-eyebrow uppercase text-reef hover:text-emas transition mb-8">
+      <a href="{% url 'development:list' %}" class="reveal inline-flex items-center gap-2 font-mono text-xs tracking-eyebrow uppercase text-reef hover:text-emas transition mb-10">
         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 12H5m0 0l6 6m-6-6l6-6"/></svg>
         Semua Proyek
       </a>
 
-      <div class="reveal flex flex-wrap items-center gap-4 mb-8">
-        <span class="rounded-full px-3 py-1 text-xs font-semibold {% if project.status == 'selesai' %}bg-reef/15 text-reef{% elif project.status == 'direncanakan' %}bg-aqua/25 text-reef{% else %}bg-emas/15 text-emas{% endif %}">{{ project.get_status_display }}</span>
-        {% if project.year %}<span class="font-mono text-xs text-ink/50">{{ project.year }}</span>{% endif %}
-        <div class="flex-1 min-w-[8rem] flex items-center gap-3">
-          <div class="flex-1 h-2 rounded-full bg-ink/10 overflow-hidden"><div class="h-full rounded-full {% if project.status == 'selesai' %}bg-reef{% elif project.status == 'direncanakan' %}bg-aqua{% else %}bg-emas{% endif %}" style="width: {{ project.progress }}%"></div></div>
-          <span class="font-mono text-sm font-semibold text-ink/70">{{ project.progress }}%</span>
+      <div class="grid lg:grid-cols-3 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-2 space-y-10">
+          <!-- Progres -->
+          <div class="reveal">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="rounded-full px-3 py-1 text-xs font-semibold {% if project.status == 'selesai' %}bg-reef/15 text-reef{% elif project.status == 'direncanakan' %}bg-aqua/25 text-reef{% else %}bg-emas/15 text-emas{% endif %}">{{ project.get_status_display }}</span>
+              {% if project.year %}<span class="font-mono text-xs text-ink/50">Tahun Anggaran {{ project.year }}</span>{% endif %}
+            </div>
+            <div class="flex items-center gap-4" x-data="{ w: 0 }" x-init="setTimeout(() => w = {{ project.progress }}, 150)">
+              <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="h-full rounded-full transition-all duration-1000 ease-out {% if project.status == 'selesai' %}bg-reef{% elif project.status == 'direncanakan' %}bg-aqua{% else %}bg-emas{% endif %}" :style="{ width: w + '%' }"></div></div>
+              <span class="font-mono text-sm font-semibold text-ink/70 shrink-0">{{ project.progress }}% selesai</span>
+            </div>
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="reveal">
+            <h2 class="font-display font-bold text-2xl text-ink mb-5">Tentang Proyek</h2>
+            <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-strong:text-ink prose-a:text-reef text-ink/75">
+              {% if project.description %}{{ project.description|safe }}{% else %}<p>{{ project.summary }}</p>{% endif %}
+            </div>
+          </div>
+
+          <!-- Transparansi -->
+          <div class="reveal rounded-md bg-abyss text-kabut p-6 sm:p-8">
+            <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-5">Transparansi Publik</p>
+            <p class="text-kabut/75 leading-relaxed mb-6">
+              Informasi proyek ini disediakan sebagai bentuk keterbukaan Pemerintah Kampung. Dokumen perencanaan
+              dan anggaran resmi dapat diakses melalui layanan PPID.
+            </p>
+            <a href="{% url 'ppid:information' %}" class="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-6 py-3 text-sm font-semibold text-kabut hover:bg-white/10 transition">
+              Lihat Informasi Publik di PPID
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="reveal prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-strong:text-ink prose-a:text-reef text-ink/75">
-        {% if project.description %}{{ project.description|safe }}{% else %}<p>{{ project.summary }}</p>{% endif %}
-      </div>
-
-      <div class="reveal mt-10 pt-8 border-t border-ink/10">
-        <a href="{% url 'ppid:information' %}" class="inline-flex items-center gap-2 text-sm font-semibold text-reef hover:text-emas transition">
-          Lihat dokumen resmi di PPID
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
-        </a>
+        <aside class="lg:col-span-1">
+          <div class="reveal rounded-md bg-white border border-ink/10 p-8 lg:sticky lg:top-28 shadow-sm">
+            <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-5">Informasi Proyek</p>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                <dt class="text-ink/50">Status</dt><dd class="font-medium text-ink text-right">{{ project.get_status_display }}</dd>
+              </div>
+              {% if project.year %}
+              <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                <dt class="text-ink/50">Tahun Anggaran</dt><dd class="font-medium text-ink text-right">{{ project.year }}</dd>
+              </div>
+              {% endif %}
+              <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                <dt class="text-ink/50">Progres</dt><dd class="font-medium text-ink text-right">{{ project.progress }}%</dd>
+              </div>
+              {% if project.location %}
+              <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                <dt class="text-ink/50">Lokasi</dt><dd class="font-medium text-ink text-right">{{ project.location }}</dd>
+              </div>
+              {% endif %}
+              {% if project.funding_source %}
+              <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                <dt class="text-ink/50">Sumber Dana</dt><dd class="font-medium text-ink text-right">{{ project.funding_source }}</dd>
+              </div>
+              {% endif %}
+              <div class="flex justify-between gap-4">
+                <dt class="text-ink/50">Pelaksana</dt><dd class="font-medium text-ink text-right">{{ project.implementer|default:"Pemerintah Kampung" }}</dd>
+              </div>
+            </dl>
+            <a href="{% url 'commons:contact' %}" class="mt-7 w-full inline-flex items-center justify-center gap-2 rounded-full bg-emas px-6 py-3.5 font-semibold text-abyss hover:bg-emasS transition">
+              Tanya Proyek Ini
+            </a>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
