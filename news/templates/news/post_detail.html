@@ -1,7 +1,44 @@
 {% extends "main_layout.html" %}
+{% load static %}
 
 {% block title %}{{ post.title }} — Berita Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ post.summary }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{% if post.image_url %}{{ post.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image_alt %}{{ post.title }}{% endblock %}
+
+{% block extra_head %}
+  <meta property="article:published_time" content="{{ post.published_at|date:'Y-m-d' }}" />
+  <meta property="article:section" content="{{ post.get_category_display }}" />
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ post.title|escapejs }}",
+  "description": "{{ post.summary|escapejs }}",
+  "image": "{{ post.image_url|escapejs }}",
+  "datePublished": "{{ post.published_at|date:'Y-m-d' }}",
+  "dateModified": "{{ post.published_at|date:'Y-m-d' }}",
+  "articleSection": "{{ post.get_category_display|escapejs }}",
+  "mainEntityOfPage": "{{ seo_url }}",
+  "author": {
+    "@type": "GovernmentOrganization",
+    "name": "Pemerintah Kampung Yongsu Desoyo"
+  },
+  "publisher": {
+    "@type": "GovernmentOrganization",
+    "name": "Pemerintah Kampung Yongsu Desoyo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-kabupaten-jayapura.png' %}"
+    }
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 

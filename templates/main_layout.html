@@ -1,4 +1,4 @@
-{% load static tailwind_tags %}
+{% load static tailwind_tags seo_tags %}
 <!DOCTYPE html>
 <!-- Layout dasar; palet & CSS kustom di theme/static_src/src/styles.css -->
 <html lang="id">
@@ -11,12 +11,61 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}" />
   <meta name="apple-mobile-web-app-title" content="Kampung Yongsu Desoyo" />
   <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
-  <title>{% block title %}Kampung Yongsu Desoyo — Di Kaki Cycloop, Di Tepi Pasifik{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Situs resmi Kampung Yongsu Desoyo, Distrik Ravenirara, Kabupaten Jayapura, Papua. Rumah masyarakat adat Tepra di kaki Gunung Cycloop dan tepi Samudra Pasifik — desa wisata dengan Air Terjun Nantuke, Pantai Sapari, dan hutan adat Cenderawasih.{% endblock %}" />
-  <meta property="og:title" content="{% block og_title %}Kampung Yongsu Desoyo{% endblock %}" />
-  <meta property="og:description" content="{% block og_description %}Di kaki Cycloop, di tepi Pasifik. Rumah masyarakat adat Tepra, Distrik Ravenirara, Kabupaten Jayapura, Papua.{% endblock %}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yongsu-dosoyo.id" />
+
+  {% comment %}
+  title/meta_description/og_image/canonical_url tetap {% block %} biasa (satu titik override
+  per halaman), lalu ditangkap ke variabel via captureas supaya bisa dipakai ulang di beberapa
+  meta tag (og/twitter) tanpa duplikasi block — Django melarang nama block yang sama muncul
+  lebih dari sekali dalam satu template.
+  {% endcomment %}
+  {% captureas seo_title %}{% block title %}Kampung Yongsu Desoyo — Di Kaki Cycloop, Di Tepi Pasifik{% endblock %}{% endcaptureas %}
+  {% captureas seo_description %}{% block meta_description %}Situs resmi Kampung Yongsu Desoyo, Distrik Ravenirara, Kabupaten Jayapura, Papua. Rumah masyarakat adat Tepra di kaki Gunung Cycloop dan tepi Samudra Pasifik — desa wisata dengan Air Terjun Nantuke, Pantai Sapari, dan hutan adat Cenderawasih.{% endblock %}{% endcaptureas %}
+  {% captureas seo_url %}{% block canonical_url %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endblock %}{% endcaptureas %}
+  {% captureas seo_image %}{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}{% endcaptureas %}
+
+  <title>{{ seo_title }}</title>
+  <meta name="description" content="{{ seo_description }}" />
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}" />
+  <meta name="author" content="Pemerintah Kampung Yongsu Desoyo" />
+  <link rel="canonical" href="{{ seo_url }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Kampung Yongsu Desoyo" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:url" content="{{ seo_url }}" />
+  <meta property="og:title" content="{{ seo_title }}" />
+  <meta property="og:description" content="{{ seo_description }}" />
+  <meta property="og:image" content="{{ seo_image }}" />
+  <meta property="og:image:alt" content="{% block og_image_alt %}Kampung Yongsu Desoyo{% endblock %}" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ seo_title }}" />
+  <meta name="twitter:description" content="{{ seo_description }}" />
+  <meta name="twitter:image" content="{{ seo_image }}" />
+
+  <!-- Data terstruktur organisasi (tampil di semua halaman) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    "name": "Pemerintah Kampung Yongsu Desoyo",
+    "alternateName": "Kampung Yongsu Desoyo",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-kabupaten-jayapura.png' %}",
+    "email": "kampungyongsudesoyo@gmail.com",
+    "telephone": "+6285824466260",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Yongsu Desoyo",
+      "addressRegion": "Papua",
+      "addressCountry": "ID"
+    },
+    "description": "Pemerintah Kampung Yongsu Desoyo, Distrik Ravenirara, Kabupaten Jayapura, Provinsi Papua — kampung masyarakat adat Tepra di kaki Gunung Cycloop dan tepi Samudra Pasifik."
+  }
+  </script>
+  {% block structured_data %}{% endblock %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

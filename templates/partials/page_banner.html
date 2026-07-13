@@ -17,3 +17,25 @@
     {% if subjudul %}<p class="mt-5 text-kabut/80 text-lg max-w-2xl leading-relaxed">{{ subjudul }}</p>{% endif %}
   </div>
 </section>
+
+<!-- Breadcrumb terstruktur untuk hasil pencarian (cocok dengan navigasi di atas) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Beranda",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'commons:index' %}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ crumb|escapejs }}",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+    }
+  ]
+}
+</script>

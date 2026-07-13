@@ -107,11 +107,11 @@ PHOTOS = [
 
 # title, status, progress, year, summary, description
 PROJECTS = [
-    ("Ruas Jalan Yongsu Sapari – Yongsu Desoyo", "berjalan", 75, 2026, "Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.", "Proyek jalan penghubung ini mempermudah mobilitas warga dan distribusi hasil kampung, sekaligus membuka jalur kunjungan wisata."),
-    ("Honai & Homestay Ekowisata", "selesai", 100, 2026, "Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.", "Pembangunan honai homestay tahap pertama telah rampung dan mulai menerima tamu, menjadi sumber ekonomi baru bagi warga."),
-    ("Kampung Tangguh Bencana", "berjalan", 60, 2026, "Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.", "Program mencakup pelatihan, penyusunan jalur evakuasi, dan penguatan kelembagaan siaga bencana di tingkat kampung."),
-    ("Jaringan Internet & Telekomunikasi", "berjalan", 45, 2026, "Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.", "Perluasan jaringan bertujuan menghubungkan warga dan siswa dengan layanan digital serta informasi."),
-    ("Dermaga / Pelabuhan Rakyat", "direncanakan", 20, 2027, "Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.", "Dermaga rakyat direncanakan untuk memperlancar transportasi laut, kegiatan nelayan, dan kunjungan wisata melalui jalur laut."),
+    ("Ruas Jalan Yongsu Sapari – Yongsu Desoyo", "berjalan", 75, 2026, "Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.", "Proyek jalan penghubung ini mempermudah mobilitas warga dan distribusi hasil kampung, sekaligus membuka jalur kunjungan wisata.", "photo-1470071459604-3b5ec3a7fe05"),
+    ("Honai & Homestay Ekowisata", "selesai", 100, 2026, "Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.", "Pembangunan honai homestay tahap pertama telah rampung dan mulai menerima tamu, menjadi sumber ekonomi baru bagi warga.", "photo-1441974231531-c6227db76b6e"),
+    ("Kampung Tangguh Bencana", "berjalan", 60, 2026, "Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.", "Program mencakup pelatihan, penyusunan jalur evakuasi, dan penguatan kelembagaan siaga bencana di tingkat kampung.", "photo-1502082553048-f009c37129b9"),
+    ("Jaringan Internet & Telekomunikasi", "berjalan", 45, 2026, "Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.", "Perluasan jaringan bertujuan menghubungkan warga dan siswa dengan layanan digital serta informasi.", "photo-1507525428034-b723cf961d3e"),
+    ("Dermaga / Pelabuhan Rakyat", "direncanakan", 20, 2027, "Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.", "Dermaga rakyat direncanakan untuk memperlancar transportasi laut, kegiatan nelayan, dan kunjungan wisata melalui jalur laut.", "photo-1544551763-46a013bb70d5"),
 ]
 
 
@@ -168,10 +168,10 @@ class Command(BaseCommand):
                 title=title, defaults={"image_url": img(photo), "order": order}
             )
 
-        for title, status, progress, year, summary, description in PROJECTS:
+        for title, status, progress, year, summary, description, photo in PROJECTS:
             Project.objects.update_or_create(
                 slug=slugify(title),
-                defaults={"title": title, "status": status, "progress": progress, "year": year, "summary": summary, "description": to_html(description)},
+                defaults={"title": title, "status": status, "progress": progress, "year": year, "summary": summary, "description": to_html(description), "image_url": img(photo)},
             )
 
         self.stdout.write(self.style.SUCCESS("Seed selesai."))

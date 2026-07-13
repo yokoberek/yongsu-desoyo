@@ -2,6 +2,29 @@
 
 {% block title %}{{ destination.name }} — Objek Wisata Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ destination.summary }}{% endblock %}
+{% block og_image %}{% if destination.image_url %}{{ destination.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image_alt %}{{ destination.name }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "{{ destination.name|escapejs }}",
+  "description": "{{ destination.summary|escapejs }}",
+  "image": "{{ destination.image_url|escapejs }}",
+  "url": "{{ seo_url }}",
+  "touristType": "{{ destination.get_category_display|escapejs }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Yongsu Desoyo",
+    "addressRegion": "Papua",
+    "addressCountry": "ID"
+  },
+  "isAccessibleForFree": true
+}
+</script>
+{% endblock %}
 
 {% block content %}
 
