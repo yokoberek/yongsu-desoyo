@@ -16,15 +16,9 @@
 
       <div class="grid lg:grid-cols-3 gap-10 lg:gap-16 items-start">
         <div class="lg:col-span-2 space-y-10">
-          <!-- Foto produk -->
-          <img src="{{ product.image_url }}" alt="{{ product.name }}"
-               onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ product.slug }}/1200/800'"
-               class="reveal w-full h-72 sm:h-104 object-cover rounded-md shadow-lg" />
-
           <div class="reveal">
             <span class="inline-block rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold mb-5">{{ product.get_category_display }}</span>
-            <p class="text-xl sm:text-2xl text-ink/80 leading-relaxed font-medium">{{ product.summary }}</p>
-            <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-strong:text-ink prose-a:text-reef mt-6 text-ink/75">
+            <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-strong:text-ink prose-a:text-reef text-ink/75">
               {% if product.description %}{{ product.description|safe }}{% else %}<p>Rincian produk ini akan segera dilengkapi oleh Pemerintah Kampung.</p>{% endif %}
             </div>
           </div>
