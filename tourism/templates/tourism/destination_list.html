@@ -22,77 +22,21 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1000&auto=format&fit=crop"
-               alt="Air Terjun Nantuke" onerror="this.onerror=null;this.src='https://picsum.photos/seed/nantuke/800/1000'"
+        {% for destination in destinations %}
+        <a href="{{ destination.get_absolute_url }}" class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md block">
+          <img src="{{ destination.image_url }}" alt="{{ destination.name }}"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ destination.slug }}/800/1000'"
                class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
           <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
           <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Wisata Alam</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Air Terjun Nantuke</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Air jernih dari hutan Cycloop, hanya beberapa langkah dari pemukiman warga.</p>
+            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">{{ destination.get_category_display }}</span>
+            <h3 class="font-display font-bold text-2xl link-underline w-fit">{{ destination.name }}</h3>
+            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">{{ destination.summary }}</p>
           </div>
-        </article>
-
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop"
-               alt="Pantai Sapari" onerror="this.onerror=null;this.src='https://picsum.photos/seed/sapari/800/1000'"
-               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
-          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Bahari</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Pantai Sapari</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Pantai berpasir di lereng Cycloop, tempat gunung bertemu Samudra Pasifik.</p>
-          </div>
-        </article>
-
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
-               alt="Snorkeling dan diving" onerror="this.onerror=null;this.src='https://picsum.photos/seed/diving/800/1000'"
-               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
-          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Bawah Laut</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Snorkeling &amp; Diving</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Terumbu karang sehat yang dijelajahi bersama pemandu selam setempat.</p>
-          </div>
-        </article>
-
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1000&auto=format&fit=crop"
-               alt="Birdwatching Cenderawasih" onerror="this.onerror=null;this.src='https://picsum.photos/seed/burung/800/1000'"
-               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
-          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Ekowisata</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Birdwatching Cenderawasih</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Mengamati Cenderawasih dan burung endemik di hutan adat yang masih perawan.</p>
-          </div>
-        </article>
-
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000&auto=format&fit=crop"
-               alt="Trekking hutan Cycloop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/trekking/800/1000'"
-               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
-          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Petualangan</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Trekking Hutan Adat</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Menyusuri jalur hutan bersama pemandu lokal yang mengenal setiap sudut Cycloop.</p>
-          </div>
-        </article>
-
-        <article class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop"
-               alt="Homestay warga" onerror="this.onerror=null;this.src='https://picsum.photos/seed/homestay/800/1000'"
-               class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
-          <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 text-kabut">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emasS mb-2">Menginap</span>
-            <h3 class="font-display font-bold text-2xl link-underline w-fit">Homestay Warga</h3>
-            <p class="mt-2 text-sm text-kabut/80 leading-relaxed">Menginap di rumah warga, merasakan langsung keseharian masyarakat Tepra.</p>
-          </div>
-        </article>
+        </a>
+        {% empty %}
+        <p class="text-ink/60 col-span-full">Belum ada objek wisata yang dipublikasikan.</p>
+        {% endfor %}
       </div>
     </div>
   </section>

@@ -121,65 +121,23 @@
       </div>
 
       <div class="space-y-5">
+        {% for project in projects %}
         <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Ruas Jalan Yongsu Sapari – Yongsu Desoyo</h3>
-            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">
+              <a href="{{ project.get_absolute_url }}" class="hover:text-reef transition">{{ project.title }}</a>
+            </h3>
+            <span class="rounded-full px-3 py-1 text-xs font-semibold {% if project.status == 'selesai' %}bg-reef/15 text-reef{% elif project.status == 'direncanakan' %}bg-aqua/25 text-reef{% else %}bg-emas/15 text-emas{% endif %}">{{ project.get_status_display }}</span>
           </div>
-          <p class="text-sm text-ink/70 leading-relaxed mb-4">Membuka konektivitas darat antarkampung pesisir untuk warga dan kunjungan wisata.</p>
+          <p class="text-sm text-ink/70 leading-relaxed mb-4">{{ project.summary }}</p>
           <div class="flex items-center gap-4">
-            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="75"></div></div>
-            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">75%</span>
+            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full w-0 transition-[width] duration-1000 ease-out {% if project.status == 'selesai' %}bg-reef{% elif project.status == 'direncanakan' %}bg-aqua{% else %}bg-emas{% endif %}" data-w="{{ project.progress }}"></div></div>
+            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">{{ project.progress }}%</span>
           </div>
         </article>
-
-        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Honai &amp; Homestay Ekowisata</h3>
-            <span class="rounded-full bg-reef/15 text-reef px-3 py-1 text-xs font-semibold">Tahap I Selesai</span>
-          </div>
-          <p class="text-sm text-ink/70 leading-relaxed mb-4">Penyediaan hunian wisata berbasis warga untuk mendorong ekonomi dari ekowisata.</p>
-          <div class="flex items-center gap-4">
-            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-reef w-0 transition-[width] duration-1000 ease-out" data-w="100"></div></div>
-            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">100%</span>
-          </div>
-        </article>
-
-        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Kampung Tangguh Bencana</h3>
-            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
-          </div>
-          <p class="text-sm text-ink/70 leading-relaxed mb-4">Penguatan kesiapsiagaan warga menghadapi banjir dan cuaca ekstrem di wilayah pesisir.</p>
-          <div class="flex items-center gap-4">
-            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="60"></div></div>
-            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">60%</span>
-          </div>
-        </article>
-
-        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Jaringan Internet &amp; Telekomunikasi</h3>
-            <span class="rounded-full bg-emas/15 text-emas px-3 py-1 text-xs font-semibold">Sedang Berjalan</span>
-          </div>
-          <p class="text-sm text-ink/70 leading-relaxed mb-4">Peningkatan akses internet untuk mendukung layanan kampung dan belajar siswa.</p>
-          <div class="flex items-center gap-4">
-            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-emas w-0 transition-[width] duration-1000 ease-out" data-w="45"></div></div>
-            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">45%</span>
-          </div>
-        </article>
-
-        <article class="reveal bg-white rounded-md p-6 sm:p-7 shadow-sm border border-ink/5">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <h3 class="font-display font-bold text-lg sm:text-xl text-ink">Dermaga / Pelabuhan Rakyat</h3>
-            <span class="rounded-full bg-aqua/25 text-reef px-3 py-1 text-xs font-semibold">Direncanakan</span>
-          </div>
-          <p class="text-sm text-ink/70 leading-relaxed mb-4">Sarana tambat perahu untuk memperlancar transportasi laut dan aktivitas nelayan.</p>
-          <div class="flex items-center gap-4">
-            <div class="flex-1 h-2.5 rounded-full bg-ink/10 overflow-hidden"><div class="progress-fill h-full rounded-full bg-aqua w-0 transition-[width] duration-1000 ease-out" data-w="20"></div></div>
-            <span class="font-mono text-sm font-semibold text-ink/70 w-12 text-right">20%</span>
-          </div>
-        </article>
+        {% empty %}
+        <p class="text-ink/60">Belum ada proyek yang dipublikasikan.</p>
+        {% endfor %}
       </div>
       <p class="mt-8 font-mono text-[11px] text-ink/40">*Status dan persentase bersifat indikatif dan diperbarui berkala oleh Pemerintah Kampung.</p>
     </div>

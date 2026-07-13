@@ -16,31 +16,15 @@
     </svg>
 
     <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8" x-data="counters()" x-init="observe($el)">
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8">
+        {% for stat in statistics %}
         <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[0])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Jiwa Penduduk</p>
+          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span class="stat-value" data-target="{{ stat.value }}">0</span></p>
+          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">{{ stat.label }}</p>
         </div>
-        <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[1])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Kepala Keluarga</p>
-        </div>
-        <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[2])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Hektar Wilayah Adat</p>
-        </div>
-        <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[3])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Destinasi Wisata</p>
-        </div>
-        <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[4])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Homestay Warga</p>
-        </div>
-        <div class="reveal border-l border-white/15 pl-5">
-          <p class="font-display font-extrabold text-5xl sm:text-6xl text-emasS"><span x-text="fmt(v[5])">0</span></p>
-          <p class="mt-2 font-mono text-xs tracking-eyebrow uppercase text-kabut/60">Keret / Marga Adat</p>
-        </div>
+        {% empty %}
+        <p class="text-kabut/60 col-span-full">Belum ada data statistik.</p>
+        {% endfor %}
       </div>
       <p class="mt-12 font-mono text-[11px] text-kabut/40">*Data bersifat indikatif dan diperbarui berkala oleh Pemerintah Kampung.</p>
     </div>
@@ -103,33 +87,27 @@
 
 {% block extra_scripts %}
   <script>
-    // Penghitung statistik (menghitung dari 0 saat masuk layar)
-    function counters() {
-      const targets = [680, 152, 23208, 6, 8, 5]; // sesuaikan dengan data resmi
-      return {
-        v: [0, 0, 0, 0, 0, 0],
-        done: false,
-        fmt(n) { return Math.round(n).toLocaleString('id-ID'); },
-        observe(el) {
-          const io = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-              if (e.isIntersecting && !this.done) { this.done = true; this.run(targets); }
-            });
-          }, { threshold: 0.3 });
-          io.observe(el);
-        },
-        run(targets) {
-          const dur = 1600, t0 = performance.now();
-          const tick = (now) => {
-            const p = Math.min((now - t0) / dur, 1);
-            const ease = 1 - Math.pow(1 - p, 3); // easing out-cubic
-            this.v = targets.map((t) => t * ease);
-            if (p < 1) requestAnimationFrame(tick);
-            else this.v = targets;
-          };
-          requestAnimationFrame(tick);
-        }
+    // Hitung setiap .stat-value dari 0 ke data-target saat masuk viewport
+    document.addEventListener('DOMContentLoaded', () => {
+      const fmt = (n) => Math.round(n).toLocaleString('id-ID');
+      const animate = (el) => {
+        const target = parseInt(el.dataset.target, 10) || 0;
+        const dur = 1600, t0 = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - t0) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3); // easing out-cubic
+          el.textContent = fmt(target * ease);
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = fmt(target);
+        };
+        requestAnimationFrame(tick);
       };
-    }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.stat-value').forEach((el) => io.observe(el));
+    });
   </script>
 {% endblock %}

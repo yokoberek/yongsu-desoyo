@@ -1,5 +1,8 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+
+from .models import Event
 
 
-class EventListView(TemplateView):
-    template_name = "events/event_list.html"
+class EventListView(ListView):
+    context_object_name = "events"
+    queryset = Event.objects.filter(is_published=True)

@@ -1,5 +1,8 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+
+from .models import Tradition
 
 
-class TraditionListView(TemplateView):
-    template_name = "culture/tradition_list.html"
+class TraditionListView(ListView):
+    context_object_name = "traditions"
+    queryset = Tradition.objects.filter(is_published=True)

@@ -22,37 +22,22 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for tradition in traditions %}
         <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
           <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/></svg>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              {% if tradition.icon == 'shield' %}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/>
+              {% elif tradition.icon == 'bag' %}<path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/>
+              {% elif tradition.icon == 'book' %}<path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/>
+              {% else %}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/>{% endif %}
+            </svg>
           </div>
-          <h3 class="font-display font-bold text-xl text-ink">Kepemimpinan Ondoafi</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Sistem kepemimpinan adat yang menjaga tatanan sosial dan wilayah adat kampung.</p>
+          <h3 class="font-display font-bold text-xl text-ink">{{ tradition.name }}</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">{{ tradition.summary }}</p>
         </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Noken</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Tas serat alami bermotif khas, warisan budaya yang masih ditenun warga.</p>
-        </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Bahasa Daerah</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Bahasa ibu yang terus dijaga, dapat ditelusuri melalui Kamus Bahasa Raveni Rara.</p>
-        </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Upacara &amp; Tarian</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Ritual dan kesenian yang menandai peristiwa penting dalam kehidupan warga.</p>
-        </div>
+        {% empty %}
+        <p class="text-ink/60 col-span-full">Belum ada data budaya yang dipublikasikan.</p>
+        {% endfor %}
       </div>
     </div>
   </section>

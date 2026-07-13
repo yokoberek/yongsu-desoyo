@@ -1,5 +1,13 @@
-from django.views.generic import TemplateView
+from django.views.generic import DetailView, ListView
+
+from .models import Project
 
 
-class ProjectListView(TemplateView):
-    template_name = "development/project_list.html"
+class ProjectListView(ListView):
+    context_object_name = "projects"
+    queryset = Project.objects.filter(is_published=True)
+
+
+class ProjectDetailView(DetailView):
+    context_object_name = "project"
+    queryset = Project.objects.filter(is_published=True)

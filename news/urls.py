@@ -6,4 +6,5 @@ app_name = "news"
 
 urlpatterns = [
     path("berita/", views.PostListView.as_view(), name="list"),
+    path("berita/<slug:slug>/", views.PostDetailView.as_view(), name="detail"),
 ]

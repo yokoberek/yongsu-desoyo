@@ -1,5 +1,8 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+
+from .models import Photo
 
 
-class PhotoListView(TemplateView):
-    template_name = "gallery/photo_list.html"
+class PhotoListView(ListView):
+    context_object_name = "photos"
+    queryset = Photo.objects.filter(is_published=True)

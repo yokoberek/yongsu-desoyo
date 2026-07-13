@@ -280,56 +280,30 @@
         </p>
       </div>
 
-      <!-- Ganti "—" dengan nama pejabat yang menjabat -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for pos in gov_positions %}
         <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kepala Kampung</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">{{ pos.get_group_display }}</p>
+          <h3 class="font-display font-bold text-lg text-ink">{{ pos.position }}</h3>
+          <p class="mt-1 text-sm text-ink/50">{{ pos.name|default:"—" }}</p>
         </div>
-        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
-          <h3 class="font-display font-bold text-lg text-ink">Sekretaris Kampung</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
-        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Pemerintah Kampung</p>
-          <h3 class="font-display font-bold text-lg text-ink">Bendahara Kampung</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
-        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kaur Pemerintahan</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
-        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kaur Pembangunan</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
-        <div class="reveal rounded-md bg-white border border-ink/5 p-6 shadow-sm">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Kepala Urusan</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kaur Umum &amp; Kesra</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
+        {% empty %}
+        <p class="text-ink/60 col-span-full">Struktur pemerintahan akan segera ditampilkan.</p>
+        {% endfor %}
       </div>
 
+      {% if adat_institutions %}
       <div class="mt-8 grid md:grid-cols-2 gap-6">
+        {% for pos in adat_institutions %}
         <div class="reveal rounded-md bg-abyss text-kabut p-8">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80 mb-3">Lembaga Adat</p>
-          <h3 class="font-display font-bold text-2xl">Ondoafi Besar</h3>
-          <p class="mt-2 text-kabut/70 leading-relaxed text-sm">
-            Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.
-          </p>
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80 mb-3">{{ pos.get_group_display }}</p>
+          <h3 class="font-display font-bold text-2xl">{{ pos.position }}</h3>
+          {% if pos.description %}<p class="mt-2 text-kabut/70 leading-relaxed text-sm">{{ pos.description }}</p>{% endif %}
+          {% if pos.name %}<p class="mt-3 font-mono text-xs text-aqua/70">{{ pos.name }}</p>{% endif %}
         </div>
-        <div class="reveal rounded-md bg-abyss text-kabut p-8">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/80 mb-3">Lembaga Adat</p>
-          <h3 class="font-display font-bold text-2xl">Dewan Adat Yewena Yosu</h3>
-          <p class="mt-2 text-kabut/70 leading-relaxed text-sm">
-            Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.
-          </p>
-        </div>
+        {% endfor %}
       </div>
+      {% endif %}
     </div>
   </section>
 

@@ -18,34 +18,14 @@
       </div>
 
       <!-- Grid masonry -->
-      <div class="columns-2 md:columns-3 gap-4 [&>*]:mb-4">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop"
-             alt="Panorama Samudra Pasifik" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g1/700/900'"
+      <div class="columns-2 md:columns-3 gap-4 *:mb-4">
+        {% for photo in photos %}
+        <img src="{{ photo.image_url }}" alt="{{ photo.title }}"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/foto{{ photo.id }}/700/800'"
              class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=800&auto=format&fit=crop"
-             alt="Air terjun Nantuke" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g2/700/500'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop"
-             alt="Hutan Cycloop berkabut" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g3/700/800'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=800&auto=format&fit=crop"
-             alt="Cahaya menembus hutan" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g4/700/500'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=800&auto=format&fit=crop"
-             alt="Budaya adat Tepra" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g5/700/900'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop"
-             alt="Bawah laut" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g6/700/500'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop"
-             alt="Kegiatan warga di hutan" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g7/700/800'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=800&auto=format&fit=crop"
-             alt="Perbukitan pesisir" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g8/700/500'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
-        <img src="https://images.unsplash.com/photo-1591207099859-cc47f28e1b3d?q=80&w=800&auto=format&fit=crop"
-             alt="Hasil kebun warga" onerror="this.onerror=null;this.src='https://picsum.photos/seed/g9/700/700'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        {% empty %}
+        <p class="text-ink/60">Belum ada foto yang dipublikasikan.</p>
+        {% endfor %}
       </div>
 
       <p class="reveal mt-10 font-mono text-[11px] text-ink/50">

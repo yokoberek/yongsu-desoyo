@@ -10,83 +10,57 @@
   <!-- Pengantar -->
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
-      <div class="reveal max-w-2xl mb-14">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Dari Warga untuk Anda</p>
+      <div class="reveal max-w-2xl mb-10">
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Produk UMKM Kampung</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
-          Kekayaan yang bisa dibawa pulang
+          Karya dan hasil UMKM warga
         </h2>
         <p class="mt-5 text-ink/70 leading-relaxed">
-          Produk-produk Yongsu Desoyo dikelola langsung oleh warga — dari melaut, berkebun, hingga menenun.
-          Membeli produk lokal berarti ikut menopang ekonomi kampung yang berpihak pada masyarakat.
+          Produk-produk berikut dihasilkan langsung oleh UMKM dan warga Yongsu Desoyo — dari melaut,
+          berkebun, hingga menenun. Membeli produk lokal berarti ikut menopang ekonomi kampung.
         </p>
       </div>
 
+      <!-- Filter jenis produk -->
+      <div class="reveal flex flex-wrap gap-2 mb-10">
+        <a href="{% url 'products:list' %}"
+           class="rounded-full px-4 py-2 text-sm font-medium border transition {% if not active_category %}bg-reef text-white border-reef{% else %}border-ink/15 text-ink/70 hover:border-reef hover:text-reef{% endif %}">Semua</a>
+        {% for value, label in categories %}
+        <a href="?kategori={{ value }}"
+           class="rounded-full px-4 py-2 text-sm font-medium border transition {% if active_category == value %}bg-reef text-white border-reef{% else %}border-ink/15 text-ink/70 hover:border-reef hover:text-reef{% endif %}">{{ label }}</a>
+        {% endfor %}
+      </div>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop"
-               alt="Hasil laut segar" onerror="this.onerror=null;this.src='https://picsum.photos/seed/laut/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Bahari</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Hasil Laut Segar</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Ikan, lobster, dan hasil tangkapan nelayan langsung dari perairan Pasifik.</p>
+        {% for product in products %}
+        <a href="{{ product.get_absolute_url }}" class="reveal group flex flex-col rounded-md bg-white border border-ink/5 overflow-hidden shadow-2xs hover:shadow-sm hover:-translate-y-1 transition">
+          <div class="relative overflow-hidden">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ product.slug }}/700/500'"
+                 class="w-full h-52 object-cover transition duration-700 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 rounded-full bg-abyss/85 backdrop-blur px-3 py-1 font-mono text-[10px] tracking-eyebrow uppercase text-emasS">{{ product.get_category_display }}</span>
           </div>
-        </article>
-
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1591207099859-cc47f28e1b3d?q=80&w=800&auto=format&fit=crop"
-               alt="Buah kebun warga" onerror="this.onerror=null;this.src='https://picsum.photos/seed/kebun/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Agro</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Buah &amp; Hasil Kebun</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Mangga, durian, rambutan, dan umbi-umbian dari kebun warga di kaki Cycloop.</p>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl text-ink group-hover:text-reef transition">{{ product.name }}</h3>
+            {% if product.producer %}
+            <p class="mt-1.5 flex items-center gap-1.5 font-mono text-[11px] text-ink/45">
+              <svg class="h-3.5 w-3.5 shrink-0 text-reef" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M6 21V8m12 13V8M4 8l8-5 8 5"/></svg>
+              {{ product.producer }}
+            </p>
+            {% endif %}
+            <p class="mt-2 text-sm text-ink/70 leading-relaxed">{{ product.summary }}</p>
+            <div class="mt-4 pt-4 border-t border-ink/5 flex items-center justify-between gap-3">
+              <span class="text-sm font-semibold {% if product.price_note %}text-reef{% else %}text-ink/40{% endif %}">{{ product.price_note|default:"Hubungi untuk harga" }}</span>
+              <span class="inline-flex items-center gap-1 font-mono text-[11px] tracking-eyebrow uppercase text-emas group-hover:gap-2 transition-all">
+                Selengkapnya
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+              </span>
+            </div>
           </div>
-        </article>
-
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=800&auto=format&fit=crop"
-               alt="Noken tenun" onerror="this.onerror=null;this.src='https://picsum.photos/seed/noken/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Kriya</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Noken &amp; Anyaman</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Tas noken dan anyaman serat alami dengan motif khas, ditenun tangan warga.</p>
-          </div>
-        </article>
-
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop"
-               alt="Hasil hutan bukan kayu" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hutan/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Hutan</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Hasil Hutan Bukan Kayu</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Madu, rempah, dan olahan hutan yang dipanen tanpa merusak ekosistem.</p>
-          </div>
-        </article>
-
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=800&auto=format&fit=crop"
-               alt="Olahan pangan lokal" onerror="this.onerror=null;this.src='https://picsum.photos/seed/olahan/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Kuliner</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Olahan Pangan Lokal</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Sagu, keladi, dan sajian khas yang disantap bersama hasil laut segar.</p>
-          </div>
-        </article>
-
-        <article class="reveal rounded-md bg-white border border-ink/5 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-          <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop"
-               alt="Paket ekowisata" onerror="this.onerror=null;this.src='https://picsum.photos/seed/paket/700/500'"
-               class="w-full h-52 object-cover" />
-          <div class="p-6">
-            <span class="font-mono text-[10px] tracking-eyebrow uppercase text-emas">Jasa</span>
-            <h3 class="font-display font-bold text-xl text-ink mt-1">Paket Ekowisata &amp; Homestay</h3>
-            <p class="mt-2 text-sm text-ink/70 leading-relaxed">Layanan pemandu, homestay, dan pengalaman berwisata yang dikelola warga.</p>
-          </div>
-        </article>
+        </a>
+        {% empty %}
+        <p class="text-ink/60 col-span-full py-8 text-center">Belum ada produk pada kategori ini.</p>
+        {% endfor %}
       </div>
 
       <p class="reveal mt-10 font-mono text-[11px] text-ink/50">
