@@ -12,7 +12,7 @@ class Product(models.Model):
         SERVICE = "jasa", "Jasa"
 
     name = models.CharField("Nama", max_length=150)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=150)
     category = models.CharField("Kategori", max_length=20, choices=Category.choices)
     producer = models.CharField("UMKM / Produsen", max_length=150, blank=True)
     summary = models.CharField("Ringkasan", max_length=255)

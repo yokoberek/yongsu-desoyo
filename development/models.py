@@ -9,7 +9,7 @@ class Project(models.Model):
         DONE = "selesai", "Selesai"
 
     title = models.CharField("Judul", max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=200)
     summary = models.CharField("Ringkasan", max_length=300)
     description = models.TextField("Deskripsi", blank=True)
     image_url = models.URLField("URL Gambar", blank=True)

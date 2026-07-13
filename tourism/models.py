@@ -12,7 +12,7 @@ class Destination(models.Model):
         LODGING = "menginap", "Menginap"
 
     name = models.CharField("Nama", max_length=150)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=150)
     category = models.CharField("Kategori", max_length=20, choices=Category.choices)
     summary = models.CharField("Ringkasan", max_length=255)
     description = models.TextField("Deskripsi", blank=True)

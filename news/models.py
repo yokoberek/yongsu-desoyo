@@ -12,7 +12,7 @@ class Post(models.Model):
         ANNOUNCEMENT = "pengumuman", "Pengumuman"
 
     title = models.CharField("Judul", max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=200)
     category = models.CharField("Kategori", max_length=20, choices=Category.choices)
     summary = models.CharField("Ringkasan", max_length=300)
     body = models.TextField("Isi", blank=True)
