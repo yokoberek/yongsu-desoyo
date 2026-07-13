@@ -1,4 +1,4 @@
-name: 🚀 Deploy Website
+name: Deploy Website
 
 on:
   push:
@@ -12,11 +12,11 @@ concurrency:
 
 jobs:
   pull-code:
-    name: 📂 Pull latest code on server
+    name: Pull latest code on server
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: 🔐 Install SSH Key
+      - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -45,7 +45,7 @@ jobs:
             fi
 
   build:
-    name: 📦 Install dependencies and build assets
+    name: Install dependencies and build assets
     runs-on: ubuntu-latest
     environment: production
     needs: pull-code
@@ -71,7 +71,7 @@ jobs:
             uv run python manage.py migrate --noinput
 
   restart:
-    name: 🧹 Restart Supervisor service
+    name: Restart Supervisor service
     runs-on: ubuntu-latest
     environment: production
     needs: build
