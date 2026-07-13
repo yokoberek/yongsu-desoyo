@@ -11,11 +11,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy-production:
-    name: 🚀 Deploy to Production
+  pull-code:
+    name: 📂 Pull latest code on server
     runs-on: ubuntu-latest
     environment: production
-
     steps:
       - name: 🔐 Install SSH Key
         uses: shimataro/ssh-key-action@v2
@@ -23,7 +22,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: github.com
 
-      - name: 📂 Pull latest code on server
+      - name: Pull latest code
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -45,7 +44,13 @@ jobs:
               git reset --hard origin/main
             fi
 
-      - name: 📦 Install dependencies and build assets
+  build:
+    name: 📦 Install dependencies and build assets
+    runs-on: ubuntu-latest
+    environment: production
+    needs: pull-code
+    steps:
+      - name: Install dependencies and build assets
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -65,7 +70,13 @@ jobs:
             uv run python manage.py collectstatic --noinput
             uv run python manage.py migrate --noinput
 
-      - name: 🧹 Restart Supervisor service
+  restart:
+    name: 🧹 Restart Supervisor service
+    runs-on: ubuntu-latest
+    environment: production
+    needs: build
+    steps:
+      - name: Restart Supervisor service
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
