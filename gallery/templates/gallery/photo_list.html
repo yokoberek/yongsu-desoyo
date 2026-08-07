@@ -8,7 +8,7 @@
   {% include "partials/page_banner.html" with judul="Galeri Foto" crumb="Galeri Foto" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" subjudul="Rekaman visual keindahan alam, keseharian warga, dan momen budaya Yongsu Desoyo." %}
 
   <!-- Galeri -->
-  <section class="bg-pasir py-24 sm:py-32">
+  <section class="bg-pasir py-24 sm:py-32" x-data="{ open: false, activeSrc: '', activeTitle: '' }" @keydown.escape.window="open = false">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
       <div class="reveal max-w-2xl mb-14">
         <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Bingkai Kampung</p>
@@ -20,9 +20,13 @@
       <!-- Grid masonry -->
       <div class="columns-2 md:columns-3 gap-4 *:mb-4">
         {% for photo in photos %}
-        <img src="{{ photo.image_url }}" alt="{{ photo.title }}"
-             onerror="this.onerror=null;this.src='https://picsum.photos/seed/foto{{ photo.id }}/700/800'"
-             class="reveal w-full rounded-sm shadow-sm hover:shadow-lg transition break-inside-avoid" />
+        <button type="button"
+                @click="open = true; activeSrc = '{{ photo.image.url|escapejs }}'; activeTitle = '{{ photo.title|escapejs }}'"
+                class="reveal block w-full break-inside-avoid cursor-zoom-in">
+          <img src="{{ photo.image.url }}" alt="{{ photo.title }}"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/foto{{ photo.id }}/700/800'"
+               class="w-full rounded-sm shadow-sm hover:shadow-lg transition" />
+        </button>
         {% empty %}
         <p class="text-ink/60">Belum ada foto yang dipublikasikan.</p>
         {% endfor %}
@@ -32,6 +36,23 @@
         *Sebagian foto masih berupa contoh dan akan diganti dengan dokumentasi resmi kampung.
       </p>
     </div>
+
+    <template x-teleport="body">
+      <div x-cloak x-show="open" class="fixed inset-0 z-60" x-transition.opacity>
+        <div class="absolute inset-0 bg-abyss/90" @click="open = false"></div>
+        <div class="relative h-full flex items-center justify-center p-4 sm:p-10">
+          <button @click="open = false" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-kabut/80 hover:text-kabut p-2" aria-label="Tutup">
+            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+          <figure class="max-w-5xl max-h-full" @click.stop>
+            <img :src="activeSrc" :alt="activeTitle"
+                 x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                 class="max-h-[80vh] w-auto mx-auto rounded-sm shadow-2xl">
+            <figcaption class="mt-4 text-center text-kabut font-medium" x-text="activeTitle"></figcaption>
+          </figure>
+        </div>
+      </div>
+    </template>
   </section>
 
 {% endblock %}
