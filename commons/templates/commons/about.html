@@ -263,17 +263,18 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {% for pos in gov_positions %}
-        <div class="reveal rounded-md bg-white border border-ink/5 shadow-sm overflow-hidden">
-          <div class="aspect-square w-full overflow-hidden bg-reef/5">
+        <div class="reveal group rounded-md bg-white border border-ink/10 overflow-hidden hover:border-emas hover:-translate-y-1 transition duration-300">
+          <div class="aspect-square w-full overflow-hidden bg-reef/5 relative">
             {% if pos.photo %}
-            <img src="{{ pos.photo.url }}" alt="{{ pos.name|default:pos.position }}" class="h-full w-full object-cover">
+            <img src="{{ pos.photo.url }}" alt="{{ pos.name|default:pos.position }}" class="h-full w-full object-cover transition duration-700 group-hover:scale-105">
             {% else %}
             <div class="h-full w-full grid place-items-center bg-reef/10 text-reef font-display font-bold text-6xl">{{ pos.name|default:pos.position|first|upper }}</div>
             {% endif %}
+            <div class="absolute inset-x-0 bottom-0 h-1 bg-emas scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
           </div>
           <div class="p-6">
             <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">{{ pos.get_group_display }}</p>
-            <h3 class="font-display font-bold text-lg text-ink leading-tight">{{ pos.position }}</h3>
+            <h3 class="font-display font-bold text-lg text-ink leading-tight group-hover:text-reef transition">{{ pos.position }}</h3>
             <p class="mt-1.5 text-sm text-ink/50">{{ pos.name|default:"—" }}</p>
           </div>
         </div>
