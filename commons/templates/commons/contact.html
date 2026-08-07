@@ -1,35 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Kontak — Hubungi Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Hubungi Pemerintah Kampung Yongsu Desoyo untuk kunjungan wisata, kerja sama, penelitian, atau pertanyaan seputar kampung. Tersedia kontak email, WhatsApp, dan lokasi peta.{% endblock %}
 
 {% block content %}
 
-  <!-- Banner halaman -->
-  <section class="relative min-h-[52vh] flex items-end overflow-hidden bg-abyss">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop"
-         alt="Pesisir Yongsu Desoyo menghadap Samudra Pasifik"
-         onerror="this.onerror=null;this.src='https://picsum.photos/seed/kontak-banner/1600/900'"
-         class="absolute inset-0 h-full w-full object-cover" />
-    <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/55 to-abyss/20"></div>
-    <div class="absolute inset-0 bg-linear-to-r from-abyss/70 via-transparent to-transparent"></div>
-
-    <div class="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-16 pt-32">
-      <nav class="font-mono text-[11px] tracking-eyebrow uppercase text-kabut/60 mb-5" aria-label="Breadcrumb">
-        <a href="{% url 'commons:index' %}" class="hover:text-emas transition">Beranda</a>
-        <span class="mx-2 text-emas">/</span>
-        <span class="text-kabut/90">Kontak</span>
-      </nav>
-      <p class="font-mono text-xs tracking-eyebrow uppercase text-emasS mb-4">Hubungi Kami</p>
-      <h1 class="font-display font-extrabold text-kabut leading-[0.98] text-4xl sm:text-6xl max-w-3xl">
-        Mari terhubung dengan Yongsu Desoyo
-      </h1>
-      <p class="mt-5 text-kabut/80 text-lg max-w-2xl leading-relaxed">
-        Untuk kunjungan wisata, kerja sama, penelitian, maupun pertanyaan seputar kampung —
-        kami senang mendengar dari Anda.
-      </p>
-    </div>
-  </section>
+  {% banner_image "kontak" "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Mari terhubung dengan Yongsu Desoyo" crumb="Kontak" eyebrow="Hubungi Kami" gambar=gambar subjudul="Untuk kunjungan wisata, kerja sama, penelitian, maupun pertanyaan seputar kampung — kami senang mendengar dari Anda." %}
 
   <!-- Kanal kontak + formulir (mailto & WhatsApp, tanpa server) -->
   <section class="bg-pasir py-24 sm:py-32">

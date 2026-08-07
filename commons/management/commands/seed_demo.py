@@ -7,7 +7,7 @@ from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 
-from commons.models import HeroSlide, OfficialPosition, Statistic
+from commons.models import HeroSlide, OfficialPosition, PageBanner, Statistic
 from culture.models import Tradition
 from development.models import Project
 from events.models import Event, EventActivity
@@ -83,6 +83,25 @@ POSITIONS = [
     ("pemerintah", "Ketua RT 004", "Simon Yakadewa", "", ""),
     ("adat", "Ondoafi Besar", "Jan Jap L Ormuseray", "Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.", ""),
     ("adat", "Dewan Adat Yewena Yosu", "Yonas Mentaneway", "Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.", ""),
+]
+
+# key, label -- baris ini hanya menyiapkan slot; gambar diunggah lewat admin (kosong = pakai gambar bawaan template)
+PAGE_BANNERS = [
+    ("about", "Banner: Tentang Kampung"),
+    ("kontak", "Banner: Kontak"),
+    ("wisata-list", "Banner: Objek Wisata (Daftar)"),
+    ("produk-list", "Banner: Produk Lokal (Daftar)"),
+    ("budaya-list", "Banner: Budaya & Tradisi (Daftar)"),
+    ("berita-list", "Banner: Berita & Pengumuman (Daftar)"),
+    ("acara-list", "Banner: Acara & Kegiatan (Daftar)"),
+    ("galeri", "Banner: Galeri Foto"),
+    ("pembangunan-list", "Banner: Pembangunan (Daftar)"),
+    ("statistik", "Banner: Statistik Kampung"),
+    ("ppid-beranda", "Banner: PPID Beranda"),
+    ("ppid-profil", "Banner: PPID Profil"),
+    ("ppid-informasi", "Banner: PPID Informasi Publik"),
+    ("ppid-permohonan", "Banner: PPID Permohonan Informasi"),
+    ("ppid-faq", "Banner: PPID FAQ"),
 ]
 
 # name, category, summary, description, photo
@@ -242,6 +261,9 @@ class Command(BaseCommand):
             if photo and not official.photo:
                 file = fetch_image(photo)
                 official.photo.save(file.name, file, save=True)
+
+        for key, label in PAGE_BANNERS:
+            PageBanner.objects.update_or_create(key=key, defaults={"label": label})
 
         for name, category, summary, description, photo in DESTINATIONS:
             destination, _ = Destination.objects.update_or_create(

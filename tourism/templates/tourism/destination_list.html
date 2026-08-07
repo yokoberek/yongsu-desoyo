@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Objek Wisata — Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Destinasi wisata Kampung Yongsu Desoyo: Air Terjun Nantuke, Pantai Sapari, snorkeling dan diving, hingga birdwatching Cenderawasih di hutan adat Cycloop.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="Objek Wisata" crumb="Objek Wisata" eyebrow="Potensi Kampung" gambar="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1600&auto=format&fit=crop" subjudul="Dari air terjun di kaki Cycloop hingga terumbu karang Pasifik — jelajahi keindahan yang tumbuh di antara gunung dan laut." %}
+  {% banner_image "wisata-list" "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Objek Wisata" crumb="Objek Wisata" eyebrow="Potensi Kampung" gambar=gambar subjudul="Dari air terjun di kaki Cycloop hingga terumbu karang Pasifik — jelajahi keindahan yang tumbuh di antara gunung dan laut." %}
 
   <!-- Pengantar -->
   <section class="bg-pasir py-24 sm:py-32">

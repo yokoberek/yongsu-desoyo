@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}PPID — Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}PPID Kampung Yongsu Desoyo — Pejabat Pengelola Informasi dan Dokumentasi. Layanan keterbukaan informasi publik sesuai UU No. 14 Tahun 2008.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="PPID Kampung" crumb="PPID" eyebrow="Keterbukaan Informasi Publik" gambar="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" subjudul="Pejabat Pengelola Informasi dan Dokumentasi — komitmen kami terhadap transparansi dan pelayanan informasi bagi masyarakat." %}
+  {% banner_image "ppid-beranda" "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="PPID Kampung" crumb="PPID" eyebrow="Keterbukaan Informasi Publik" gambar=gambar subjudul="Pejabat Pengelola Informasi dan Dokumentasi — komitmen kami terhadap transparansi dan pelayanan informasi bagi masyarakat." %}
 
   {% include "ppid/_subnav.html" with aktif="index" %}
 

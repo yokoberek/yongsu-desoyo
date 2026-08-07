@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Permohonan Informasi — PPID Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Prosedur dan alur permohonan informasi publik di Kampung Yongsu Desoyo — cara mengajukan, syarat, dan jangka waktu pelayanan.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="Permohonan Informasi" crumb="Permohonan Informasi" eyebrow="Keterbukaan Informasi Publik" gambar="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600&auto=format&fit=crop" subjudul="Setiap warga berhak mengajukan permohonan informasi publik. Berikut alur dan ketentuannya." %}
+  {% banner_image "ppid-permohonan" "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Permohonan Informasi" crumb="Permohonan Informasi" eyebrow="Keterbukaan Informasi Publik" gambar=gambar subjudul="Setiap warga berhak mengajukan permohonan informasi publik. Berikut alur dan ketentuannya." %}
 
   {% include "ppid/_subnav.html" with aktif="request" %}
 

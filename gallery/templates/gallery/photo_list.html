@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Galeri Foto — Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Galeri foto Kampung Yongsu Desoyo: panorama pesisir, hutan Cycloop, kegiatan warga, dan momen budaya masyarakat adat Tepra.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="Galeri Foto" crumb="Galeri Foto" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" subjudul="Rekaman visual keindahan alam, keseharian warga, dan momen budaya Yongsu Desoyo." %}
+  {% banner_image "galeri" "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Galeri Foto" crumb="Galeri Foto" eyebrow="Informasi Publik" gambar=gambar subjudul="Rekaman visual keindahan alam, keseharian warga, dan momen budaya Yongsu Desoyo." %}
 
   <!-- Galeri -->
   <section class="bg-pasir py-24 sm:py-32" x-data="{ open: false, activeSrc: '', activeTitle: '' }" @keydown.escape.window="open = false">

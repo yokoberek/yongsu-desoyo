@@ -224,6 +224,11 @@ UNFOLD = {
                         "link": reverse_lazy("admin:commons_heroslide_changelist"),
                     },
                     {
+                        "title": "Banner Halaman",
+                        "icon": "wallpaper",
+                        "link": reverse_lazy("admin:commons_pagebanner_changelist"),
+                    },
+                    {
                         "title": "Struktur Pemerintahan",
                         "icon": "account_balance",
                         "link": reverse_lazy(

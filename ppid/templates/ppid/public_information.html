@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Informasi Publik — PPID Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Daftar Informasi Publik Kampung Yongsu Desoyo: informasi berkala, serta-merta, tersedia setiap saat, dan informasi yang dikecualikan.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="Informasi Publik" crumb="Informasi Publik" eyebrow="Keterbukaan Informasi Publik" gambar="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" subjudul="Klasifikasi informasi publik yang tersedia di Kampung Yongsu Desoyo sesuai ketentuan yang berlaku." %}
+  {% banner_image "ppid-informasi" "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Informasi Publik" crumb="Informasi Publik" eyebrow="Keterbukaan Informasi Publik" gambar=gambar subjudul="Klasifikasi informasi publik yang tersedia di Kampung Yongsu Desoyo sesuai ketentuan yang berlaku." %}
 
   {% include "ppid/_subnav.html" with aktif="information" %}
 

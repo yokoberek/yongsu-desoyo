@@ -56,3 +56,23 @@ class OfficialPosition(models.Model):
 
     def __str__(self):
         return self.position
+
+
+class PageBanner(models.Model):
+    key = models.SlugField(
+        "Kunci Halaman", max_length=60, unique=True,
+        help_text="Penanda teknis yang dipakai template untuk mencari banner ini -- jangan diubah.",
+    )
+    label = models.CharField("Nama Halaman", max_length=150)
+    photo = models.ForeignKey(
+        "gallery.Photo", verbose_name="Foto", on_delete=models.SET_NULL, null=True, blank=True,
+        help_text="Dipilih dari foto yang sudah diunggah di Galeri Foto.",
+    )
+
+    class Meta:
+        verbose_name = "Banner Halaman"
+        verbose_name_plural = "Banner Halaman"
+        ordering = ["label"]
+
+    def __str__(self):
+        return self.label

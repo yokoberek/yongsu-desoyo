@@ -1,7 +1,7 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
 
-from .models import HeroSlide, OfficialPosition, Statistic
+from .models import HeroSlide, OfficialPosition, PageBanner, Statistic
 
 
 @admin.register(Statistic)
@@ -25,3 +25,11 @@ class OfficialPositionAdmin(ModelAdmin):
     list_editable = ("order", "is_published")
     list_filter = ("group", "is_published")
     search_fields = ("position", "name")
+
+
+@admin.register(PageBanner)
+class PageBannerAdmin(ModelAdmin):
+    list_display = ("label", "key", "photo")
+    search_fields = ("label", "key")
+    readonly_fields = ("key",)
+    autocomplete_fields = ("photo",)

@@ -1,11 +1,13 @@
 {% extends "main_layout.html" %}
+{% load seo_tags %}
 
 {% block title %}Statistik — Kampung Yongsu Desoyo{% endblock %}
 {% block meta_description %}Data dan statistik Kampung Yongsu Desoyo: jumlah penduduk, kepala keluarga, luas wilayah adat, destinasi wisata, dan potensi kampung.{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul="Statistik Kampung" crumb="Statistik" eyebrow="Informasi Publik" gambar="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" subjudul="Denyut Yongsu Desoyo dalam angka — gambaran ringkas kependudukan dan potensi kampung." %}
+  {% banner_image "statistik" "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1600&auto=format&fit=crop" as gambar %}
+  {% include "partials/page_banner.html" with judul="Statistik Kampung" crumb="Statistik" eyebrow="Informasi Publik" gambar=gambar subjudul="Denyut Yongsu Desoyo dalam angka — gambaran ringkas kependudukan dan potensi kampung." %}
 
   <!-- Angka kunci -->
   <section class="bg-abyss kontur-bg text-kabut py-24 sm:py-32 relative overflow-hidden">
