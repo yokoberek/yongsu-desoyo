@@ -60,16 +60,29 @@ HERO_SLIDES = [
     ("Tempat Cenderawasih masih menari.", "Hutan adat yang dijaga turun-temurun, tempat satwa endemik Papua hidup bebas.", "Hutan Adat Cycloop", "photo-1470071459604-3b5ec3a7fe05"),
 ]
 
-# group, position, name, description, photo
+# Posisi yang tidak lagi dipakai (diganti struktur riil di bawah) -- dibersihkan saat seeding.
+RETIRED_POSITIONS = ["Bendahara Kampung", "Kaur Pemerintahan", "Kaur Pembangunan", "Kaur Umum & Kesra"]
+
+# group, position, name, description, photo (kosong = belum ada foto resmi, tampilkan inisial)
 POSITIONS = [
     ("pemerintah", "Kepala Kampung", "Melkisedek Tablaseray", "", "local:images/people/melkisedek-tablaseray.png"),
-    ("pemerintah", "Sekretaris Kampung", "", "", "photo-1494790108377-be9c29b29330"),
-    ("pemerintah", "Bendahara Kampung", "", "", "photo-1500648767791-00dcc994a43e"),
-    ("kaur", "Kaur Pemerintahan", "", "", "photo-1519085360753-af0119f7cbe7"),
-    ("kaur", "Kaur Pembangunan", "", "", "photo-1560250097-0b93528c311a"),
-    ("kaur", "Kaur Umum & Kesra", "", "", "photo-1573497019940-1c28c88b4f3e"),
-    ("adat", "Ondoafi Besar", "", "Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.", "photo-1568602471122-7832951cc4c5"),
-    ("adat", "Dewan Adat Yewena Yosu", "", "Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.", "photo-1544005313-94ddf0286df2"),
+    ("pemerintah", "Sekretaris Kampung", "Yohosua Isak Ormuseray", "", ""),
+    ("kaur", "Kepala Urusan Keuangan", "Yohan Maurits Tablaseray", "", ""),
+    ("kaur", "Kepala Urusan TU dan Umum", "Hofni Yoafifi", "", ""),
+    ("kaur", "Kepala Urusan Perencanaan", "Lamek Titus Yoafifi", "", ""),
+    ("pemerintah", "Kepala Seksi Pemerintahan", "Semuel Tablaseray", "", ""),
+    ("pemerintah", "Kepala Seksi Pelayanan", "Antonius Agustinus Tabladeray", "", ""),
+    ("pemerintah", "Kepala Seksi Kesejahteraan", "Nehemia Ormuseray", "", ""),
+    ("kaur", "Operator SISKEUDES", "Adriyansen Yafet Tablaseray", "", ""),
+    ("kaur", "Operator Data dan Informasi Kampung", "Dorkas Tabita Tablaseray", "", ""),
+    ("pemerintah", "Ketua RW 001", "Lukas Ormuseray", "", ""),
+    ("pemerintah", "Ketua RW 002", "Robert Piterson Ormuseray", "", ""),
+    ("pemerintah", "Ketua RT 001", "Theopilus Alfons Ormuseray", "", ""),
+    ("pemerintah", "Ketua RT 002", "Regina Toto", "", ""),
+    ("pemerintah", "Ketua RT 003", "Petrus Calvin Ormuseray", "", ""),
+    ("pemerintah", "Ketua RT 004", "Simon Yakadewa", "", ""),
+    ("adat", "Ondoafi Besar", "Jan Jap L Ormuseray", "Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.", ""),
+    ("adat", "Dewan Adat Yewena Yosu", "Yonas Mentaneway", "Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.", ""),
 ]
 
 # name, category, summary, description, photo
@@ -216,6 +229,10 @@ class Command(BaseCommand):
             if not slide.image:
                 file = fetch_image(photo)
                 slide.image.save(file.name, file, save=True)
+
+        for retired in OfficialPosition.objects.filter(position__in=RETIRED_POSITIONS):
+            retired.photo.delete(save=False)
+            retired.delete()
 
         for order, (group, position, name, description, photo) in enumerate(POSITIONS):
             official, _ = OfficialPosition.objects.update_or_create(
