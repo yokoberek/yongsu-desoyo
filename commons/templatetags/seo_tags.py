@@ -10,7 +10,7 @@ def banner_image(key, fallback=""):
     """Image for a partials/page_banner.html slot, picked via admin (PageBanner) from
     Galeri Foto; falls back to the given URL when no key is set up yet or no photo is chosen."""
     banner = PageBanner.objects.filter(key=key).select_related("photo").first()
-    if banner and banner.photo:
+    if banner and banner.photo and banner.photo.image:
         return banner.photo.image.url
     return fallback
 

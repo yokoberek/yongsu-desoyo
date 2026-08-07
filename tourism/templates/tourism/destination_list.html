@@ -26,8 +26,8 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for destination in destinations %}
         <a href="{{ destination.get_absolute_url }}" class="reveal group relative overflow-hidden rounded-sm bg-abyss aspect-4/5 shadow-md block">
-          <img src="{% if destination.image %}{{ destination.image.url }}{% else %}https://picsum.photos/seed/{{ destination.slug }}/800/1000{% endif %}" alt="{{ destination.name }}"
-               onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ destination.slug }}/800/1000'"
+          <img src="{% if destination.image %}{{ destination.image.url }}{% else %}https://dummyimage.com/800x1000{% endif %}" alt="{{ destination.name }}"
+               onerror="this.onerror=null;this.src='https://dummyimage.com/800x1000'"
                class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-90" />
           <div class="absolute inset-0 bg-linear-to-t from-abyss via-abyss/40 to-transparent"></div>
           <div class="relative h-full flex flex-col justify-end p-6 text-kabut">

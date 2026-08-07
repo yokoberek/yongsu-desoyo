@@ -22,13 +22,22 @@
       <!-- Grid masonry -->
       <div class="columns-2 md:columns-3 gap-4 *:mb-4">
         {% for photo in photos %}
+        {% if photo.image %}
         <button type="button"
                 @click="open = true; activeSrc = '{{ photo.image.url|escapejs }}'; activeTitle = '{{ photo.title|escapejs }}'"
                 class="reveal block w-full break-inside-avoid cursor-zoom-in">
           <img src="{{ photo.image.url }}" alt="{{ photo.title }}"
-               onerror="this.onerror=null;this.src='https://picsum.photos/seed/foto{{ photo.id }}/700/800'"
+               onerror="this.onerror=null;this.src='https://dummyimage.com/700x800'"
                class="w-full rounded-sm shadow-sm hover:shadow-lg transition" />
         </button>
+        {% else %}
+        <button type="button"
+                @click="open = true; activeSrc = 'https://dummyimage.com/700x800'; activeTitle = '{{ photo.title|escapejs }}'"
+                class="reveal block w-full break-inside-avoid cursor-zoom-in">
+          <img src="https://dummyimage.com/700x800" alt="{{ photo.title }}"
+               class="w-full rounded-sm shadow-sm hover:shadow-lg transition" />
+        </button>
+        {% endif %}
         {% empty %}
         <p class="text-ink/60">Belum ada foto yang dipublikasikan.</p>
         {% endfor %}

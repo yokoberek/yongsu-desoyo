@@ -15,8 +15,8 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["hero_slides"] = [
             {
-                "img": s.image.url,
-                "fb": f"https://picsum.photos/seed/hero{s.pk}/1600/1000",
+                "img": s.image.url if s.image else "https://dummyimage.com/1600x1000",
+                "fb": "https://dummyimage.com/1600x1000",
                 "title": s.title,
                 "sub": s.subtitle,
                 "caption": s.caption,

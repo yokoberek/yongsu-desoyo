@@ -74,8 +74,8 @@
             {% for p in recent_posts %}
             <a href="{{ p.get_absolute_url }}" class="group flex gap-4">
               <div class="overflow-hidden rounded-sm shrink-0 w-20 h-20">
-                <img src="{% if p.image %}{{ p.image.url }}{% else %}https://picsum.photos/seed/{{ p.slug }}/200/200{% endif %}" alt="{{ p.title }}"
-                     onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ p.slug }}/200/200'"
+                <img src="{% if p.image %}{{ p.image.url }}{% else %}https://dummyimage.com/200x200{% endif %}" alt="{{ p.title }}"
+                     onerror="this.onerror=null;this.src='https://dummyimage.com/200x200'"
                      class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
               <div class="min-w-0">

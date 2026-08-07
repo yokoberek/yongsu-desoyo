@@ -18,8 +18,8 @@
       {% with featured=posts.0 %}
       <a href="{{ featured.get_absolute_url }}" class="reveal group grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
         <div class="overflow-hidden rounded-sm">
-          <img src="{% if featured.image %}{{ featured.image.url }}{% else %}https://picsum.photos/seed/{{ featured.slug }}/1200/800{% endif %}" alt="{{ featured.title }}"
-               onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ featured.slug }}/1200/800'"
+          <img src="{% if featured.image %}{{ featured.image.url }}{% else %}https://dummyimage.com/1200x800{% endif %}" alt="{{ featured.title }}"
+               onerror="this.onerror=null;this.src='https://dummyimage.com/1200x800'"
                class="w-full h-72 sm:h-96 object-cover transition duration-700 group-hover:scale-105" />
         </div>
         <div>
@@ -40,8 +40,8 @@
         {% for post in posts|slice:"1:" %}
         <a href="{{ post.get_absolute_url }}" class="reveal group block">
           <div class="overflow-hidden rounded-sm mb-4">
-            <img src="{% if post.image %}{{ post.image.url }}{% else %}https://picsum.photos/seed/{{ post.slug }}/700/500{% endif %}" alt="{{ post.title }}"
-                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ post.slug }}/700/500'"
+            <img src="{% if post.image %}{{ post.image.url }}{% else %}https://dummyimage.com/700x500{% endif %}" alt="{{ post.title }}"
+                 onerror="this.onerror=null;this.src='https://dummyimage.com/700x500'"
                  class="w-full h-52 object-cover transition duration-700 group-hover:scale-105" />
           </div>
           <div class="flex items-center gap-3 mb-2">
