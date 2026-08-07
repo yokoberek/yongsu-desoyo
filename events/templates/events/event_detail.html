@@ -2,7 +2,7 @@
 
 {% block title %}{{ event.title }} — Acara Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ event.summary|default:event.title }}{% endblock %}
-{% block og_image %}{% if event.image_url %}{{ event.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if event.image %}{{ request.scheme }}://{{ request.get_host }}{{ event.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ event.title }}{% endblock %}
 
 {% block structured_data %}
@@ -37,7 +37,7 @@
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=event.title crumb=event.title eyebrow=event.get_category_display gambar=event.image_url tinggi="min-h-[52vh]" subjudul=event.summary %}
+  {% include "partials/page_banner.html" with judul=event.title crumb=event.title eyebrow=event.get_category_display gambar=seo_image tinggi="min-h-[52vh]" subjudul=event.summary %}
 
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">

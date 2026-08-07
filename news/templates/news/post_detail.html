@@ -4,7 +4,7 @@
 {% block title %}{{ post.title }} — Berita Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ post.summary }}{% endblock %}
 {% block og_type %}article{% endblock %}
-{% block og_image %}{% if post.image_url %}{{ post.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if post.image %}{{ request.scheme }}://{{ request.get_host }}{{ post.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ post.title }}{% endblock %}
 
 {% block extra_head %}
@@ -19,7 +19,7 @@
   "@type": "NewsArticle",
   "headline": "{{ post.title|escapejs }}",
   "description": "{{ post.summary|escapejs }}",
-  "image": "{{ post.image_url|escapejs }}",
+  "image": "{{ seo_image }}",
   "datePublished": "{{ post.published_at|date:'Y-m-d' }}",
   "dateModified": "{{ post.published_at|date:'Y-m-d' }}",
   "articleSection": "{{ post.get_category_display|escapejs }}",
@@ -42,7 +42,7 @@
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=post.title crumb=post.title eyebrow=post.get_category_display gambar=post.image_url tinggi="min-h-[62vh]" %}
+  {% include "partials/page_banner.html" with judul=post.title crumb=post.title eyebrow=post.get_category_display gambar=seo_image tinggi="min-h-[62vh]" %}
 
   <section class="bg-white py-20 sm:py-28">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-3 gap-12 lg:gap-16 items-start">
@@ -74,7 +74,7 @@
             {% for p in recent_posts %}
             <a href="{{ p.get_absolute_url }}" class="group flex gap-4">
               <div class="overflow-hidden rounded-sm shrink-0 w-20 h-20">
-                <img src="{{ p.image_url }}" alt="{{ p.title }}"
+                <img src="{% if p.image %}{{ p.image.url }}{% else %}https://picsum.photos/seed/{{ p.slug }}/200/200{% endif %}" alt="{{ p.title }}"
                      onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ p.slug }}/200/200'"
                      class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
               </div>

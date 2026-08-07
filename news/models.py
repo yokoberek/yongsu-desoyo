@@ -16,7 +16,7 @@ class Post(models.Model):
     category = models.CharField("Kategori", max_length=20, choices=Category.choices)
     summary = models.CharField("Ringkasan", max_length=300)
     body = models.TextField("Isi", blank=True)
-    image_url = models.URLField("URL Gambar", blank=True)
+    image = models.ImageField("Gambar", upload_to="news/", blank=True)
     published_at = models.DateField("Tanggal Terbit", default=timezone.now)
     is_published = models.BooleanField("Ditampilkan", default=True)
 

@@ -2,7 +2,7 @@
 
 {% block title %}{{ destination.name }} — Objek Wisata Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ destination.summary }}{% endblock %}
-{% block og_image %}{% if destination.image_url %}{{ destination.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if destination.image %}{{ request.scheme }}://{{ request.get_host }}{{ destination.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ destination.name }}{% endblock %}
 
 {% block structured_data %}
@@ -12,7 +12,7 @@
   "@type": "TouristAttraction",
   "name": "{{ destination.name|escapejs }}",
   "description": "{{ destination.summary|escapejs }}",
-  "image": "{{ destination.image_url|escapejs }}",
+  "image": "{{ seo_image }}",
   "url": "{{ seo_url }}",
   "touristType": "{{ destination.get_category_display|escapejs }}",
   "address": {
@@ -28,7 +28,7 @@
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=destination.name crumb=destination.name eyebrow=destination.get_category_display gambar=destination.image_url tinggi="min-h-[52vh]" subjudul=destination.summary %}
+  {% include "partials/page_banner.html" with judul=destination.name crumb=destination.name eyebrow=destination.get_category_display gambar=seo_image tinggi="min-h-[52vh]" subjudul=destination.summary %}
 
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">

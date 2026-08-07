@@ -1,5 +1,9 @@
 import datetime
+import time
+import urllib.request
 
+from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 
@@ -17,6 +21,23 @@ UNSPLASH = "https://images.unsplash.com/{id}?q=80&w=1600&auto=format&fit=crop"
 
 def img(photo_id):
     return UNSPLASH.format(id=photo_id)
+
+
+def fetch_image(photo_id):
+    """A stock photo id ("photo-...") downloads from Unsplash; "local:..." reads a real photo
+    already committed under static/, so ImageField-backed models get a real uploaded file either way."""
+    if photo_id.startswith("local:"):
+        path = settings.BASE_DIR / "static" / photo_id.removeprefix("local:")
+        return ContentFile(path.read_bytes(), name=path.name)
+    request = urllib.request.Request(img(photo_id), headers={"User-Agent": "Mozilla/5.0"})
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=15) as response:
+                return ContentFile(response.read(), name=f"{photo_id}.jpg")
+        except urllib.error.URLError:
+            if attempt == 2:
+                raise
+            time.sleep(1.5)
 
 
 def to_html(text):
@@ -39,16 +60,16 @@ HERO_SLIDES = [
     ("Tempat Cenderawasih masih menari.", "Hutan adat yang dijaga turun-temurun, tempat satwa endemik Papua hidup bebas.", "Hutan Adat Cycloop", "photo-1470071459604-3b5ec3a7fe05"),
 ]
 
-# group, position, name, description
+# group, position, name, description, photo
 POSITIONS = [
-    ("pemerintah", "Kepala Kampung", "", ""),
-    ("pemerintah", "Sekretaris Kampung", "", ""),
-    ("pemerintah", "Bendahara Kampung", "", ""),
-    ("kaur", "Kaur Pemerintahan", "", ""),
-    ("kaur", "Kaur Pembangunan", "", ""),
-    ("kaur", "Kaur Umum & Kesra", "", ""),
-    ("adat", "Ondoafi Besar", "", "Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung."),
-    ("adat", "Dewan Adat Yewena Yosu", "", "Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung."),
+    ("pemerintah", "Kepala Kampung", "Melkisedek Tablaseray", "", "local:images/people/melkisedek-tablaseray.png"),
+    ("pemerintah", "Sekretaris Kampung", "", "", "photo-1494790108377-be9c29b29330"),
+    ("pemerintah", "Bendahara Kampung", "", "", "photo-1500648767791-00dcc994a43e"),
+    ("kaur", "Kaur Pemerintahan", "", "", "photo-1519085360753-af0119f7cbe7"),
+    ("kaur", "Kaur Pembangunan", "", "", "photo-1560250097-0b93528c311a"),
+    ("kaur", "Kaur Umum & Kesra", "", "", "photo-1573497019940-1c28c88b4f3e"),
+    ("adat", "Ondoafi Besar", "", "Pemangku adat tertinggi yang menjaga wilayah, tatanan sosial, dan nilai-nilai leluhur kampung.", "photo-1568602471122-7832951cc4c5"),
+    ("adat", "Dewan Adat Yewena Yosu", "", "Wadah musyawarah adat yang mengawal keputusan bersama demi kepentingan masyarakat kampung.", "photo-1544005313-94ddf0286df2"),
 ]
 
 # name, category, summary, description, photo
@@ -64,7 +85,7 @@ DESTINATIONS = [
 # name, category, producer, summary, price_note, description, photo
 PRODUCTS = [
     ("Hasil Laut Segar", "bahari", "Kelompok Nelayan Sapari", "Ikan, lobster, dan hasil tangkapan nelayan langsung dari perairan Pasifik.", "Harga pasar harian", "Hasil tangkapan nelayan Yongsu Desoyo dijual segar langsung dari perahu. Tersedia ikan, lobster, dan biota laut lain sesuai musim.", "photo-1544551763-46a013bb70d5"),
-    ("Buah & Hasil Kebun", "agro", "Kelompok Tani Nantuke", "Mangga, durian, rambutan, dan umbi-umbian dari kebun warga di kaki Cycloop.", "Musiman", "Kebun warga di kaki Cycloop menghasilkan buah dan umbi berkualitas. Panen mengikuti musim, dengan rasa manis khas tanah Papua.", "photo-1591207099859-cc47f28e1b3d"),
+    ("Buah & Hasil Kebun", "agro", "Kelompok Tani Nantuke", "Mangga, durian, rambutan, dan umbi-umbian dari kebun warga di kaki Cycloop.", "Musiman", "Kebun warga di kaki Cycloop menghasilkan buah dan umbi berkualitas. Panen mengikuti musim, dengan rasa manis khas tanah Papua.", "photo-1519996529931-28324d5a630e"),
     ("Noken & Anyaman", "kriya", "UMKM Noken Mama Tepra", "Tas noken dan anyaman serat alami dengan motif khas, ditenun tangan warga.", "Rp150.000 – Rp500.000", "Noken ditenun tangan dari serat alami dengan motif khas. Setiap karya unik dan menjadi cinderamata bernilai budaya tinggi.", "photo-1519659528534-7fd733a832a0"),
     ("Hasil Hutan Bukan Kayu", "hutan", "Kelompok Hutan Lestari", "Madu, rempah, dan olahan hutan yang dipanen tanpa merusak ekosistem.", "Sesuai ketersediaan", "Madu hutan, rempah, dan olahan lain dipanen secara lestari dari hutan adat, menjaga ekosistem tetap seimbang.", "photo-1470071459604-3b5ec3a7fe05"),
     ("Olahan Pangan Lokal", "kuliner", "UMKM Dapur Cycloop", "Sagu, keladi, dan sajian khas yang disantap bersama hasil laut segar.", "Sesuai pesanan", "Sagu, keladi, dan sajian khas kampung diolah dengan resep turun-temurun. Nikmat disantap bersama hasil laut segar.", "photo-1518495973542-4542c06a5843"),
@@ -137,7 +158,7 @@ PHOTOS = [
     ("Dunia bawah laut", "photo-1544551763-46a013bb70d5"),
     ("Kegiatan warga di hutan", "photo-1441974231531-c6227db76b6e"),
     ("Perbukitan pesisir", "photo-1559128010-7c1ad6e1b6a5"),
-    ("Hasil kebun warga", "photo-1591207099859-cc47f28e1b3d"),
+    ("Hasil kebun warga", "photo-1519996529931-28324d5a630e"),
 ]
 
 # title, status, progress, year, summary, description, location, funding_source, implementer, photo
@@ -188,28 +209,40 @@ class Command(BaseCommand):
             Statistic.objects.update_or_create(label=label, defaults={"value": value, "order": order})
 
         for order, (title, subtitle, caption, photo) in enumerate(HERO_SLIDES):
-            HeroSlide.objects.update_or_create(
+            slide, _ = HeroSlide.objects.update_or_create(
                 title=title,
-                defaults={"subtitle": subtitle, "caption": caption, "image_url": img(photo), "order": order},
+                defaults={"subtitle": subtitle, "caption": caption, "order": order},
             )
+            if not slide.image:
+                file = fetch_image(photo)
+                slide.image.save(file.name, file, save=True)
 
-        for order, (group, position, name, description) in enumerate(POSITIONS):
-            OfficialPosition.objects.update_or_create(
+        for order, (group, position, name, description, photo) in enumerate(POSITIONS):
+            official, _ = OfficialPosition.objects.update_or_create(
                 position=position,
                 defaults={"group": group, "name": name, "description": description, "order": order},
             )
+            if photo and not official.photo:
+                file = fetch_image(photo)
+                official.photo.save(file.name, file, save=True)
 
         for name, category, summary, description, photo in DESTINATIONS:
-            Destination.objects.update_or_create(
+            destination, _ = Destination.objects.update_or_create(
                 slug=slugify(name),
-                defaults={"name": name, "category": category, "summary": summary, "description": to_html(description), "image_url": img(photo)},
+                defaults={"name": name, "category": category, "summary": summary, "description": to_html(description)},
             )
+            if not destination.image:
+                file = fetch_image(photo)
+                destination.image.save(file.name, file, save=True)
 
         for name, category, producer, summary, price_note, description, photo in PRODUCTS:
-            Product.objects.update_or_create(
+            product, _ = Product.objects.update_or_create(
                 slug=slugify(name),
-                defaults={"name": name, "category": category, "producer": producer, "summary": summary, "price_note": price_note, "description": to_html(description), "image_url": img(photo)},
+                defaults={"name": name, "category": category, "producer": producer, "summary": summary, "price_note": price_note, "description": to_html(description)},
             )
+            if not product.image:
+                file = fetch_image(photo)
+                product.image.save(file.name, file, save=True)
 
         for order, (name, icon, summary) in enumerate(TRADITIONS):
             Tradition.objects.update_or_create(
@@ -217,37 +250,49 @@ class Command(BaseCommand):
             )
 
         for title, category, date, photo, summary, body in POSTS:
-            Post.objects.update_or_create(
+            post, _ = Post.objects.update_or_create(
                 slug=slugify(title),
-                defaults={"title": title, "category": category, "published_at": date, "image_url": img(photo), "summary": summary, "body": to_html(body)},
+                defaults={"title": title, "category": category, "published_at": date, "summary": summary, "body": to_html(body)},
             )
+            if not post.image:
+                file = fetch_image(photo)
+                post.image.save(file.name, file, save=True)
 
         for title, category, date, location, summary, description, activities, photo in EVENTS:
             event, _ = Event.objects.update_or_create(
                 slug=slugify(title),
                 defaults={
                     "title": title, "category": category, "start_date": date, "location": location,
-                    "summary": summary, "description": to_html(description), "image_url": img(photo),
+                    "summary": summary, "description": to_html(description),
                 },
             )
+            if not event.image:
+                file = fetch_image(photo)
+                event.image.save(file.name, file, save=True)
             for order, activity_title in enumerate(activities):
                 EventActivity.objects.update_or_create(
                     event=event, order=order, defaults={"title": activity_title},
                 )
 
         for order, (title, photo) in enumerate(PHOTOS):
-            Photo.objects.update_or_create(
-                title=title, defaults={"image_url": img(photo), "order": order}
+            photo_obj, _ = Photo.objects.update_or_create(
+                title=title, defaults={"order": order}
             )
+            if not photo_obj.image:
+                file = fetch_image(photo)
+                photo_obj.image.save(file.name, file, save=True)
 
         for title, status, progress, year, summary, description, location, funding_source, implementer, photo in PROJECTS:
-            Project.objects.update_or_create(
+            project, _ = Project.objects.update_or_create(
                 slug=slugify(title),
                 defaults={
                     "title": title, "status": status, "progress": progress, "year": year, "summary": summary,
                     "description": to_html(description), "location": location, "funding_source": funding_source,
-                    "implementer": implementer, "image_url": img(photo),
+                    "implementer": implementer,
                 },
             )
+            if not project.image:
+                file = fetch_image(photo)
+                project.image.save(file.name, file, save=True)
 
         self.stdout.write(self.style.SUCCESS("Seed selesai."))

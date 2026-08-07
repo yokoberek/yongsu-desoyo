@@ -3,7 +3,7 @@
 {% block title %}{{ product.name }} — Produk Lokal Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ product.summary }}{% endblock %}
 {% block og_type %}product{% endblock %}
-{% block og_image %}{% if product.image_url %}{{ product.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if product.image %}{{ request.scheme }}://{{ request.get_host }}{{ product.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ product.name }}{% endblock %}
 
 {% block structured_data %}
@@ -13,7 +13,7 @@
   "@type": "Product",
   "name": "{{ product.name|escapejs }}",
   "description": "{{ product.summary|escapejs }}",
-  "image": "{{ product.image_url|escapejs }}",
+  "image": "{{ seo_image }}",
   "sku": "{{ product.slug|escapejs }}",
   "category": "{{ product.get_category_display|escapejs }}",
   "url": "{{ seo_url }}"{% if product.producer %},
@@ -27,7 +27,7 @@
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=product.name crumb=product.name eyebrow=product.get_category_display gambar=product.image_url tinggi="min-h-[52vh]" subjudul=product.summary %}
+  {% include "partials/page_banner.html" with judul=product.name crumb=product.name eyebrow=product.get_category_display gambar=seo_image tinggi="min-h-[52vh]" subjudul=product.summary %}
 
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">

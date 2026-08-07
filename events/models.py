@@ -16,7 +16,7 @@ class Event(models.Model):
     description = models.TextField("Deskripsi", blank=True)
     location = models.CharField("Lokasi", max_length=150, blank=True)
     start_date = models.DateField("Tanggal")
-    image_url = models.URLField("URL Gambar", blank=True)
+    image = models.ImageField("Gambar", upload_to="events/", blank=True)
     is_published = models.BooleanField("Ditampilkan", default=True)
 
     class Meta:

@@ -12,7 +12,7 @@ class Project(models.Model):
     slug = models.SlugField(unique=True, max_length=200)
     summary = models.CharField("Ringkasan", max_length=300)
     description = models.TextField("Deskripsi", blank=True)
-    image_url = models.URLField("URL Gambar", blank=True)
+    image = models.ImageField("Gambar", upload_to="development/", blank=True)
     status = models.CharField("Status", max_length=20, choices=Status.choices, default=Status.ONGOING)
     progress = models.PositiveSmallIntegerField("Progres (%)", default=0)
     year = models.PositiveSmallIntegerField("Tahun", null=True, blank=True)

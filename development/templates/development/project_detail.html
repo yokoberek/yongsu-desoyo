@@ -2,12 +2,12 @@
 
 {% block title %}{{ project.title }} — Pembangunan Yongsu Desoyo{% endblock %}
 {% block meta_description %}{{ project.summary }}{% endblock %}
-{% block og_image %}{% if project.image_url %}{{ project.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if project.image %}{{ request.scheme }}://{{ request.get_host }}{{ project.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ project.title }}{% endblock %}
 
 {% block content %}
 
-  {% include "partials/page_banner.html" with judul=project.title crumb=project.title eyebrow=project.get_status_display gambar=project.image_url tinggi="min-h-[52vh]" subjudul=project.summary %}
+  {% include "partials/page_banner.html" with judul=project.title crumb=project.title eyebrow=project.get_status_display gambar=seo_image tinggi="min-h-[52vh]" subjudul=project.summary %}
 
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">

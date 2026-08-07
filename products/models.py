@@ -19,7 +19,7 @@ class Product(models.Model):
     description = models.TextField("Deskripsi", blank=True)
     specification = models.TextField("Spesifikasi", blank=True)
     price_note = models.CharField("Keterangan Harga", max_length=120, blank=True)
-    image_url = models.URLField("URL Gambar", blank=True)
+    image = models.ImageField("Gambar", upload_to="products/", blank=True)
     is_published = models.BooleanField("Ditampilkan", default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
