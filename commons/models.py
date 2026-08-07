@@ -20,13 +20,13 @@ class HeroSlide(models.Model):
     title = models.CharField("Judul", max_length=200)
     subtitle = models.CharField("Sub-judul", max_length=300, blank=True)
     caption = models.CharField("Kapsi", max_length=120, blank=True)
-    image_url = models.URLField("URL Gambar")
+    image = models.ImageField("Gambar", upload_to="hero/")
     order = models.PositiveSmallIntegerField("Urutan", default=0)
     is_published = models.BooleanField("Ditampilkan", default=True)
 
     class Meta:
         verbose_name = "Hero Slide"
-        verbose_name_plural = "Hero Slide (Beranda)"
+        verbose_name_plural = "Hero Slide"
         ordering = ["order", "id"]
 
     def __str__(self):
@@ -39,10 +39,13 @@ class OfficialPosition(models.Model):
         DIVISION = "kaur", "Kepala Urusan"
         CUSTOM = "adat", "Lembaga Adat"
 
-    group = models.CharField("Kelompok", max_length=20, choices=Group.choices, default=Group.GOVERNMENT)
+    group = models.CharField(
+        "Kelompok", max_length=20, choices=Group.choices, default=Group.GOVERNMENT
+    )
     position = models.CharField("Jabatan / Lembaga", max_length=150)
     name = models.CharField("Nama", max_length=150, blank=True)
     description = models.TextField("Keterangan", blank=True)
+    photo = models.ImageField("Foto", upload_to="pejabat/", blank=True)
     order = models.PositiveSmallIntegerField("Urutan", default=0)
     is_published = models.BooleanField("Ditampilkan", default=True)
 

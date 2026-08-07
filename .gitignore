@@ -10,7 +10,7 @@ build/
 # Django
 *.sqlite3
 staticfiles/
-media/
+mediafiles/
 .env
 
 # uv

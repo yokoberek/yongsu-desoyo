@@ -15,7 +15,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["hero_slides"] = [
             {
-                "img": s.image_url,
+                "img": s.image.url,
                 "fb": f"https://picsum.photos/seed/hero{s.pk}/1600/1000",
                 "title": s.title,
                 "sub": s.subtitle,
@@ -29,6 +29,9 @@ class HomeView(TemplateView):
         context["events"] = Event.objects.filter(
             is_published=True, start_date__gte=timezone.now().date()
         )[:3]
+        context["kepala_kampung"] = OfficialPosition.objects.filter(
+            position__iexact="Kepala Kampung", is_published=True
+        ).first()
         return context
 
 
