@@ -20,69 +20,55 @@
         </h2>
 
         <ul class="mt-8 space-y-6">
+          {% for ch in contact_channels %}
           <li class="flex gap-4">
             <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                {% if ch.key == 'address' %}<path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>
+                {% elif ch.key == 'phone' %}<path stroke-linecap="round" stroke-linejoin="round" d="M3 5c0 9 7 16 16 16l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5z"/>
+                {% elif ch.key == 'email' %}<path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16v14H4z"/>
+                {% else %}<circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/>
+                {% endif %}
+              </svg>
             </span>
             <div>
-              <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-1">Alamat</p>
-              <p class="text-ink font-medium leading-snug">Kampung Yongsu Desoyo</p>
-              <p class="text-ink/70 text-sm">Distrik Raveni Rara, Kabupaten Jayapura, Provinsi Papua</p>
+              <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-1">{{ ch.label }}</p>
+              {% if ch.key == 'phone' %}
+              <a href="tel:{{ site_settings.phone_e164 }}" class="text-ink font-medium hover:text-reef transition">{{ ch.line1 }}</a>
+              {% elif ch.key == 'email' %}
+              <a href="mailto:{{ site_settings.email }}" class="text-ink font-medium hover:text-reef transition break-all">{{ ch.line1 }}</a>
+              {% else %}
+              <p class="text-ink font-medium leading-snug">{{ ch.line1 }}</p>
+              {% if ch.line2 %}<p class="text-ink/70 text-sm">{{ ch.line2 }}</p>{% endif %}
+              {% endif %}
             </div>
           </li>
-
-          <li class="flex gap-4">
-            <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5c0 9 7 16 16 16l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5z"/></svg>
-            </span>
-            <div>
-              <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-1">Telepon / WhatsApp</p>
-              <a href="tel:+6285824466260" class="text-ink font-medium hover:text-reef transition">0858-2446-6260</a>
-            </div>
-          </li>
-
-          <li class="flex gap-4">
-            <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16v14H4z"/></svg>
-            </span>
-            <div>
-              <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-1">Email</p>
-              <a href="mailto:info@yongsu-desoyo.id" class="text-ink font-medium hover:text-reef transition break-all">info@yongsu-desoyo.id</a>
-            </div>
-          </li>
-
-          <li class="flex gap-4">
-            <span class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-reef/10 text-reef">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
-            </span>
-            <div>
-              <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-1">Jam Pelayanan</p>
-              <p class="text-ink font-medium leading-snug">Senin – Jumat · 08.00 – 16.00 WIT</p>
-              <p class="text-ink/70 text-sm">Sabtu · 08.00 – 12.00 WIT</p>
-            </div>
-          </li>
+          {% endfor %}
         </ul>
 
         <div class="mt-8 pt-6 border-t border-ink/10">
           <p class="font-mono text-[10px] tracking-eyebrow uppercase text-ink/50 mb-3">Ikuti Kami</p>
           <div class="flex gap-3">
-            <a href="#" aria-label="Facebook" class="h-10 w-10 grid place-items-center rounded-full border border-ink/15 text-ink/70 hover:border-emas hover:text-emas transition">
+            {% for sl in social_links %}
+            <a href="{{ sl.url|default:'#' }}" aria-label="{{ sl.label }}" class="h-10 w-10 grid place-items-center rounded-full border border-ink/15 text-ink/70 hover:border-emas hover:text-emas transition">
+              {% if sl.key == 'facebook' %}
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13 22v-8h3l.5-3H13V9.2c0-.9.3-1.5 1.6-1.5H17V5.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1V11H8v3h2.6v8H13z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram" class="h-10 w-10 grid place-items-center rounded-full border border-ink/15 text-ink/70 hover:border-emas hover:text-emas transition">
+              {% elif sl.key == 'instagram' %}
               <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube" class="h-10 w-10 grid place-items-center rounded-full border border-ink/15 text-ink/70 hover:border-emas hover:text-emas transition">
+              {% else %}
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 00-1.8-1.8C18.4 5.4 12 5.4 12 5.4s-6.4 0-7.8.4A2.5 2.5 0 002.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 001.8 1.8c1.4.4 7.8.4 7.8.4s6.4 0 7.8-.4a2.5 2.5 0 001.8-1.8C22 15 22 12 22 12zm-12 3V9l5 3-5 3z"/></svg>
+              {% endif %}
             </a>
+            {% endfor %}
           </div>
         </div>
       </div>
 
+      {% page_section "contact-message" as section %}
       <div class="reveal lg:col-span-7" x-data="kontakForm()">
         <div class="rounded-md bg-abyss text-kabut p-8 sm:p-10 shadow-xl">
-          <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-2">Kirim Pesan</p>
-          <h3 class="font-display font-bold text-2xl mb-6">Sampaikan pertanyaan atau rencana kunjungan Anda</h3>
+          <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-2">{{ section.eyebrow }}</p>
+          <h3 class="font-display font-bold text-2xl mb-6">{{ section.heading }}</h3>
 
           <form @submit.prevent="kirimEmail()" class="space-y-5">
             <div class="grid sm:grid-cols-2 gap-5">
@@ -129,8 +115,7 @@
           </form>
 
           <p class="mt-5 font-mono text-[11px] leading-relaxed text-kabut/40">
-            Menekan “Kirim via Email” akan membuka aplikasi email Anda dengan isian siap kirim ke
-            info@yongsu-desoyo.id.
+            Menekan “Kirim via Email” akan membuka aplikasi email Anda dengan isian siap kirim ke {{ site_settings.email }}.
           </p>
         </div>
       </div>
@@ -143,15 +128,16 @@
       <path d="M0 80c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#5BC2AC" stroke-width="1.5"/>
       <path d="M0 120c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
     </svg>
+    {% page_section "contact-location" as section %}
     <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
       <div class="reveal max-w-2xl mb-10">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Lokasi</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
-          Temukan kami di peta
+          {{ section.heading }}
         </h2>
-        <p class="mt-4 text-kabut/70 leading-relaxed">
-          Kampung Yongsu Desoyo berada di pesisir utara, di kaki Pegunungan Cycloop, Distrik Raveni Rara.
-        </p>
+        <div class="rich-text rich-text-invert mt-4 text-kabut/70 leading-relaxed">
+          {{ section.body|safe }}
+        </div>
       </div>
       <div class="reveal rounded-md overflow-hidden ring-1 ring-white/10 shadow-2xl bg-laut">
         <iframe
@@ -176,8 +162,8 @@
     function kontakForm() {
       return {
         nama: '', email: '', perihal: '', pesan: '',
-        wa: '6285824466260', // format internasional (0858... -> 62858...)
-        tujuanEmail: 'info@yongsu-desoyo.id',
+        wa: '{{ site_settings.phone_e164|cut:"+" }}', // format internasional tanpa tanda +
+        tujuanEmail: '{{ site_settings.email }}',
 
         kirimEmail() {
           const subjek = this.perihal ? this.perihal : 'Pesan dari situs Yongsu Desoyo';

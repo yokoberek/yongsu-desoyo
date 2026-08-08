@@ -54,8 +54,8 @@
     "alternateName": "Kampung Yongsu Desoyo",
     "url": "{{ request.scheme }}://{{ request.get_host }}/",
     "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-kabupaten-jayapura.png' %}",
-    "email": "info@yongsu-desoyo.id",
-    "telephone": "+6285824466260",
+    "email": "{{ site_settings.email }}",
+    "telephone": "{{ site_settings.phone_e164 }}",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Yongsu Desoyo",

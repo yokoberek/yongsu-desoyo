@@ -1,6 +1,6 @@
 from django import template
 
-from commons.models import PageBanner
+from commons.models import PageBanner, PageSection
 
 register = template.Library()
 
@@ -13,6 +13,24 @@ def banner_image(key, fallback=""):
     if banner and banner.photo and banner.photo.image:
         return banner.photo.image.url
     return fallback
+
+
+@register.simple_tag(takes_context=True)
+def page_section(context, key):
+    """A PageSection by key, or None if the key is unknown. All sections are loaded once
+    and cached on the request, so a page with many sections still costs a single query."""
+    request = context.get("request")
+    sections = getattr(request, "_page_sections", None)
+    if sections is None:
+        sections = {
+            section.key: section
+            for section in PageSection.objects.select_related(
+                "feature__photo", "feature__photo_secondary"
+            )
+        }
+        if request is not None:
+            request._page_sections = sections
+    return sections.get(key)
 
 
 @register.tag(name="captureas")

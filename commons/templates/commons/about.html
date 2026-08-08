@@ -10,30 +10,17 @@
   {% include "partials/page_banner.html" with judul="Tentang Kampung Yongsu Desoyo" crumb="Tentang" eyebrow="Profil Kampung" gambar=gambar tinggi="min-h-[62vh]" subjudul="Mengenal lebih dekat sebuah kampung masyarakat adat Tepra — tempat Pegunungan Cycloop bertemu Samudra Pasifik di pesisir utara Tanah Papua." %}
 
   <!-- Pengantar -->
+  {% page_section "about-intro" as section %}
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-14 items-start">
 
       <div class="reveal lg:col-span-7">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Sekilas Kampung</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
-          Kampung yang tumbuh dari pertemuan gunung dan laut
+          {{ section.heading }}
         </h2>
-        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
-          <p>
-            Kampung Yongsu Desoyo terletak di Distrik Raveni Rara, Kabupaten Jayapura, Provinsi Papua. Kampung ini
-            dihuni oleh masyarakat adat <strong class="text-ink">Suku Tepra</strong>, yang telah menetap dan menjaga
-            wilayah ini secara turun-temurun.
-          </p>
-          <p>
-            Letaknya istimewa: punggung kampung bersandar pada rimbun <strong class="text-ink">Pegunungan Cycloop</strong>,
-            sementara wajahnya menatap langsung <strong class="text-ink">Samudra Pasifik</strong>. Sebagian besar warga
-            bermata pencaharian sebagai nelayan dan petani, memadukan hasil laut dengan hasil kebun sebagai sumber kehidupan.
-          </p>
-          <p>
-            Di tengah arus perubahan zaman, Yongsu Desoyo memilih jalan yang tidak menukar jati diri: melestarikan adat
-            dan hutan warisan leluhur, sekaligus mengembangkan potensi ekonomi lokal melalui ekowisata, produk lokal,
-            dan penguatan tata kelola kampung menuju status <strong class="text-ink">kampung adat</strong>.
-          </p>
+        <div class="rich-text mt-6 space-y-4 text-ink/75 leading-relaxed">
+          {{ section.body|safe }}
         </div>
       </div>
 
@@ -41,27 +28,11 @@
         <div class="rounded-md bg-abyss text-kabut p-8 shadow-xl">
           <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-6">Fakta Ringkas</p>
           <dl class="divide-y divide-white/10">
+            {% for fact in quick_facts %}
             <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Provinsi</dt><dd class="font-medium text-right">Papua</dd>
+              <dt class="text-kabut/60">{{ fact.label }}</dt><dd class="font-medium text-right">{{ fact.value }}</dd>
             </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Kabupaten</dt><dd class="font-medium text-right">Jayapura</dd>
-            </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Distrik</dt><dd class="font-medium text-right">Raveni Rara</dd>
-            </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Masyarakat Adat</dt><dd class="font-medium text-right">Suku Tepra</dd>
-            </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Bentang Alam</dt><dd class="font-medium text-right">Pesisir &amp; Pegunungan</dd>
-            </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Status Wisata</dt><dd class="font-medium text-right">Desa Wisata Rintisan</dd>
-            </div>
-            <div class="flex justify-between gap-4 py-3">
-              <dt class="text-kabut/60">Mata Pencaharian</dt><dd class="font-medium text-right">Nelayan &amp; Petani</dd>
-            </div>
+            {% endfor %}
           </dl>
         </div>
       </aside>
@@ -75,32 +46,23 @@
       <path d="M0 120c220 40 340-30 560-25s360 55 560 45 260-50 320-45" stroke="#E7A324" stroke-width="1.5"/>
     </svg>
 
+    {% page_section "about-geography" as section %}
     <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center relative">
       <div class="reveal">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">Geografi &amp; Letak</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
-          Di kaki Cycloop, di tepi Pasifik
+          {{ section.heading }}
         </h2>
-        <div class="mt-6 space-y-4 text-kabut/80 leading-relaxed">
-          <p>
-            Kampung ini berada di lereng utara Cagar Alam Pegunungan Cycloop yang langsung berbatasan dengan laut.
-            Perpaduan ini menghadirkan kekayaan hayati yang jarang ditemui: hutan tropis dataran rendah, sungai dan
-            air terjun, garis pantai, hingga ekosistem bawah laut.
-          </p>
-          <p>
-            Akses menuju kampung dapat ditempuh melalui jalur darat maupun laut dari Kota Jayapura. Peningkatan
-            konektivitas jalan antarkampung pesisir terus berlangsung untuk memudahkan warga dan kunjungan wisata.
-          </p>
+        <div class="rich-text rich-text-invert mt-6 space-y-4 text-kabut/80 leading-relaxed">
+          {{ section.body|safe }}
         </div>
         <div class="mt-8 grid grid-cols-2 gap-4">
+          {% for fact in boundaries %}
           <div class="rounded-md border border-white/10 p-4">
-            <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/70">Batas Utara</p>
-            <p class="font-medium mt-1">Samudra Pasifik</p>
+            <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/70">{{ fact.label }}</p>
+            <p class="font-medium mt-1">{{ fact.value }}</p>
           </div>
-          <div class="rounded-md border border-white/10 p-4">
-            <p class="font-mono text-[10px] tracking-eyebrow uppercase text-aqua/70">Batas Selatan</p>
-            <p class="font-medium mt-1">Pegunungan Cycloop</p>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -122,90 +84,72 @@
   </section>
 
   <!-- Sejarah singkat -->
+  {% page_section "about-history" as section %}
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
       <div class="reveal order-2 lg:order-1">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Sejarah Singkat</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
-          Jejak Orang Tepra yang dijaga turun-temurun
+          {{ section.heading }}
         </h2>
-        <div class="mt-6 space-y-4 text-ink/75 leading-relaxed">
-          <p>
-            Sejak lama, Orang Tepra menata ruang hidup mereka berdasarkan kearifan lokal — dari zonasi kebun,
-            tempat melaut, hingga ruang-ruang adat. Tata ruang tradisional ini bukan sekadar pola permukiman,
-            melainkan cerminan hubungan erat antara manusia, alam, dan leluhur.
-          </p>
-          <p>
-            Kepemimpinan adat dipegang melalui sistem <strong class="text-ink">Ondoafi</strong>, yang menjadi
-            penjaga tatanan sosial dan wilayah adat. Nilai-nilai inilah yang terus dirawat warga sembari kampung
-            melangkah menuju pengakuan sebagai kampung adat.
-          </p>
+        <div class="rich-text mt-6 space-y-4 text-ink/75 leading-relaxed">
+          {{ section.body|safe }}
         </div>
+        {% if section.feature.quote %}
         <blockquote class="mt-8 border-l-2 border-emas pl-5 text-ink/80 italic">
-          "Menjaga adat dan hutan adalah cara kami menjaga diri sendiri."
+          "{{ section.feature.quote }}"
         </blockquote>
+        {% endif %}
       </div>
 
       <div class="reveal order-1 lg:order-2 relative">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop"
-             alt="Hutan tropis di kaki Pegunungan Cycloop"
-             onerror="this.onerror=null;this.src='https://dummyimage.com/1000x1100'"
-             class="w-full h-[420px] sm:h-[520px] object-cover rounded-sm shadow-xl" />
+        {% if section.feature.photo.image %}
+        <img src="{{ section.feature.photo.image.url }}" alt="{{ section.heading }}" class="w-full h-[420px] sm:h-[520px] object-cover rounded-sm shadow-xl">
+        {% if section.feature.badge_value %}
         <div class="absolute -bottom-5 -left-3 sm:-left-5 bg-abyss text-kabut px-5 py-3 rounded-sm shadow-lg">
-          <p class="font-mono text-[10px] tracking-eyebrow text-aqua/80 uppercase">Kearifan Lokal</p>
-          <p class="font-display font-bold leading-tight">Tata Ruang Tradisional Tepra</p>
+          <p class="font-mono text-[10px] tracking-eyebrow text-aqua/80 uppercase">{{ section.feature.badge_label }}</p>
+          <p class="font-display font-bold leading-tight">{{ section.feature.badge_value }}</p>
         </div>
+        {% endif %}
+        {% endif %}
       </div>
     </div>
   </section>
 
   <!-- Masyarakat & budaya adat Tepra -->
+  {% page_section "about-culture-intro" as section %}
   <section class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
       <div class="reveal max-w-2xl mb-14">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Masyarakat &amp; Budaya</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
-          Adat yang masih hidup di keseharian
+          {{ section.heading }}
         </h2>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for tradition in traditions %}
         <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
           <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/></svg>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              {% if tradition.icon == 'shield' %}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/>
+              {% elif tradition.icon == 'bag' %}<path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/>
+              {% elif tradition.icon == 'book' %}<path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/>
+              {% else %}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/>{% endif %}
+            </svg>
           </div>
-          <h3 class="font-display font-bold text-xl text-ink">Kepemimpinan Ondoafi</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Sistem kepemimpinan adat yang menjaga tatanan sosial dan wilayah adat kampung.</p>
+          <h3 class="font-display font-bold text-xl text-ink">{{ tradition.name }}</h3>
+          <p class="mt-2 text-sm text-ink/70 leading-relaxed">{{ tradition.summary }}</p>
         </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M6 8l2 11h8l2-11M9 8V6a3 3 0 016 0v2"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Noken</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Tas tradisional dari serat alami dengan motif khas, warisan budaya yang masih ditenun warga.</p>
-        </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5M5 4h14v12H9l-4 4z"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Bahasa Daerah</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Bahasa ibu yang terus dijaga; dapat ditelusuri melalui Kamus Bahasa Raveni Rara.</p>
-        </div>
-
-        <div class="reveal rounded-md border border-ink/10 p-6 hover:border-emas hover:-translate-y-1 transition">
-          <div class="h-11 w-11 grid place-items-center rounded-full bg-reef/10 text-reef mb-4">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4m0 10v4m9-9h-4M7 12H3m14.5-6.5l-3 3m-9 9l3-3m9 0l-3-3m-3-3l-3-3"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-xl text-ink">Upacara Adat</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">Ritual dan kesenian yang menandai peristiwa penting dalam kehidupan masyarakat.</p>
-        </div>
+        {% empty %}
+        <p class="text-ink/60 col-span-full">Belum ada data budaya yang dipublikasikan.</p>
+        {% endfor %}
       </div>
     </div>
   </section>
 
   <!-- Visi & misi -->
+  {% page_section "about-vision" as section %}
   <section class="bg-reef text-abyss py-24 sm:py-32 relative overflow-hidden">
     <svg class="absolute inset-0 w-full h-full opacity-12" viewBox="0 0 1440 500" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path d="M0 360c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
@@ -213,52 +157,37 @@
     </svg>
     <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-14 relative">
       <div class="reveal">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-4">Visi</p>
-        <p class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-snug">
-          Mewujudkan Yongsu Desoyo sebagai kampung adat yang mandiri, lestari, dan sejahtera —
-          tempat kekayaan alam dan budaya menjadi sumber kehidupan yang berkelanjutan bagi seluruh warga.
-        </p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-4">{{ section.eyebrow }}</p>
+        <div class="rich-text font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-snug">
+          {{ section.body|safe }}
+        </div>
       </div>
       <div class="reveal">
         <p class="font-mono text-xs tracking-eyebrow uppercase text-abyss/70 mb-5">Misi</p>
         <ul class="space-y-4">
+          {% for point in mission_points %}
           <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">01</span>
-            <p class="text-abyss/90 leading-relaxed">Menjaga hutan, laut, dan wilayah adat sebagai warisan bersama.</p>
+            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">{{ forloop.counter|stringformat:"02d" }}</span>
+            <p class="text-abyss/90 leading-relaxed">{{ point.text }}</p>
           </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">02</span>
-            <p class="text-abyss/90 leading-relaxed">Mengembangkan ekowisata dan ekonomi warga yang berkeadilan.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">03</span>
-            <p class="text-abyss/90 leading-relaxed">Melestarikan budaya, bahasa, dan pengetahuan tradisional Tepra.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">04</span>
-            <p class="text-abyss/90 leading-relaxed">Memperkuat pemerintahan kampung yang transparan dan partisipatif.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-abyss/60 pt-0.5">05</span>
-            <p class="text-abyss/90 leading-relaxed">Meningkatkan layanan dasar: pendidikan, kesehatan, dan infrastruktur.</p>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Pemerintahan kampung & lembaga adat -->
+  {% page_section "about-structure-intro" as section %}
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
       <div class="reveal max-w-2xl mb-14">
-        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">Pemerintahan &amp; Kelembagaan</p>
+        <p class="font-mono text-xs tracking-eyebrow uppercase text-reef mb-4">{{ section.eyebrow }}</p>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] text-ink">
-          Struktur yang menopang kampung
+          {{ section.heading }}
         </h2>
-        <p class="mt-5 text-ink/70 leading-relaxed">
-          Pemerintahan kampung berjalan beriringan dengan lembaga adat. Keduanya bahu-membahu mengatur kehidupan
-          warga, dari pelayanan sehari-hari hingga penjagaan wilayah adat.
-        </p>
+        <div class="rich-text mt-5 text-ink/70 leading-relaxed">
+          {{ section.body|safe }}
+        </div>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -308,6 +237,7 @@
   </section>
 
   <!-- CTA -->
+  {% page_section "about-cta" as section %}
   <section class="bg-abyss text-kabut relative overflow-hidden">
     <svg class="absolute inset-0 w-full h-full opacity-8" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path d="M0 300c220-60 360 40 620 30s420-90 820-70" stroke="#F0C766" stroke-width="1.5"/>
@@ -316,9 +246,9 @@
     <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-24 relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
       <div class="reveal max-w-2xl">
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05]">
-          Ingin mengenal Yongsu Desoyo lebih jauh?
+          {{ section.heading }}
         </h2>
-        <p class="mt-4 text-kabut/75 text-lg">Jelajahi potensi wisata, produk lokal, dan program pembangunan kampung kami.</p>
+        <div class="rich-text rich-text-invert mt-4 text-kabut/75 text-lg">{{ section.body|safe }}</div>
       </div>
       <div class="reveal flex flex-col sm:flex-row gap-4 shrink-0">
         <a href="{% url 'tourism:list' %}" class="inline-flex items-center justify-center rounded-full bg-emas px-7 py-4 font-semibold text-abyss hover:bg-emasS transition">Jelajahi Potensi</a>

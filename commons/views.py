@@ -1,11 +1,12 @@
 from django.utils import timezone
 from django.views.generic import TemplateView
 
+from culture.models import Tradition
 from events.models import Event
 from news.models import Post
 from tourism.models import Destination
 
-from .models import HeroSlide, OfficialPosition, Statistic
+from .models import ContactChannel, FastFact, HeroSlide, MissionPoint, OfficialPosition, Statistic
 
 
 class HomeView(TemplateView):
@@ -43,11 +44,20 @@ class AboutView(TemplateView):
         positions = OfficialPosition.objects.filter(is_published=True)
         context["gov_positions"] = positions.exclude(group=OfficialPosition.Group.CUSTOM)
         context["adat_institutions"] = positions.filter(group=OfficialPosition.Group.CUSTOM)
+        context["traditions"] = Tradition.objects.filter(is_published=True)
+        context["quick_facts"] = FastFact.objects.filter(group=FastFact.Group.QUICK_FACTS)
+        context["boundaries"] = FastFact.objects.filter(group=FastFact.Group.BOUNDARIES)
+        context["mission_points"] = MissionPoint.objects.all()
         return context
 
 
 class ContactView(TemplateView):
     template_name = "commons/contact.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["contact_channels"] = ContactChannel.objects.all()
+        return context
 
 
 class StatisticsView(TemplateView):

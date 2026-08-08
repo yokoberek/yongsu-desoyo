@@ -69,6 +69,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "commons.context_processors.site_settings",
             ],
         },
     },
@@ -229,6 +230,11 @@ UNFOLD = {
                         "link": reverse_lazy("admin:commons_pagebanner_changelist"),
                     },
                     {
+                        "title": "Teks Bagian Halaman",
+                        "icon": "auto_stories",
+                        "link": reverse_lazy("admin:commons_pagesection_changelist"),
+                    },
+                    {
                         "title": "Struktur Pemerintahan",
                         "icon": "account_balance",
                         "link": reverse_lazy(
@@ -239,6 +245,31 @@ UNFOLD = {
                         "title": "Statistik",
                         "icon": "monitoring",
                         "link": reverse_lazy("admin:commons_statistic_changelist"),
+                    },
+                    {
+                        "title": "Fakta Singkat",
+                        "icon": "fact_check",
+                        "link": reverse_lazy("admin:commons_fastfact_changelist"),
+                    },
+                    {
+                        "title": "Poin Misi",
+                        "icon": "checklist",
+                        "link": reverse_lazy("admin:commons_missionpoint_changelist"),
+                    },
+                    {
+                        "title": "Kanal Kontak",
+                        "icon": "call",
+                        "link": reverse_lazy("admin:commons_contactchannel_changelist"),
+                    },
+                    {
+                        "title": "Tautan Sosial Media",
+                        "icon": "share",
+                        "link": reverse_lazy("admin:commons_sociallink_changelist"),
+                    },
+                    {
+                        "title": "Pengaturan Situs",
+                        "icon": "settings",
+                        "link": reverse_lazy("admin:commons_sitesettings_changelist"),
                     },
                 ],
             },

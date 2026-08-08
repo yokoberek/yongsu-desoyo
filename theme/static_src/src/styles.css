@@ -89,6 +89,17 @@ body {
   width: 100%;
 }
 
+/* Isi teks yang diketik admin lewat editor. Penegasan <strong> diatur di sini, bukan
+   lewat class di dalam konten -- class di dalam konten ikut hilang begitu teksnya
+   diedit ulang di admin. Varian -invert untuk isi teks di atas latar gelap. */
+.rich-text strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+.rich-text-invert strong {
+  color: var(--color-kabut);
+}
+
 /* Hormati preferensi gerak minimal pengguna */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
