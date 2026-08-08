@@ -1,5 +1,5 @@
 {% comment %} Banner kepala halaman. Param: judul, gambar (wajib); eyebrow, subjudul, tinggi (opsional). {% endcomment %}
-<section class="relative {{ tinggi|default:'min-h-[52vh]' }} flex items-end overflow-hidden bg-abyss">
+<section class="relative {{ tinggi|default:'min-h-[48vh]' }} flex items-end overflow-hidden bg-abyss">
   <img src="{{ gambar }}" alt="{{ judul }}"
        onerror="this.onerror=null;this.src='https://dummyimage.com/1600x900'"
        class="absolute inset-0 h-full w-full object-cover" />
