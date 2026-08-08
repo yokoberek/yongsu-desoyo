@@ -20,22 +20,12 @@
           Penjaga keterbukaan informasi kampung
         </h2>
         <ul class="space-y-4">
+          {% for task in tasks %}
           <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-reef pt-0.5">01</span>
-            <p class="text-ink/80 leading-relaxed">Menyediakan dan memberikan pelayanan informasi publik kepada masyarakat.</p>
+            <span class="font-mono text-sm font-semibold text-reef pt-0.5">{{ forloop.counter|stringformat:"02d" }}</span>
+            <p class="text-ink/80 leading-relaxed">{{ task.text }}</p>
           </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-reef pt-0.5">02</span>
-            <p class="text-ink/80 leading-relaxed">Mengelola, mendokumentasikan, dan mengarsipkan informasi publik kampung.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-reef pt-0.5">03</span>
-            <p class="text-ink/80 leading-relaxed">Menyusun daftar informasi publik yang wajib disediakan dan diumumkan.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-sm font-semibold text-reef pt-0.5">04</span>
-            <p class="text-ink/80 leading-relaxed">Melayani permohonan informasi dan menyelesaikan sengketa informasi secara adil.</p>
-          </li>
+          {% endfor %}
         </ul>
       </div>
 
@@ -43,10 +33,9 @@
         <div class="rounded-md bg-abyss text-kabut p-8 shadow-xl">
           <p class="font-mono text-xs tracking-eyebrow uppercase text-aqua/80 mb-6">Dasar Hukum</p>
           <ul class="space-y-4 text-sm text-kabut/80">
-            <li class="border-l-2 border-emas pl-4">UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</li>
-            <li class="border-l-2 border-emas pl-4">UU No. 6 Tahun 2014 tentang Desa</li>
-            <li class="border-l-2 border-emas pl-4">Peraturan Komisi Informasi tentang Standar Layanan Informasi Publik</li>
-            <li class="border-l-2 border-emas pl-4">Peraturan Kampung tentang Pembentukan PPID</li>
+            {% for basis in legal_basis %}
+            <li class="border-l-2 border-emas pl-4">{{ basis.text }}</li>
+            {% endfor %}
           </ul>
         </div>
       </aside>
@@ -61,21 +50,13 @@
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-[1.05] text-ink">Siapa di balik layanan ini</h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for role in roles %}
         <div class="reveal rounded-md border border-ink/10 p-6">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Atasan PPID</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kepala Kampung</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
+          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">{{ role.role_label }}</p>
+          <h3 class="font-display font-bold text-lg text-ink">{{ role.official.position|default:"—" }}</h3>
+          <p class="mt-1 text-sm text-ink/50">{{ role.official.name|default:"—" }}</p>
         </div>
-        <div class="reveal rounded-md border border-ink/10 p-6">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Ketua PPID</p>
-          <h3 class="font-display font-bold text-lg text-ink">Sekretaris Kampung</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
-        <div class="reveal rounded-md border border-ink/10 p-6">
-          <p class="font-mono text-[10px] tracking-eyebrow uppercase text-emas mb-2">Petugas Layanan</p>
-          <h3 class="font-display font-bold text-lg text-ink">Kaur Umum</h3>
-          <p class="mt-1 text-sm text-ink/50">—</p>
-        </div>
+        {% endfor %}
       </div>
       <p class="reveal mt-8 font-mono text-[11px] text-ink/50">*Nama pejabat diisi sesuai struktur pemerintahan kampung yang menjabat.</p>
     </div>

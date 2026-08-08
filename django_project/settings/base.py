@@ -330,6 +330,48 @@ UNFOLD = {
                 ],
             },
             {
+                "title": "PPID",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Tugas & Fungsi",
+                        "icon": "task_alt",
+                        "link": reverse_lazy("admin:ppid_ppidtask_changelist"),
+                    },
+                    {
+                        "title": "Dasar Hukum",
+                        "icon": "gavel",
+                        "link": reverse_lazy("admin:ppid_legalbasis_changelist"),
+                    },
+                    {
+                        "title": "Struktur Pengelola PPID",
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:ppid_ppidrole_changelist"),
+                    },
+                    {
+                        "title": "Klasifikasi Informasi",
+                        "icon": "category",
+                        "link": reverse_lazy("admin:ppid_infoclassification_changelist"),
+                    },
+                    {
+                        "title": "Langkah Permohonan",
+                        "icon": "format_list_numbered",
+                        "link": reverse_lazy("admin:ppid_requeststep_changelist"),
+                    },
+                    {
+                        "title": "Syarat Permohonan",
+                        "icon": "rule",
+                        "link": reverse_lazy("admin:ppid_requestrequirement_changelist"),
+                    },
+                    {
+                        "title": "FAQ PPID",
+                        "icon": "quiz",
+                        "link": reverse_lazy("admin:ppid_faqitem_changelist"),
+                    },
+                ],
+            },
+            {
                 "title": "Manajemen Pengguna",
                 "separator": True,
                 "collapsible": True,

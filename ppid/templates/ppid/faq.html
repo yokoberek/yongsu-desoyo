@@ -14,59 +14,19 @@
   <!-- Daftar FAQ -->
   <section class="bg-pasir py-24 sm:py-32">
     <div class="mx-auto max-w-3xl px-5 sm:px-8 space-y-4">
-
-      <div x-data="{ open: true }" class="reveal rounded-md bg-white border border-ink/10 overflow-hidden">
+      {% for faq in faq_items %}
+      <div x-data="{ open: {{ forloop.first|yesno:'true,false' }} }" class="reveal rounded-md bg-white border border-ink/10 overflow-hidden">
         <button @click="open = !open" class="w-full flex items-center justify-between gap-4 p-6 text-left">
-          <span class="font-display font-bold text-lg text-ink">Siapa yang boleh mengajukan permohonan informasi?</span>
+          <span class="font-display font-bold text-lg text-ink">{{ faq.question }}</span>
           <svg class="h-5 w-5 shrink-0 text-reef transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
         </button>
         <div x-show="open" x-collapse>
-          <p class="px-6 pb-6 text-ink/70 leading-relaxed">
-            Setiap warga negara Indonesia, baik perorangan maupun badan hukum, berhak mengajukan permohonan
-            informasi publik dengan mengikuti prosedur yang berlaku.
-          </p>
+          <p class="px-6 pb-6 text-ink/70 leading-relaxed">{{ faq.answer }}</p>
         </div>
       </div>
-
-      <div x-data="{ open: false }" class="reveal rounded-md bg-white border border-ink/10 overflow-hidden">
-        <button @click="open = !open" class="w-full flex items-center justify-between gap-4 p-6 text-left">
-          <span class="font-display font-bold text-lg text-ink">Apakah dikenakan biaya?</span>
-          <svg class="h-5 w-5 shrink-0 text-reef transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div x-show="open" x-collapse>
-          <p class="px-6 pb-6 text-ink/70 leading-relaxed">
-            Pelayanan informasi pada dasarnya tidak dipungut biaya. Biaya hanya dapat dikenakan untuk penggandaan
-            atau perekaman sesuai ketentuan, dan diberitahukan kepada pemohon terlebih dahulu.
-          </p>
-        </div>
-      </div>
-
-      <div x-data="{ open: false }" class="reveal rounded-md bg-white border border-ink/10 overflow-hidden">
-        <button @click="open = !open" class="w-full flex items-center justify-between gap-4 p-6 text-left">
-          <span class="font-display font-bold text-lg text-ink">Berapa lama informasi diberikan?</span>
-          <svg class="h-5 w-5 shrink-0 text-reef transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div x-show="open" x-collapse>
-          <p class="px-6 pb-6 text-ink/70 leading-relaxed">
-            PPID memberikan pemberitahuan paling lambat 10 hari kerja sejak permohonan diterima, dan dapat
-            diperpanjang paling lama 7 hari kerja dengan pemberitahuan tertulis.
-          </p>
-        </div>
-      </div>
-
-      <div x-data="{ open: false }" class="reveal rounded-md bg-white border border-ink/10 overflow-hidden">
-        <button @click="open = !open" class="w-full flex items-center justify-between gap-4 p-6 text-left">
-          <span class="font-display font-bold text-lg text-ink">Bagaimana jika permohonan ditolak?</span>
-          <svg class="h-5 w-5 shrink-0 text-reef transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div x-show="open" x-collapse>
-          <p class="px-6 pb-6 text-ink/70 leading-relaxed">
-            Pemohon berhak mengajukan keberatan kepada atasan PPID. Bila belum puas, sengketa dapat dilanjutkan
-            ke Komisi Informasi sesuai peraturan yang berlaku.
-          </p>
-        </div>
-      </div>
-
+      {% empty %}
+      <p class="text-ink/60">Belum ada pertanyaan yang tersedia.</p>
+      {% endfor %}
     </div>
   </section>
 
