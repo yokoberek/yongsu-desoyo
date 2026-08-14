@@ -9,6 +9,8 @@ from .views import robots_txt
 
 urlpatterns = [
     path("site-manager/", admin.site.urls),
+    # Endpoint upload gambar dari dalam editor (dibatasi user staff).
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     path("robots.txt", robots_txt, name="robots_txt"),
     # URL publik flat & bersih; tiap app punya path sendiri.

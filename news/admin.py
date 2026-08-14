@@ -1,7 +1,5 @@
 from django.contrib import admin
-from django.db import models
 from unfold.admin import ModelAdmin
-from unfold.contrib.forms.widgets import WysiwygWidget
 
 from .models import Post
 
@@ -13,4 +11,3 @@ class PostAdmin(ModelAdmin):
     search_fields = ("title", "summary", "body")
     date_hierarchy = "published_at"
     prepopulated_fields = {"slug": ("title",)}
-    formfield_overrides = {models.TextField: {"widget": WysiwygWidget}}

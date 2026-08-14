@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # 3rd-party apps
     "tailwind",
     "theme",
+    "django_ckeditor_5",
     # Local apps
     "commons.apps.CommonsConfig",
     "tourism.apps.TourismConfig",
@@ -161,6 +162,111 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Django-tailwind config
 # https://django-tailwind.readthedocs.io/en/latest/installation.html#installation
 TAILWIND_APP_NAME = "theme"
+
+
+# Django-ckeditor-5 config
+# https://github.com/hvlads/django-ckeditor-5
+CKEDITOR_5_FILE_STORAGE = "commons.storage.EditorImageStorage"
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
+CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpeg", "jpg", "png", "gif", "webp"]
+
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "language": "id",
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+            "|",
+            "insertImage",
+            "insertTable",
+            "mediaEmbed",
+            "horizontalLine",
+            "|",
+            "alignment",
+            "outdent",
+            "indent",
+            "|",
+            "removeFormat",
+            "sourceEditing",
+            "undo",
+            "redo",
+        ],
+        # H1 sudah dipakai judul halaman, jadi isi berita mulai dari H2.
+        "heading": {
+            "options": [
+                {
+                    "model": "paragraph",
+                    "title": "Paragraf",
+                    "class": "ck-heading_paragraph",
+                },
+                {
+                    "model": "heading2",
+                    "view": "h2",
+                    "title": "Judul 2",
+                    "class": "ck-heading_heading2",
+                },
+                {
+                    "model": "heading3",
+                    "view": "h3",
+                    "title": "Judul 3",
+                    "class": "ck-heading_heading3",
+                },
+                {
+                    "model": "heading4",
+                    "view": "h4",
+                    "title": "Judul 4",
+                    "class": "ck-heading_heading4",
+                },
+            ],
+        },
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "toggleImageCaption",
+                "|",
+                "imageStyle:inline",
+                "imageStyle:alignLeft",
+                "imageStyle:alignCenter",
+                "imageStyle:alignRight",
+                "imageStyle:block",
+                "|",
+                "linkImage",
+            ],
+            "styles": {
+                "options": [
+                    "inline",
+                    "alignLeft",
+                    "alignCenter",
+                    "alignRight",
+                    "block",
+                ],
+            },
+        },
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties",
+                "toggleTableCaption",
+            ],
+        },
+        "list": {
+            "properties": {"styles": True, "startIndex": True, "reversed": True},
+        },
+        "link": {"addTargetToExternalLinks": True},
+        # Simpan HTML embed-nya langsung supaya video tampil di halaman publik
+        # tanpa perlu JS tambahan (default-nya hanya <oembed url="...">).
+        "mediaEmbed": {"previewsInData": True},
+    },
+}
 
 
 # Unfold config

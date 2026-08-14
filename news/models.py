@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Post(models.Model):
@@ -15,7 +16,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, max_length=200)
     category = models.CharField("Kategori", max_length=20, choices=Category.choices)
     summary = models.CharField("Ringkasan", max_length=300)
-    body = models.TextField("Isi", blank=True)
+    body = CKEditor5Field("Isi", config_name="default", blank=True)
     image = models.ImageField("Gambar", upload_to="news/", blank=True)
     published_at = models.DateField("Tanggal Terbit", default=timezone.now)
     is_published = models.BooleanField("Ditampilkan", default=True)
