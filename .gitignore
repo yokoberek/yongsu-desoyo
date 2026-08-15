@@ -13,8 +13,9 @@ staticfiles/
 mediafiles/
 .env
 
-# uv
-# uv.lock is committed
+# Generated files
+.claude
+.vscode
 
 # OS
 .DS_Store
